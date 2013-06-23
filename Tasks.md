@@ -70,7 +70,10 @@ Rocketeer::before('Deploy', function($task) {
   $task->command->info('Sup guys');
 });
 
-Rocketeer::after('Deploy', 'composer install');
+Rocketeer::after('Deploy', array(
+  'composer install',
+  'bower install'
+));
 
 Rocketeer::after('Deploy', 'MyClass');
 ```
