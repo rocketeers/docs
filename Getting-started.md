@@ -28,6 +28,12 @@ And this line to the `providers` array in your `app/config/app.php` file :
 'Rocketeer\RocketeerServiceProvider',
 ```
 
+And this line to the `aliases` array in your `app/config/app.php` file :
+
+```php
+'Rocketeer' => 'Rocketeer\Facades\Rocketeer',
+```
+
 Then publish the config :
 
 ```
