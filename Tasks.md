@@ -11,45 +11,47 @@ A task can be three things :
 So the three kind of tasks above could be seen in your config file :
 
 ```php
+<?php
 'after' => array(
-	'deploy:setup' => array(
+  'deploy:setup' => array(
 
-		// Commands
-		'composer install',
+    // Commands
+    'composer install',
 
-		// Closures
-		function($task) {
-			$task->rocketeer->goTo('releases/134781354');
-			$tests = $task->run('phpunit');
+    // Closures
+    function($task) {
+      $task->rocketeer->goTo('releases/134781354');
+      $tests = $task->run('phpunit');
 
-			if ($tests) {
-				$task->command->info('Tests ran perfectly dude !');
-			} else {
-				$task->command->error('Aw man, tests failed and stuff')
-			}
-		},
+      if ($tests) {
+        $task->command->info('Tests ran perfectly dude !');
+      } else {
+        $task->command->error('Aw man, tests failed and stuff')
+      }
+    },
 
-		// Actual Tasks classes
-		'MyNamespace\MyTaskClass',
-	),
+    // Actual Tasks classes
+    'MyNamespace\MyTaskClass',
+  ),
 ```
 
 ```php
+<?php
 namespace MyNamespace;
 
 class MyTaskClass extends Rocketeer\Tasks\Task
 {
-	public function execute()
-	{
-		$currentReleasePath = $this->releasesManager->getCurrentReleasePath();
-		$this->rocketeer->goTo($currentReleasePath;
-		$tests = $this->run('phpunit');
+  public function execute()
+  {
+    $currentReleasePath = $this->releasesManager->getCurrentReleasePath();
+    $this->rocketeer->goTo($currentReleasePath;
+    $tests = $this->run('phpunit');
 
-		if ($tests) {
-			$this->command->info('Tests ran perfectly dude !');
-		} else {
-			$this->command->error('Aw man, tests failed and stuff')
-		}
-	}
+    if ($tests) {
+      $this->command->info('Tests ran perfectly dude !');
+    } else {
+      $this->command->error('Aw man, tests failed and stuff')
+    }
+  }
 }
 ```
