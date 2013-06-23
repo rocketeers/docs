@@ -22,7 +22,7 @@ So the three kind of tasks above could be seen in your config file :
 
     // Closures
     function($task) {
-      $task->rocketeer->goTo('releases/134781354');
+      $task->rocketeer->gotoFolder('releases/134781354');
       $tests = $task->run('phpunit');
 
       if ($tests) {
@@ -46,7 +46,7 @@ class MyTaskClass extends Rocketeer\Tasks\Task
   public function execute()
   {
     $currentReleasePath = $this->releasesManager->getCurrentReleasePath();
-    $this->rocketeer->goTo($currentReleasePath;
+    $this->rocketeer->gotoFolder($currentReleasePath);
     $tests = $this->run('phpunit');
 
     if ($tests) {
