@@ -6,7 +6,9 @@ Now, the core of Rocketeer is you can hook into any of those Tasks to peform add
 A task can be three things :
 - A simple one-line command, like `composer install`
 - A closure, giving you access to Rocketeer's core helpers to perform more advanced actions
-- And finally a class, extending the `Rocketeer\Tasks\Task` class
+- And finally a class, extending the `Rocketeer\Tasks\Task` class, giving you full at-home control
+
+Each level gives you a little more control and comfort – this is intentional, if you need more control than what Closures give you, then you probably need a class.
 
 So the three kind of tasks above could be seen in your config file :
 
