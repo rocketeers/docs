@@ -117,7 +117,7 @@ To get you started here is an example config file to make you picture a little m
 
     // Tasks to execute after commands
     'after' => array(
-      'deploy:deploy'  => array(
+      'deploy'  => array(
         'bower install',
         'php artisan basset:build'
       ),
