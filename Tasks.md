@@ -66,16 +66,16 @@ As seen above, you can define tasks in the config file, but as your tasks get bi
 
 ```php
 <?php
-Rocketeer::before('Deploy', function($task) {
+Rocketeer::before('deploy', function($task) {
   $task->command->info('Sup guys');
 });
 
-Rocketeer::after('Deploy', array(
+Rocketeer::after('deploy', array(
   'composer install',
   'bower install'
 ));
 
-Rocketeer::after('Deploy', 'MyClass');
+Rocketeer::after('deploy', 'MyClass');
 ```
 
 You give as first argument the name of the fully-qualified name of the Task you'd like to act on, and then your task.
