@@ -114,4 +114,4 @@ And there you go, tadah !
 
 -----
 
-To learn about what you can do with Tasks, check out the [API](API.md)
+To learn about what you can do with Tasks, check out the [API](API)
