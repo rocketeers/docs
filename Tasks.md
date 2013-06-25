@@ -111,3 +111,7 @@ Rocketeer::add('Migrate');
 And there you go, tadah !
 
 ![artisan](http://i.imgur.com/jwdQ2Ly.png)
+
+-----
+
+To learn about what you can do with Tasks, check out the [API](API.md)
