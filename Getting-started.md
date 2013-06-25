@@ -104,6 +104,12 @@ To get you started here is an example config file to make you picture a little m
 
     // The number of releases to keep at all times
     'releases' => 4,
+
+    // A list of folders/file to be shared between releases
+    'shared' => array(
+      'public/img/users',
+      'app/database/production.sqlite',
+    ),
   ),
 
   // Tasks
