@@ -32,7 +32,7 @@ You can hook into any task via the `tasks` array in Rocketeer's config file. The
 
     // Closures
     function($task) {
-      $tests = $task->runForCurrentRelease('phpunit --coverage-html tests/coverage');
+      $tests = $task->runForCurrentRelease('phpunit --coverage-html=tests/coverage');
 
       if ($tests) {
         $task->command->info('Tests ran perfectly dude !');
