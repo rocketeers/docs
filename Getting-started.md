@@ -122,6 +122,9 @@ To get you started here is an example config file to make you picture a little m
         'php artisan basset:build'
       ),
     ),
+
+    // Custom Tasks to register with Rocketeer
+    'custom' => array(),
   ),
 
 );
