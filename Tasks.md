@@ -65,7 +65,7 @@ You give as first argument the name of the name of the Task you'd like to act on
 
 ## Creating your own Tasks
 
-Sometimes you have things to do that don't fit in with the existing Tasks Rocketeer provides. That's why you can create your own tasks, here is an example one :
+Sometimes you have things to do that don't fit in with the existing Tasks Rocketeer provides. That's why you can create your own tasks, here is an example one. As you can see it's pretty easy.
 
 ```php
 <?php
@@ -92,12 +92,20 @@ class Migrate extends Rocketeer\Tasks\Task
 }
 ```
 
-As you can see it's pretty easy. Now that the class is created, you need to register it with Rocketeer. In order to do that you'll edit the `tasks.custom` array in the config file with a list of classes to register with Rocketeer.
+### Registering your custom Task
+
+ Now that the class is created, you need to register it with Rocketeer. As with the hooks, you can either do that via the config file, in the `tasks.custom` array :
 
 ```php
 'custom' => array(
   'Migrate',
 ),
+```
+
+Or via the facade in your `app/start/artisan.php` file :
+
+```php
+Rocketeer::add('Migrate');
 ```
 
 And there you go, tadah !
