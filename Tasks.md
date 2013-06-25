@@ -11,6 +11,8 @@ A task can be three things :
 
 Each level gives you a little more control and comfort – this is intentional, if you need more control than what Closures give you, then you probably need a class.
 
+-----
+
 ## Hooking into Rocketeer's Tasks
 
 What most user will do is hook into the existing Rocketeer's Tasks to do things before or after. There is two ways to do that :
@@ -41,6 +43,7 @@ You can hook into any task via the `tasks` array in Rocketeer's config file. The
       }
     },
   ),
+?>
 ```
 
 ### Defining Tasks using the facade
@@ -59,6 +62,7 @@ Rocketeer::after('deploy', array(
 ));
 
 Rocketeer::after('deploy', 'MyClass');
+?>
 ```
 
 You give as first argument the name of the name of the Task you'd like to act on, and then your task.
@@ -90,6 +94,7 @@ class Migrate extends Rocketeer\Tasks\Task
     $this->runMigrations();
   }
 }
+?>
 ```
 
 ### Registering your custom Task
@@ -114,4 +119,134 @@ And there you go, tadah !
 
 -----
 
-To learn about what you can do with Tasks, check out the [API](API)
+## Writing Tasks
+
+### Core methods
+
+The core methods of any Task is the `run` method, this is the one that lies at the bottom of nearly every other helper.
+It just runs commands on the remote server, and returns the output.
+
+```php
+<?php
+$return = $this->run('composer install');
+?>
+```
+
+You can also pass it an array of commands to execute. Now, note this because it's important : every call to `run` is self contained. Meaning this :
+
+```php
+<?php
+// Returns /
+$this->run('cd first-folder');
+$folder = $this->run('pwd');
+
+// Returns /first-folder/
+$folder = $this->run(array(
+  'cd first-folder',
+  'pwd',
+));
+?>
+```
+
+To automate running tasks in folders, two helpers exist : `runInFolder` and `runForCurrentRelease`. The first one will run one or more tasks in a folder, while the other one will run one or more tasks in the current release's folder.
+
+```php
+<?php
+$this->run(array(
+  'cd /home/www/website/releases/123456789',
+  'ls',
+));
+
+// Is the same as
+
+$this->runInFolder('releases/123456789', 'ls');
+
+// Is the same as
+
+$this->runForCurrentRelease('ls');
+?>
+```
+
+### Folder helpers
+
+A few folder/file-manipulation methods are also present, they're very basic and just abstract low-level bash commands but, hey, they're good to have :
+
+```php
+<?php
+$this->move('folder/file.php', 'new-folder/file.php');
+$array = $this->listContents('folder');
+$boolean = $this->fileExists('file.php');
+$boolean = $this->fileExists('folder');
+$this->createFolder('folder');
+$this->removeFolder('folder');
+$this->symlink('folder-a', 'folder-b');
+$phpunit = $this->which('phpunit', 'vendor/bin/phpunit'); // Second argument is fallback
+?>
+```
+
+### Tasks-related methods
+
+Some methods are used by other Rocketeer tasks and can be used by you to create your own. All of them are relative to the current release.
+
+```php
+<?php
+// Run tests
+$boolean = $this->runTests();
+$boolean = $this->runTests('--stop-on-failure');
+
+// Run migrations
+$this->runMigrations();
+$this->runMigrations(true); // Seeds the database too
+
+// Run Composer
+$this->runComposer();
+
+// Set folders as web-writtable
+$this->setPermissions('app');
+?>
+```
+
+### External methods
+
+Tasks also have access to the other classes of Rocketeer. You can call other tasks :
+
+```php
+<?php
+$this->executeTask('Rollback');
+```
+
+And call other classes's methods. There are five main classes surrounding Tasks which you'll like want to use :
+- The **Command** is the command executing the Task. You'll use it to display messages and fetch options and arguments
+- The **Releases Manager** handles releases and their paths
+- The **Deployments Manager** keeps up to date the `deployments.json` file which tracks the remote server's state
+- The **Remote** is your entry point to the server, it's the class the `run` method uses
+- The **Rocketeer** classes handles informations provided by the User (config and stuff)
+
+```php
+<?php
+$this->releasesManager->getCurrentRelease();
+$this->releasesManager->getPathToRelease('123456789');
+$this->releasesManager->getPreviousRelease();
+$this->releasesManager->getReleases();
+
+$this->deploymentsManager->setValue('key', 'value');
+$this->deploymentsManager->getValue('key');
+$this->deploymentsManager->getDeploymentsFile();
+
+$this->rocketeer->getHomeFolder();
+$this->rocketeer->getApplicationName();
+$this->rocketeer->getGitRepository();
+$this->rocketeer->getOption('remote.shared');
+
+$this->command->argument('argument');
+$this->command->option('verbose');
+$this->command->info('It works !');
+$this->command->error('It does not work !');
+
+$this->remote->run(array(
+  'cd folder', 'ls',
+));
+?>
+```
+
+This is not all of it of course, you can check out these classes's sources for a full documented list of the methods available.
