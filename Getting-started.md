@@ -80,7 +80,7 @@ To get you started here is an example config file to make you picture a little m
 
   'git' => array(
 
-    // The SSH/HTTPS adress to your Git Repository
+    // The SSH/HTTPS address to your Git Repository
     'repository' => 'https://bitbucket.org/myUsername/facebook.git',
 
     // Its credentials
