@@ -81,7 +81,7 @@ class Migrate extends Rocketeer\Tasks\Task
    *
    * @var string
    */
-  public $description = 'Migrates the database';
+  protected $description = 'Migrates the database';
 
   /**
    * Executes the Task
