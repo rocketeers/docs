@@ -21,7 +21,7 @@ To use it, add the following to your `composer.json` file :
 "anahkiasen/rocketeer": "dev-master"
 ```
 
-If you're using Laravel 4.0, you'll also need to add the following map to the `classmap` array :
+If you're using Laravel 4.0, you'll also need to require `"illuminate/remote": "dev-master"` and add the following map to the `classmap` array :
 
 ```json
 "vendor/illuminate/remote"
