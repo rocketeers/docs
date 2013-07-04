@@ -15,26 +15,37 @@ artisan config:publish anahkiasen/rocketeer
 
 ### Manually
 
-To use it, add the following to your `composer.json` file :
+#### If you're using Laravel 4.0
 
-```json
-"anahkiasen/rocketeer": "dev-master"
-```
+If you're on 4.0 you have a few extra steps as you need to setup the remote component first. If you're on 4.1 you can skip to the next step.
 
-If you're using Laravel 4.0, you'll also need to require `"illuminate/remote": "dev-master"` and add the following map to the `classmap` array :
+First, add this to you `composer.json` fime :
 
 ```json
 "vendor/illuminate/remote"
 ```
 
-And these lines to the `providers` array in your `app/config/app.php` file :
+Run update, then add this to your `app/config/app.php` file in the `providers` array :
 
 ```php
 'Illuminate\Remote\RemoteServiceProvider',
+```
+
+#### On Laravel 4.1
+
+Now add the following to your `composer.json` file :
+
+```json
+"anahkiasen/rocketeer": "dev-master"
+```
+
+And these lines to the `providers` array in your `app/config/app.php` file :
+
+```php
 'Rocketeer\RocketeerServiceProvider',
 ```
 
-And this line to the `aliases` array in your `app/config/app.php` file :
+Then, this line to the `aliases` array in your `app/config/app.php` file :
 
 ```php
 'Rocketeer' => 'Rocketeer\Facades\Rocketeer',
