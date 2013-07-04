@@ -1,4 +1,3 @@
-
 # Setup
 
 Before anything : **Rocketeer requires Laravel 4.1 as it uses the new _illuminate/remote_ component**. It can be used on Laravel 4.0 but requires a little more setup, see the steps
@@ -6,7 +5,7 @@ Before anything : **Rocketeer requires Laravel 4.1 as it uses the new _illuminat
 ## Requirements server
 
 1. Composer installed
-2. MCrypt installed
+2. MCrypt & MBString (PHP libraries) installed
 3. Git installed
 4. Write permissions on the configured folder(s).
 
