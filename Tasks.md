@@ -227,13 +227,13 @@ $this->releasesManager->getPathToRelease('123456789');
 $this->releasesManager->getPreviousRelease();
 $this->releasesManager->getReleases();
 
-$this->deploymentsManager->setValue('key', 'value');
-$this->deploymentsManager->getValue('key');
-$this->deploymentsManager->getDeploymentsFile();
+$this->server->setValue('key', 'value');
+$this->server->getValue('key');
+$this->server->getRepository();
 
 $this->rocketeer->getHomeFolder();
 $this->rocketeer->getApplicationName();
-$this->rocketeer->getGitRepository();
+$this->rocketeer->getRepository();
 $this->rocketeer->getOption('remote.shared');
 
 $this->command->argument('argument');
