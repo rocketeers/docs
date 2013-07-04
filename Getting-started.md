@@ -27,9 +27,10 @@ If you're using Laravel 4.0, you'll also need to require `"illuminate/remote": "
 "vendor/illuminate/remote"
 ```
 
-And this line to the `providers` array in your `app/config/app.php` file :
+And thess lines to the `providers` array in your `app/config/app.php` file :
 
 ```php
+'Illuminate\Remote\RemoteServiceProvider',
 'Rocketeer\RocketeerServiceProvider',
 ```
 
