@@ -2,13 +2,6 @@
 
 Before anything : **Rocketeer requires Laravel 4.1 as it uses the new _illuminate/remote_ component**. It can be used on Laravel 4.0 but requires a little more setup, see the steps
 
-## Requirements server
-
-1. Composer installed
-2. MCrypt & MBString (PHP libraries) installed
-3. Git installed
-4. Write permissions on the configured folder(s).
-
 ## Adding the package
 
 ### With Package Installer
@@ -101,12 +94,15 @@ To get you started here is an example config file to make you picture a little m
   // The remote connection(s) to deploy to
   'connections' => array('production'),
 
-  // Git Repository
+  // SCM repository
   //////////////////////////////////////////////////////////////////////
 
-  'git' => array(
+  'scm' => array(
 
-    // The SSH/HTTPS adress to your Git Repository
+    // The SCM used (supported: "git")
+    'scm' => 'git',
+
+    // The SSH/HTTPS adress to your repository
     'repository' => 'https://github.com/facebook/facebook.git',
 
     // The repository credentials : you can leave those empty
@@ -122,18 +118,18 @@ To get you started here is an example config file to make you picture a little m
 
   // Stages
   //
-  // The multiples stages of your application – if you don't know
-  // what this does, then you don't need it
+  // The multiples stages of your application
+  // if you don't know what this does, then you don't need it
   //////////////////////////////////////////////////////////////////////
 
   'stages' => array(
 
     // Adding entries to this array will split the remote folder in stages
     // Like /var/www/yourapp/staging and /var/www/yourapp/production
-    'stages' => array('staging', 'production'),
+    'stages' => array(),
 
     // The default stage to execute tasks on when --stage is not provided
-    'default' => 'staging',
+    'default' => '',
   ),
 
   // Remote server
@@ -155,9 +151,16 @@ To get you started here is an example config file to make you picture a little m
     // A list of folders/file to be shared between releases
     // Use this to list folders that need to keep their state, like
     // user uploaded data, file-based databases, etc.
-    'shared'           => array(
+    'shared' => array(
       'app/database/production.sqlite',
-      'public/users/avatars',
+      'public/user/uploaded',
+    ),
+
+    // The Apache user and group
+    // This is used for setting folders as web-writable
+    'apache' => array(
+      'user'  => 'www-data',
+      'group' => 'www-data',
     ),
   ),
 
@@ -184,11 +187,11 @@ To get you started here is an example config file to make you picture a little m
 
     // Tasks to execute after the core Rocketeer Tasks
     'after' => array(
-      'setup'   => array(
-        'composer install',
+      'setup'   => array(),
+      'deploy'  => array(
+        'php artisan asset:publish vendor/package',
         'php artisan basset:build',
       ),
-      'deploy'  => array(),
       'cleanup' => array(),
     ),
 
@@ -197,4 +200,10 @@ To get you started here is an example config file to make you picture a little m
   ),
 
 );
+?>
 ```
+
+## Setup
+
+After that it is recommended to run the `artisan deploy:check` command, it will run various commands on the server to check whether the latter is ready to receive your application.
+Once you're done, you can just hit `artisan deploy:deploy`.
