@@ -22,7 +22,7 @@ If you're on 4.0 you have a few extra steps as you need to setup the remote comp
 First, add this to you `composer.json` file in the dependencies :
 
 ```json
-"illumiate/remote": "4.1.*@dev"
+"illuminate/remote": "4.1.*@dev"
 ```
 
 And this in `classmap` array :
