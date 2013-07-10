@@ -19,7 +19,13 @@ artisan config:publish anahkiasen/rocketeer
 
 If you're on 4.0 you have a few extra steps as you need to setup the remote component first. If you're on 4.1 you can skip to the next step.
 
-First, add this to you `composer.json` file in the `classmap` array :
+First, add this to you `composer.json` file in the dependencies :
+
+```json
+"illumiate/remote": "dev-master"
+```
+
+And this in `classmap` array :
 
 ```json
 "vendor/illuminate/remote"
