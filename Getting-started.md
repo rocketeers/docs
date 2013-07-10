@@ -37,7 +37,7 @@ Run update, then add this to your `app/config/app.php` file in the `providers` a
 'Illuminate\Remote\RemoteServiceProvider',
 ```
 
-#### On Laravel 4.1
+#### On Laravel 4.0 and 4.1
 
 Now add the following to your `composer.json` file :
 
