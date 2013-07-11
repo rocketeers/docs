@@ -69,7 +69,7 @@ There are two files to configure in order to use Rocketeer.
 
 ### app/config/remote.php
 
-If you're on Laravel 4.0, you won't have this file and will need to create it. Here is what you need to put in it by default : https://github.com/laravel/laravel/blob/develop/app/config/remote.php
+If you're on Laravel 4.0, you won't have this file and will need to create it. Here is what you need to [put in it by default](https://github.com/laravel/laravel/blob/develop/app/config/remote.php).
 
 Now this first file is fairly easy : there are a lot of stuff but if you're familiar with them and/or only have one server to deploy to, you can ignore most of it.
 What you want to edit basically is those three lines :
