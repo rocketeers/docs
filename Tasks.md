@@ -5,7 +5,7 @@ You can also add Tasks to Rocketeer to use directly via Artisan.
 A task can be three things :
 - A simple one-line command, like `composer install`
 - A closure, giving you access to Rocketeer's core helpers to perform more advanced actions
-- And finally a class, extending the `Rocketeer\Tasks\Task` class, giving you full at-home control. All custom-made Tasks must have at least an `execute` method. And that's all.
+- And finally a class, extending the `Rocketeer\Traits\Task` class, giving you full at-home control. All custom-made Tasks must have at least an `execute` method. And that's all.
 
 Each level gives you a little more control and comfort – this is intentional, if you need more control than what Closures give you, then you probably need a class.
 
@@ -71,7 +71,7 @@ Sometimes you have things to do that don't fit in with the existing Tasks Rocket
 
 ```php
 <?php
-class Migrate extends Rocketeer\Tasks\Task
+class Migrate extends Rocketeer\Traits\Task
 {
 
   /**
