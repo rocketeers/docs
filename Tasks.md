@@ -54,7 +54,7 @@ Rocketeer::before('deploy', function($task) {
   $task->command->info('Sup guys');
 });
 
-Rocketeer::after('deploy', array(
+Rocketeer::after(['update', 'deploy'], array(
   'composer install',
   'bower install'
 ));
