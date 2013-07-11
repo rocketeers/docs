@@ -216,7 +216,7 @@ $this->executeTask('Rollback');
 And call other classes's methods. There are five main classes surrounding Tasks which you'll like want to use :
 - The **Command** is the command executing the Task. You'll use it to display messages and fetch options and arguments
 - The **Releases Manager** handles releases and their paths
-- The **Deployments Manager** keeps up to date the `deployments.json` file which tracks the remote server's state
+- The **Server** class keeps up to date the `deployments.json` file which tracks the remote server's state
 - The **Remote** is your entry point to the server, it's the class the `run` method uses
 - The **Rocketeer** classes handles informations provided by the User (config and stuff)
 
