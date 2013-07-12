@@ -1,6 +1,4 @@
-# Architecture and API
-
-## Architecture
+# API
 
 Rocketeer is composed the following way :
 
