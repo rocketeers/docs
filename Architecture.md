@@ -25,9 +25,9 @@ Rocketeer is composed the following way :
 | Rocketeer\Traits | Scm                 | A base trait for SCM classes                                                                    |
 | Rocketeer\Traits | [Task][]            | An abstract Task with common helpers, from which all Tasks derive                               |
 
-  [Bash]: https://github.com/Anahkiasen/rocketeer/wiki/API/Rocketeer-Bash
-  [ReleasesManager]: https://github.com/Anahkiasen/rocketeer/wiki/API/Rocketeer-ReleasesManager
-  [Rocketeer]: https://github.com/Anahkiasen/rocketeer/wiki/API/Rocketeer-Rocketeer
-  [Server]: https://github.com/Anahkiasen/rocketeer/wiki/API/Rocketeer-Server
-  [TasksQueue]: https://github.com/Anahkiasen/rocketeer/wiki/API/Rocketeer-TasksQueue
-  [Task]: https://github.com/Anahkiasen/rocketeer/wiki/API/Rocketeer-Traits-Task
+  [Bash]: https://github.com/Anahkiasen/rocketeer/wiki/Rocketeer-Bash
+  [ReleasesManager]: https://github.com/Anahkiasen/rocketeer/wiki/Rocketeer-ReleasesManager
+  [Rocketeer]: https://github.com/Anahkiasen/rocketeer/wiki/Rocketeer-Rocketeer
+  [Server]: https://github.com/Anahkiasen/rocketeer/wiki/Rocketeer-Server
+  [TasksQueue]: https://github.com/Anahkiasen/rocketeer/wiki/Rocketeer-TasksQueue
+  [Task]: https://github.com/Anahkiasen/rocketeer/wiki/Rocketeer-Traits-Task
