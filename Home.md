@@ -1,3 +1,3 @@
 - **[Getting Started](https://github.com/Anahkiasen/rocketeer/wiki/Getting-started)**
 - **[Tasks](https://github.com/Anahkiasen/rocketeer/wiki/Tasks)**
-- **[API](https://github.com/Anahkiasen/rocketeer/wiki/API)**
+- **[Architecture](https://github.com/Anahkiasen/rocketeer/wiki/Architecture)**

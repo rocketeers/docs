@@ -3,17 +3,18 @@ Now, the core of Rocketeer is you can hook into any of those Tasks to peform add
 You can also add Tasks to Rocketeer to use directly via Artisan.
 
 A task can be three things :
-- A simple one-line command, like `composer install`
+
+- A simple one-line command which will be executed in the latest release's folder, like `composer install`
 - A closure, giving you access to Rocketeer's core helpers to perform more advanced actions
 - And finally a class, extending the `Rocketeer\Traits\Task` class, giving you full at-home control. All custom-made Tasks must have at least an `execute` method. And that's all.
 
-Each level gives you a little more control and comfort – this is intentional, if you need more control than what Closures give you, then you probably need a class.
+Each level gives you a little more control and comfort – _this is intentional_, if you need more control than what Closures give you, then you probably need a class.
 
 -----
 
 ## Hooking into Rocketeer's Tasks
 
-What most user will do is hook into the existing Rocketeer's Tasks to do things before or after. There is two ways to do that :
+What most user will do is hook into the existing Rocketeer's Tasks to do things before, or after. There is two ways to do that :
 
 ### Defining Tasks in the config file
 
@@ -28,6 +29,7 @@ You can hook into any task via the `tasks` array in Rocketeer's config file. The
     'composer install',
 
     // Actual Tasks classes
+    'Rocketeer\Tasks\Cleanup',
     'MyNamespace\MyTaskClass',
 
     // Closures
@@ -46,7 +48,7 @@ You can hook into any task via the `tasks` array in Rocketeer's config file. The
 
 ### Defining Tasks using the facade
 
-Rocketeer also provides you with a facade to use, if you don't want to put stuff in the config file :
+Rocketeer also provides you with a facade to use, if you don't want to put stuff in the config file, as it can get dirty with closures. I recommand you put those hooks in your `app/start/artisan.php` file.
 
 ```php
 <?php
@@ -63,7 +65,7 @@ Rocketeer::after('deploy', 'MyClass');
 ?>
 ```
 
-You give as first argument the name of the name of the Task you'd like to act on, and then your task.
+You give as first argument the name of the name of the Task you'd like to act on (or an array of names), and then your task. Again, you can use the three types of tasks : strings, closures or classes.
 
 ## Creating your own Tasks
 
@@ -73,7 +75,6 @@ Sometimes you have things to do that don't fit in with the existing Tasks Rocket
 <?php
 class Migrate extends Rocketeer\Traits\Task
 {
-
   /**
    * Description of the Task
    *
@@ -89,7 +90,7 @@ class Migrate extends Rocketeer\Traits\Task
   public function execute()
   {
     $this->command->info('Running migrations');
-    $this->runMigrations();
+    $this->runForCurrentRelease('php artisan migrate --seed');
   }
 }
 ?>
@@ -97,7 +98,7 @@ class Migrate extends Rocketeer\Traits\Task
 
 ### Registering your custom Task
 
- Now that the class is created, you need to register it with Rocketeer. As with the hooks, you can either do that via the config file, in the `tasks.custom` array :
+Now that the class is created, you need to register it with Rocketeer. As with the hooks, you can either do that via the config file, in the `tasks.custom` array :
 
 ```php
 'custom' => array(
@@ -200,7 +201,7 @@ $this->runMigrations(true); // Seeds the database too
 $this->runComposer();
 
 // Set folders as web-writtable
-$this->setPermissions('app');
+$this->setPermissions('public/images/users');
 ?>
 ```
 

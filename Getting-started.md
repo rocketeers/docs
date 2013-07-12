@@ -72,7 +72,7 @@ There are two files to configure in order to use Rocketeer.
 If you're on Laravel 4.0, you won't have this file and will need to create it. Here is what you need to [put in it by default](https://github.com/laravel/laravel/blob/develop/app/config/remote.php).
 
 Now this first file is fairly easy : there are a lot of stuff but if you're familiar with them and/or only have one server to deploy to, you can ignore most of it.
-What you want to edit basically is those three lines :
+What you want to edit basically is those three lines : `host`, `username` and `password` (you can ignore `key`).
 
 ```php
   'production' => array(
@@ -85,7 +85,9 @@ What you want to edit basically is those three lines :
 
 ### app/config/packages/anahkiasen/rocketeer/config.php
 
-Now this one is a little more... well there is a lot more to it, but trust me it's pretty straightforward. Take your time to read the comments about what each of the configuration option mean.
+Now this one is a little more... well there is a lot more to it, but trust me it's pretty straightforward.
+
+**Take your time to read the comments** about what each of the configuration option mean.
 To get you started here is an example config file to make you picture a little more what goes into each field :
 
 ```php
@@ -212,4 +214,5 @@ To get you started here is an example config file to make you picture a little m
 ## Setup
 
 After that it is recommended to run the `artisan deploy:check` command, it will run various commands on the server to check whether the latter is ready to receive your application.
-Once you're done, you can just hit `artisan deploy:deploy`.
+
+Once you're done, you can just hit `artisan deploy:deploy`. It will create an initial release on your remote server. Afterwards, to update it you can either run the same command again which will create an entirely new release, or simply do an `artisan deploy:update` which will update the repository and dependencies of your application.
