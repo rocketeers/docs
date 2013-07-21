@@ -27,10 +27,10 @@ In our case, the Apache directive will look like this :
 
 ```apache
 <Directory /var/www/facebook/current/public/>
-	Options Indexes FollowSymLinks MultiViews
-	Order allow,deny
-	Allow from all
-	AllowOverride All
+  Options Indexes FollowSymLinks MultiViews
+  Order allow,deny
+  Allow from all
+  AllowOverride All
 </Directory>
 ```
 
@@ -45,17 +45,17 @@ To sum it up, here is what your remote server will look like :
 
 ```
 - var
-	- www
-		- facebook
-			- current => /var/www/facebook/releases/20130721000000
-			- releases
-				- 20130721000000
-					- app
-						- storage
-							- logs => /var/www/facebook/shared/app/storage/logs
-				- 20130602000000
-			- shared
-				- app
-					- storage
-						- logs
+  - www
+    - facebook
+      - current => /var/www/facebook/releases/20130721000000
+      - releases
+        - 20130721000000
+          - app
+            - storage
+              - logs => /var/www/facebook/shared/app/storage/logs
+        - 20130602000000
+      - shared
+        - app
+          - storage
+            - logs
 ```
