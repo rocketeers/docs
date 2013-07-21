@@ -44,18 +44,18 @@ By default Rocketeer always shares the logs of the application so that an histor
 To sum it up, here is what your remote server will look like :
 
 ```
-- var
-  - www
-    - facebook
-      - current => /var/www/facebook/releases/20130721000000
-      - releases
-        - 20130721000000
-          - app
-            - storage
-              - logs => /var/www/facebook/shared/app/storage/logs
-        - 20130602000000
-      - shared
-        - app
-          - storage
-            - logs
+| var
+|-- www
+  |-- facebook
+    |-- current => /var/www/facebook/releases/20130721000000
+    |-- releases
+    |  |-- 20130721000000
+    |  |  |-- app
+    |  |     |-- storage
+    |  |       |-- logs => /var/www/facebook/shared/app/storage/logs
+    |  | 20130602000000
+    |-- shared
+      |-- app
+        |-- storage
+          |-- logs
 ```
