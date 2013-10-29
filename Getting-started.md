@@ -226,15 +226,17 @@ To get you started here is an example config file to make you picture a little m
 
   'on' => array(
 
-		// Stages configurations
-		'stages' => array(
-		),
+    // Stages configurations
+    'stages' => array(
+    ),
 
-		// Connections configuration
-		'connections' => array(
-		),
+    // Connections configuration
+    'connections' => array(
+    ),
 
-	),
+  ),
+
+
 
 
 );
