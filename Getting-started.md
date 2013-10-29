@@ -81,7 +81,8 @@ What you want to edit basically is those three lines : `host`, `username` and `p
     'host'     => 'myserver.fr',
     'username' => 'myusername',
     'password' => 'mypassword',
-    'key'      => '',
+    'key'      => '', # location of public key (/home/xxx/.ssh/id_rsa)
+    'keyphrase'=> ''  # password for public key
   ),
 ```
 
@@ -222,6 +223,19 @@ To get you started here is an example config file to make you picture a little m
     // Custom Tasks to register with Rocketeer
     'custom' => array(),
   ),
+
+  'on' => array(
+
+		// Stages configurations
+		'stages' => array(
+		),
+
+		// Connections configuration
+		'connections' => array(
+		),
+
+	),
+
 
 );
 ```
