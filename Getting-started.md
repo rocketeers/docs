@@ -19,10 +19,21 @@ artisan deploy:ignite
 
 If you're on 4.0 you have a few extra steps as you need to setup the remote component first. If you're on 4.1 you can skip to the next step.
 
-First, add this to you `composer.json` file in the dependencies by typing `composer require illuminate/remote:4.1.*@dev`. Then add this in `classmap` array of your `composer.json` :
+First, add this to you `composer.json` file in the `require` section :
 
 ```json
-"vendor/illuminate/remote"
+"illuminate/remote": "dev-master",
+```
+
+Then add this at the end of your `composer.json` :
+
+```json
+"repositories": [
+  {
+    "type": "vcs",
+    "url": "https://github.com/changwuf31/remote"
+  }
+],
 ```
 
 Run update, then add this to your `app/config/app.php` file in the `providers` array :
