@@ -90,7 +90,7 @@ Once you're done with the configuration, it is recommended to run the `php rocke
 Once you're done, you can just hit `php rocketeer deploy`. It will create an initial release on your remote server.
 Afterwards, to update it you can either run the same command again which will create an entirely new release, or simply do an `php rocketeer update` which will update the repository and dependencies of your application.
 
-## Folder organization
+### Folder organization
 
 Rocketeer recognizes its custom configuration (`rocketeer.php`) from where Rocketeer itself is. Same thing for the custom `tasks.php` file, so you could have that organization :
 
