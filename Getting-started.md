@@ -1,19 +1,27 @@
 # Setup
 
-Before anything : **Rocketeer requires Laravel 4.1 as it uses the new _illuminate/remote_ component**. It can be used on Laravel 4.0 but requires a little more setup, see the steps
+Installing Rocketeer on a project is quite easy, there are several ways to do so.
 
-## Adding the package
+## Via the compiled archive
 
-### With Package Installer
+The easiest way is to just get the archive by doing downloading it [at the following address](http://rocketeer.autopergamene.eu/versions/rocketeer) and putting it in your application's directory.
+Then you just need to type `php rocketeer ignite`. You'll get asked a series of question to setup your project and you show be good to go.
 
-If you're using [Package Installer](https://github.com/rtablada/package-installer), simply do this :
+## With Composer
+
+You also install Rocketeer with Composer as any package :
 
 ```
-artisan package:install anahkiasen/rocketeer
-artisan deploy:ignite
+composer require illuminate/remote:4.1.*@dev
+composer require anahkiasen/rocketeer:dev-master
+php vendor/bin/rocketeer ignite
 ```
 
-### With Laravel
+And you're good to go, the configuration file referenced below will be created at `yourapp/rocketeer.php`. Use `php vendor/bin/rocketeer` to access Rocketeer's commands or simply alias it : `alias rocketeer=php vendor/bin/rocketeer`.
+
+## Integration with Laravel
+
+Rocketeer integrates nicely with Laravel, although you'll need to do some more steps, depending on whether you're using Laravel 4.0 or 4.1 :
 
 #### If you're using Laravel 4.0
 
@@ -64,198 +72,34 @@ Then publish the config :
 artisan deploy:ignite
 ```
 
-### Outside of Laravel
-
-Outside of Laravel it's (oddly) a little simpler :
-
-```
-composer require illuminate/remote:4.1.*@dev
-composer require anahkiasen/rocketeer:dev-master
-php vendor/bin/rocketeer ignite
-```
-
-And you're good to go, the configuration file referenced below will be created at `yourapp/rocketeer.php`. Use `php vendor/bin/rocketeer` to access Rocketeer's commands or simply alias it : `alias rocketeer=php vendor/bin/rocketeer`.
-
 ## Configuration
 
-There are two files to configure in order to use Rocketeer.
+You'll do most of your configuration in Rocketeer's configuration file, `rocketeer.php`.
+If you're on Laravel and added the package as a dependency, you'll instead need to configure `app/config/packages/anahkiasen/rocketeer/config.php`.
 
-### app/config/remote.php
+Rocketeer recognizes Laravel's `remote.php` file so you can configure your connections here if you want, Rocketeer will read it first before falling back to the configuration file.
 
-If you're on Laravel 4.0, you won't have this file and will need to create it. Here is what you need to [put in it by default](https://github.com/laravel/laravel/blob/develop/app/config/remote.php).
+There are a lot of options in the configuration file, each is explained thoroughly so take your time to read the comments carefully.
 
-Now this first file is fairly easy : there are a lot of stuff but if you're familiar with them and/or only have one server to deploy to, you can ignore most of it.
-What you want to edit basically is those three lines : `host`, `username` and `password`. If you're using an SSH key to connect, ignore password and fill out `key` instead.
+## Using Rocketeer
 
-```php
-  'production' => array(
-    'host'     => 'myserver.fr',
-    'username' => 'myusername',
-    'password' => 'mypassword',
-    'key'      => '', # location of public key (/home/xxx/.ssh/id_rsa)
-    'keyphrase'=> ''  # password for public key
-  ),
+If you're using the archive, you'll need to hit `php rocketeer` to access the commands, if you're on Laravel and installed it as a package, you'll want to hit the `php artisan deploy:` namespace. Per example the `update` command would be accessed as `php rocketeer update` with the archive, and `php artisan deploy:update` with the package.
+
+Once you're done with the configuration, it is recommended to run the `php rocketeer check` command, it will run various commands on the server to check whether the latter is ready to receive your application.
+
+Once you're done, you can just hit `php rocketeer deploy`. It will create an initial release on your remote server.
+Afterwards, to update it you can either run the same command again which will create an entirely new release, or simply do an `php rocketeer update` which will update the repository and dependencies of your application.
+
+## Folder organization
+
+Rocketeer recognizes its custom configuration (`rocketeer.php`) from where Rocketeer itself is. Same thing for the custom `tasks.php` file, so you could have that organization :
+
 ```
-
-### app/config/packages/anahkiasen/rocketeer/config.php
-
-Now this one is a little more... well there is a lot more to it, but trust me it's pretty straightforward.
-
-**Take your time to read the comments** about what each of the configuration option mean.
-To get you started here is an example config file to make you picture a little more what goes into each field :
-
-```php
-<?php return array(
-
-  // Remote access
-  //
-  // You can either use a single connection or an array of connections
-  // For this configure your app/remote.php file
-  //////////////////////////////////////////////////////////////////////
-
-  // The remote connection(s) to deploy to
-  'connections' => array('production'),
-
-  // SCM repository
-  //////////////////////////////////////////////////////////////////////
-
-  'scm' => array(
-
-    // The SCM used (supported: "git")
-    'scm' => 'git',
-
-    // The SSH/HTTPS adress to your repository
-    // Example: https://github.com/vendor/website.git
-    'repository' => '',
-
-    // The repository credentials : you can leave those empty
-    // if you're using SSH or if your repository is public
-    // In other cases you can leave this empty too, and you will
-    // be prompted for the credentials on deploy
-    'username'   => '',
-    'password'   => '',
-
-    // The branch to deploy
-    'branch'     => 'master',
-  ),
-
-  // Stages
-  //
-  // The multiples stages of your application
-  // if you don't know what this does, then you don't need it
-  //////////////////////////////////////////////////////////////////////
-
-  'stages' => array(
-
-    // Adding entries to this array will split the remote folder in stages
-    // Like /var/www/yourapp/staging and /var/www/yourapp/production
-    'stages' => array(),
-
-    // The default stage to execute tasks on when --stage is not provided
-    'default' => '',
-  ),
-
-  // Remote server
-  //////////////////////////////////////////////////////////////////////
-
-  'remote' => array(
-
-    // The root directory where your applications will be deployed
-    'root_directory'   => '/home/www/',
-
-    // The name of the application to deploy
-    // This will create a folder of the same name in the root directory
-    // configured above, so be careful about the characters used
-    'application_name' => 'application',
-
-    // The number of releases to keep at all times
-    'keep_releases'    => 4,
-
-    // A list of folders/file to be shared between releases
-    // Use this to list folders that need to keep their state, like
-    // user uploaded data, file-based databases, etc.
-    'shared' => array(
-      '{path.storage}/logs',
-      '{path.storage}/sessions',
-    ),
-
-    'permissions' => array(
-
-      // The permissions to CHMOD folders to
-      'permissions' => 755,
-
-      // The folders and files to set as web writable
-      // You can pass paths in brackets, so {path.public} will return
-      // the correct path to the public folder
-      'files' => array(
-        'app/database/production.sqlite',
-        '{path.storage}',
-        '{path.public}',
-      ),
-
-      // The Apache user and group to CHOWN folders to
-      // Leave empty to leave the above folders untouched
-      'apache' => array(
-        'user'  => 'www-data',
-        'group' => 'www-data',
-      ),
-
-    ),
-  ),
-
-  // Tasks
-  //
-  // Here you can define in the `before` and `after` array, Tasks to execute
-  // before or after the core Rocketeer Tasks. You can either put a simple command,
-  // a closure which receives a $task object, or the name of a class extending
-  // the Rocketeer\Traits\Task class
-  //
-  // In the `custom` array you can list custom Tasks classes to be added
-  // to Rocketeer. Those will then be available in Artisan
-  // as `php artisan deploy:yourtask`
-  //////////////////////////////////////////////////////////////////////
-
-  'tasks' => array(
-
-    // Tasks to execute before the core Rocketeer Tasks
-    'before' => array(
-      'setup'   => array(),
-      'deploy'  => array(),
-      'cleanup' => array(),
-    ),
-
-    // Tasks to execute after the core Rocketeer Tasks
-    'after' => array(
-      'setup'   => array(),
-      'deploy'  => array(),
-      'cleanup' => array(),
-    ),
-
-    // Custom Tasks to register with Rocketeer
-    'custom' => array(),
-  ),
-
-  'on' => array(
-
-    // Stages configurations
-    'stages' => array(
-    ),
-
-    // Connections configuration
-    'connections' => array(
-    ),
-
-  ),
-
-
-
-
-);
+| deploy
+| -- rocketeer
+| -- rocketeer.php
+| -- tasks.php
+| index.php
+| public
+| etc.
 ```
-
-## Setup
-
-After that it is recommended to run the `artisan deploy:check` command, it will run various commands on the server to check whether the latter is ready to receive your application.
-
-Once you're done, you can just hit `artisan deploy:deploy`. It will create an initial release on your remote server.
-Afterwards, to update it you can either run the same command again which will create an entirely new release, or simply do an `artisan deploy:update` which will update the repository and dependencies of your application.

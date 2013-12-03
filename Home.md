@@ -1,4 +1,4 @@
-- **[What's Rocketeer](https://github.com/Anahkiasen/rocketeer/wiki/What's-Rocketeer-%3F)**
+- **[What's Rocketeer](https://github.com/Anahkiasen/rocketeer/wiki/What-Rocketeer)**
 - **[Getting Started](https://github.com/Anahkiasen/rocketeer/wiki/Getting-started)**
 - **[Tasks](https://github.com/Anahkiasen/rocketeer/wiki/Tasks)**
 - **[Architecture](https://github.com/Anahkiasen/rocketeer/wiki/Architecture)**

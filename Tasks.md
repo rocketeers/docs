@@ -1,6 +1,8 @@
+# Tasks
+
 An important concept in Rocketeer is Tasks : most of the commands you see right above are using predefined Tasks underneath : **Rocketeer\Tasks\Setup**, **Rocketeer\Tasks\Deploy**, etc.
 Now, the core of Rocketeer is you can hook into any of those Tasks to peform additional actions, for this you'll use the `before` and `after` arrays of Rocketeer's config file.
-You can also add Tasks to Rocketeer to use directly via Artisan.
+You can also add Tasks to Rocketeer to use directly via Rocketeer itself by doing `php rocketeer mytask` per example.
 
 A task can be three things :
 
@@ -8,7 +10,7 @@ A task can be three things :
 - A closure, giving you access to Rocketeer's core helpers to perform more advanced actions
 - And finally a class, extending the `Rocketeer\Traits\Task` class, giving you full at-home control. All custom-made Tasks must have at least an `execute` method. And that's all.
 
-Each level gives you a little more control and comfort – _this is intentional_, if you need more control than what Closures give you, then you probably need a class.
+Each level gives you a little more control and comfort – _this is intentional_, if you need more control than what Closures give you, then you probably need a class.
 
 -----
 
@@ -48,10 +50,12 @@ You can hook into any task via the `tasks` array in Rocketeer's config file. The
 
 ### Defining Tasks using the facade
 
-Rocketeer also provides you with a facade to use, if you don't want to put stuff in the config file, as it can get dirty with closures. I recommand you put those hooks in your `app/start/artisan.php` file.
+Rocketeer also provides you with a facade to use, if you don't want to put stuff in the config file, as it can get dirty with closures. I recommand you put those hooks in your `app/start/artisan.php` file if you're in Laravel, otherwise you can create a `tasks.php` file where your `rocketeer.php` file is.
 
 ```php
 <?php
+use Rocketeer\Facades\Rocketeer;
+
 Rocketeer::before('deploy', function($task) {
   $task->command->info('Sup guys');
 });
@@ -106,7 +110,7 @@ Now that the class is created, you need to register it with Rocketeer. As with t
 ),
 ```
 
-Or via the facade in your `app/start/artisan.php` file :
+Or via the facade in a custom file as seen above :
 
 ```php
 Rocketeer::add('Migrate');
@@ -127,11 +131,11 @@ It just runs commands on the remote server, and returns the output.
 
 ```php
 <?php
-$return = $this->run('composer install');
+$folders = $this->run('ls');
 ?>
 ```
 
-You can also pass it an array of commands to execute. Now, note this because it's important : every call to `run` is self contained. Meaning this :
+You can also pass it an array of commands to execute. Now, note this because it's important : every call to `run` is self contained. Meaning this (`pwd` returns the current folder) :
 
 ```php
 <?php
