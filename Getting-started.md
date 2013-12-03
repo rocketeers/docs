@@ -4,24 +4,27 @@ Installing Rocketeer on a project is quite easy, there are several ways to do so
 
 ## Via the compiled archive
 
-The easiest way is to just get the archive by doing downloading it [at the following address](http://rocketeer.autopergamene.eu/versions/rocketeer) and putting it in your application's directory.
+The easiest way is to just get the archive by doing downloading it [at the following addresss](http://rocketeer.autopergamene.eu/versions/rocketeer) and putting it in your application's directory.
 Then you just need to type `php rocketeer ignite`. You'll get asked a series of question to setup your project and you show be good to go.
 
 ## With Composer
 
-You also install Rocketeer with Composer as any package :
+You can also install Rocketeer with Composer as any package :
 
 ```
 composer require illuminate/remote:4.1.*@dev
 composer require anahkiasen/rocketeer:dev-master
+
 php vendor/bin/rocketeer ignite
 ```
 
-And you're good to go, the configuration file referenced below will be created at `yourapp/rocketeer.php`. Use `php vendor/bin/rocketeer` to access Rocketeer's commands or simply alias it : `alias rocketeer=php vendor/bin/rocketeer`.
+And you're good to go, the configuration file referenced below will be created at `yourapp/rocketeer.php`.
+
+Use `php vendor/bin/rocketeer` to access Rocketeer's commands or simply alias it : `alias rocketeer=php vendor/bin/rocketeer`. You can also add `vendor/bin` to your _PATH_ to always have local binaries accessible.
 
 ## Integration with Laravel
 
-Rocketeer integrates nicely with Laravel, although you'll need to do some more steps, depending on whether you're using Laravel 4.0 or 4.1 :
+Rocketeer integrates nicely with Laravel, although you'll need to do some more steps, depending on whether you're using Laravel 4.0 or 4.1. To check what version you're using, just type `php artisan --version` in your terminal.
 
 #### If you're using Laravel 4.0
 

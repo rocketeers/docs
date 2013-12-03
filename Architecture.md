@@ -10,6 +10,7 @@ Rocketeer is composed the following way :
 | Rocketeer        | [Server][]          | Provides and persists informations about the remote server                                      |
 | Rocketeer        | [TasksQueue][]      | Handles the registering of Tasks and their execution                                            |
 | Rocketeer\Scm    | Git                 | The Git SCM                                                                                     |
+| Rocketeer\Scm    | SVN                 | The SVN SCM                                                                                     |
 | Rocketeer\Tasks  | [Check][]           | Check if the server is ready to receive the application                                         |
 | Rocketeer\Tasks  | Cleanup             | Clean up old releases from the server                                                           |
 | Rocketeer\Tasks  | Closure             | A task formatted as a Closure                                                                   |

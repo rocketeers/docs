@@ -35,11 +35,11 @@ In our case, the Apache directive will look like this :
 ```
 
 The second folder, **releases**, is where the history of your application is stored. Every time you hit `deploy`, a timestamped folder will be created in _releases_ (20130721010101 per example for 2013-07-21 01:01:01). You can configure in your config file how deep the history goes : by default it will keep the four latest releases.
-Once a new release is created and is ready to be served, Rocketeer will update the [symlink](http://en.wikipedia.org/wiki/Symbolic_link) of the `current` folder to make it point to it. This system is particularely flexible as it allows Rocketeer to simply update what folder `current` points to in case of rollback.
+Once a new release is created and is ready to be served, Rocketeer will update the [symlink](http://en.wikipedia.org/wiki/Symbolic_link) of the `current` folder to make it point to it. This system is particularly flexible as it allows Rocketeer to simply update what folder `current` points to in case of rollback.
 
 And finally the third folder, **shared**, is where files that are shared between each releases are stored. Take per example our Facebook application, it has users that can upload their avatars on it, and they are stored in `public/users/avatars`. This is all fine until you decide to deploy again and Rocketeer creates a new release pristine folder from scratch where your uploaded images won't be.
-To solve this problem, in the config file you have a `shared` array where you can put paths relative to the root folder of your application, like `public/users/avatars`. Once Rocketeer see that, it will automatically move the folder `avatars` to `shared` and from there, everytime you deploy, the new release will inherit all the shared folders.
-By default Rocketeer always shares the logs of the application so that an history of the Exceptions that occurent is kept, but you can add as many folders as you like depending of your application. If you have an SQLite database that is stored in a file, you might want to share it too.
+To solve this problem, in the config file you have a `shared` array where you can put paths relative to the root folder of your application, like `public/users/avatars`. Once Rocketeer see that, it will automatically move the folder `avatars` to `shared` and from there, every time you deploy, the new release will inherit all the shared folders.
+By default Rocketeer always shares the logs of the application so that an history of the Exceptions that occurred is kept, but you can add as many folders as you like depending of your application. If you have an SQLite database that is stored in a file, you might want to share it too.
 
 To sum it up, here is what your remote server will look like :
 

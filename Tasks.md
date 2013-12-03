@@ -1,7 +1,7 @@
 # Tasks
 
 An important concept in Rocketeer is Tasks : most of the commands you see right above are using predefined Tasks underneath : **Rocketeer\Tasks\Setup**, **Rocketeer\Tasks\Deploy**, etc.
-Now, the core of Rocketeer is you can hook into any of those Tasks to peform additional actions, for this you'll use the `before` and `after` arrays of Rocketeer's config file.
+Now, the core of Rocketeer is you can hook into any of those Tasks to perform additional actions, for this you'll use the `before` and `after` arrays of Rocketeer's config file.
 You can also add Tasks to Rocketeer to use directly via Rocketeer itself by doing `php rocketeer mytask` per example.
 
 A task can be three things :
@@ -50,7 +50,7 @@ You can hook into any task via the `tasks` array in Rocketeer's config file. The
 
 ### Defining Tasks using the facade
 
-Rocketeer also provides you with a facade to use, if you don't want to put stuff in the config file, as it can get dirty with closures. I recommand you put those hooks in your `app/start/artisan.php` file if you're in Laravel, otherwise you can create a `tasks.php` file where your `rocketeer.php` file is.
+Rocketeer also provides you with a facade to use, if you don't want to put stuff in the config file, as it can get dirty with closures. I recommend you put those hooks in your `app/start/artisan.php` file if you're in Laravel, otherwise you can create a `tasks.php` file where your `rocketeer.php` file is.
 
 ```php
 <?php
@@ -71,7 +71,7 @@ Rocketeer::after('deploy', 'MyClass');
 
 You give as first argument the name of the name of the Task you'd like to act on (or an array of names), and then your task. Again, you can use the three types of tasks : strings, closures or classes.
 
-## Creating your own Tasks
+## Defining Tasks classes
 
 Sometimes you have things to do that don't fit in with the existing Tasks Rocketeer provides. That's why you can create your own tasks, here is an example one. As you can see it's pretty easy.
 
@@ -177,12 +177,17 @@ A few folder/file-manipulation methods are also present, they're very basic and 
 ```php
 <?php
 $this->move('folder/file.php', 'new-folder/file.php');
+
 $array = $this->listContents('folder');
+
 $boolean = $this->fileExists('file.php');
 $boolean = $this->fileExists('folder');
+
 $this->createFolder('folder');
 $this->removeFolder('folder');
+
 $this->symlink('folder-a', 'folder-b');
+
 $phpunit = $this->which('phpunit', 'vendor/bin/phpunit'); // Second argument is fallback
 ?>
 ```
