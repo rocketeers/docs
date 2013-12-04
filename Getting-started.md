@@ -53,6 +53,8 @@ Run update, then add this to your `app/config/app.php` file in the `providers` a
 'Illuminate\Remote\RemoteServiceProvider',
 ```
 
+You will also want to pull in the `remote.php` config file since it did not exist in 4.0. To do so, copy and paste the contents of [develop/app/config/remote.php](https://github.com/laravel/laravel/blob/develop/app/config/remote.php) to your `app/config/remote.php` file.
+
 #### On Laravel 4.0 and 4.1
 
 Now type the following `composer require anahkiasen/rocketeer:dev-master`.
