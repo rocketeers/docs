@@ -9,8 +9,8 @@ To add a plugin to an application, you simply need to add it via Composer and ca
 **tasks.php**
 ```php
 Rocketeer::plugin('Rocketeer\Plugins\Campfire', array(
-	'domain' => 'MyDomain',
-	'room'   => 1234,
+  'domain' => 'MyDomain',
+  'room'   => 1234,
 ));
 ```
 
@@ -32,37 +32,37 @@ use Rocketeer\Traits\Plugin;
 
 class RocketeerCampfire extends Plugin
 {
-	/**
-	 * Bind additional classes to the Container
-	 *
-	 * @param Container $app
-	 *
-	 * @return void
-	 */
-	public function register(Container $app)
-	{
-		$app->bind('campfire', function ($app) {
-			return new Campfire(['domain' => '...', 'key' => '...', 'room' => '...']);
-		});
+  /**
+   * Bind additional classes to the Container
+   *
+   * @param Container $app
+   *
+   * @return void
+   */
+  public function register(Container $app)
+  {
+    $app->bind('campfire', function ($app) {
+      return new Campfire(['domain' => '...', 'key' => '...', 'room' => '...']);
+    });
 
-		return $app;
-	}
+    return $app;
+  }
 
-	/**
-	 * Register Tasks with Rocketeer
-	 *
-	 * @param TasksQueue $queue
-	 *
-	 * @return void
-	 */
-	public function onQueue(TasksQueue $queue)
-	{
-		$queue->after('deploy', function ($task) {
-			$application = $task->rocketeer->getApplicationName();
+  /**
+   * Register Tasks with Rocketeer
+   *
+   * @param TasksQueue $queue
+   *
+   * @return void
+   */
+  public function onQueue(TasksQueue $queue)
+  {
+    $queue->after('deploy', function ($task) {
+      $application = $task->rocketeer->getApplicationName();
 
-			$task->campfire->send($application. ' was deployed!');
-		});
-	}
+      $task->campfire->send($application. ' was deployed!');
+    });
+  }
 }
 ```
 
@@ -75,7 +75,7 @@ Plugins can have their own configuration, by creating a `config` folder in your 
 ```php
 function __construct()
 {
-	$this->configurationFolder = __DIR__.'/../../config';
+  $this->configurationFolder = __DIR__.'/../../config';
 }
 ```
 
