@@ -245,11 +245,13 @@ $this->rocketeer->getHomeFolder();
 $this->rocketeer->getApplicationName();
 $this->rocketeer->getRepository();
 $this->rocketeer->getOption('remote.shared');
+$this->rocketeer->getStage();
 
 $this->command->argument('argument');
 $this->command->option('verbose');
 $this->command->info('It works !');
 $this->command->error('It does not work !');
+$this->command->comment('Now running cleanup');
 
 $this->remote->run(array(
   'cd folder', 'ls',
