@@ -4,7 +4,7 @@ Installing Rocketeer on a project is quite easy, there are several ways to do so
 
 ## Via the compiled archive
 
-The easiest way is to just get the archive by doing downloading it [at the following addresss](http://rocketeer.autopergamene.eu/versions/rocketeer) and putting it in your application's directory.
+The easiest way is to just get the archive by doing downloading it [at the following addresss](http://rocketeer.autopergamene.eu/versions/rocketeer.phar) and putting it in your application's directory.
 Then you just need to type `php rocketeer ignite`. You'll get asked a series of question to setup your project and you show be good to go.
 
 ## With Composer
