@@ -16,7 +16,7 @@ This is not "just this" of course, as Rocketeer does some magic on the second ar
 
 ## Listening to events
 
-All tasks in Rocketeer fire two basic events : `before` and `after` on which you can hook. But some tasks fire internal events, during their execution, allowing you to execute actions at various points in their lifetime. Do listen to these events, there are two methods you can use. Say you want to execute something before the **Deploy** task symlinks the `current` folder to the latest release :
+All tasks in Rocketeer fire two basic events : `before` and `after` on which you can hook. But some tasks fire internal events, during their execution, allowing you to execute actions at various points in their lifetime. To listen to these events, there are two methods you can use. Say you want to execute something before the **Deploy** task symlinks the `current` folder to the latest release :
 
 ```php
 Rocketeer::addTaskListeners('deploy', 'before-symlink', function ($task) {
