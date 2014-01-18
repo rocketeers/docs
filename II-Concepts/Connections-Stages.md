@@ -10,13 +10,13 @@ Connections represent the various servers you may want to connect to. You'll con
 
 ```php
 'connections' => array(
-	'production' => array(
-		'host'      => 'my-server.com',
-		'username'  => 'johndoe',
-		'password'  => '',
-		'key'       => '/Users/johndoe/.ssh/id_rsa',
-		'keyphrase' => '',
-	),
+  'production' => array(
+    'host'      => 'my-server.com',
+    'username'  => 'johndoe',
+    'password'  => '',
+    'key'       => '/Users/johndoe/.ssh/id_rsa',
+    'keyphrase' => '',
+  ),
 ),
 ```
 
@@ -26,7 +26,7 @@ Important note : you do **not** _have_ to put your credentials here. Rocketeer u
 
 ```php
 'connections' => array(
-	'production' => array(),
+  'production' => array(),
 ),
 ```
 
@@ -38,12 +38,12 @@ Now this was a fairly basic connection. Now imagine a more complicated setup, yo
 
 ```php
 'connections' => array(
-	'production' => array(
-		'host' => 'my-server.com',
-	),
-	'staging' => array(
-		'host' => 'staging.my-server.com',
-	),
+  'production' => array(
+    'host' => 'my-server.com',
+  ),
+  'staging' => array(
+    'host' => 'staging.my-server.com',
+  ),
 ),
 ```
 
@@ -122,16 +122,16 @@ Rocketeer handles contextual configuration via nested arrays, which you can find
 
 ```php
 'on' => array(
-	'connections' => array(
+  'connections' => array(
 
-		'staging' => array(
-			'paths' => ['php' => 'PATH-TO-PHP'],
-		),
-		'production' => array(
-			'paths' => ['php' => 'PATH-TO-PHP'],
-		),
+    'staging' => array(
+      'paths' => ['php' => 'PATH-TO-PHP'],
+    ),
+    'production' => array(
+      'paths' => ['php' => 'PATH-TO-PHP'],
+    ),
 
-	),
+  ),
 ),
 ```
 
@@ -145,17 +145,17 @@ Create a folder for each connection and/or stage you have, and copy the base con
 
 ```php
 'on' => array(
-	'connections' => array(
+  'connections' => array(
 
-		'staging' => array(
-			'paths' => include 'staging/paths.php',
-			'scm'   => include 'staging/scm.php',
-		),
-		'production' => array(
-			'paths' => include 'production/paths.php',
-		),
+    'staging' => array(
+      'paths' => include 'staging/paths.php',
+      'scm'   => include 'staging/scm.php',
+    ),
+    'production' => array(
+      'paths' => include 'production/paths.php',
+    ),
 
-	),
+  ),
 ),
 ```
 
