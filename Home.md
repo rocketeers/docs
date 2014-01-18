@@ -1,6 +1,6 @@
 ### Getting started
 
-- **[What's Rocketeer](https://github.com/Anahkiasen/rocketeer/wiki/What-Rocketeer)**
+- **[What's Rocketeer](https://github.com/Anahkiasen/rocketeer/wiki/Whats-Rocketeer)**
 - **[Getting Started](https://github.com/Anahkiasen/rocketeer/wiki/Getting-started)**
 
 ### Core concepts
