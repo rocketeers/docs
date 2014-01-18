@@ -7,6 +7,7 @@
 
 - **[Tasks](https://github.com/Anahkiasen/rocketeer/wiki/Tasks)**
 - **[Events](https://github.com/Anahkiasen/rocketeer/wiki/Events)**
+- **[Connections and stages](https://github.com/Anahkiasen/rocketeer/wiki/Connections-Stages)**
 - **[Plugins](https://github.com/Anahkiasen/rocketeer/wiki/Plugins)**
 
 ### Going further
