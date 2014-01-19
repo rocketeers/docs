@@ -53,7 +53,7 @@ From there to interact with those two connections, there are multiple ways. Firs
 'default' => array('production', 'staging'),
 ```
 
-What this array means is : whenever you'll execute a Task, Rocketeer will execute it on all of those connections. But now, that may not be what you want, you may want to cherry-pick what you do on what. For this you'll use the `--on` stage.
+What this array means is : whenever you'll execute a Task, Rocketeer will execute it on all of those connections. But now, that may not be what you want, you may want to cherry-pick what you do on what. For this you'll use the `--on` flag.
 
 Take a deploy command, you'd execute it like this normally : `rocketeer deploy`. To select which connections to deploy to, you'll pass one or more connections to it as a flag :
 
