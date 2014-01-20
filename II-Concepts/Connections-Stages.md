@@ -47,7 +47,7 @@ Now this was a fairly basic connection. Now imagine a more complicated setup, yo
 ),
 ```
 
-From there to interact with those two connections, there are multiple ways. First you can change the value of the `defaults` array in the `config.php` file we've been editing :
+From there to interact with those two connections, there are multiple ways. First you can change the value of the `default` array in the `config.php` file we've been editing :
 
 ```php
 'default' => array('production', 'staging'),
