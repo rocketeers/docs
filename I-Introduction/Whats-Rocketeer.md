@@ -12,7 +12,7 @@ Please note that Rocketeer **requires an SSH connection** – meaning if you're 
 At its core, this package's strategy is inspired by Capistrano's and is relatively simple.
 Before anything you'll provide Rocketeer with a `root_folder` on your server – this folder is Rocketeer's little self-contained world : whatever it does will be in that folder.
 
-Then you give it your `application_name`. This to let Rocketeer handle having multiple applications on the same server. The application name will be used to create a subfolder in the `root_folder` where everything related to _this_ application will happen.
+Then you give it your `application_name`. This is to let Rocketeer handle having multiple applications on the same server. The application name will be used to create a subfolder in the `root_folder` where everything related to _this_ application will happen.
 If per example your `root_folder` is `/var/www/` and your `application_name` is `facebook`, then Rocketeer will create `/var/www/facebook/` and everything it does in the span of this project will happen in that folder.
 Everything is packaged and contained, that way you can have as many applications on your server and it will still be all smooth.
 
