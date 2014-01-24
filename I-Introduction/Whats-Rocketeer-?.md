@@ -1,5 +1,3 @@
-# What's Rocketeer ?
-
 Rocketeer is a fast and easy deploying tool for the PHP world. If you've already used *Capistrano* in the past you're already familiar with the gist of what it does, and can probably skip this section. The rest of you, bear with me.
 
 Whether you've always deployed manually via FTP, plugins like SFTP for Sublime or via custom-made deploy scripts, Rocketeer is here to help you and automate your burden.
