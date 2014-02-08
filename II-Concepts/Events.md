@@ -14,6 +14,10 @@ $app['events']->listen('rocketeer.deploy.before', 'MyApp\MyCustomTask@execute');
 
 This is not "just this" of course, as Rocketeer does some magic on the second argument so that `Rocketeer::before('deploy', 'composer install')` transforms `composer install` into an actual Task class the Events Dispatcher can call. But in its concept, it's just your basic _Dispatcher_ (or _Observer_ if you like) system.
 
+## Registering events
+
+First of all, you can register events in any file that is autoloaded by Composer. If you're using the Rocketeer archive and have no particular autoloading, Rocketeer will by default try to load `.rocketeer/events.php` or if you have more events and want to split them in multiple files, it'll autoload every file in a `.rocketeer/events/*` folder.
+
 ## Listening to events
 
 All tasks in Rocketeer fire two basic events : `before` and `after` on which you can hook. But some tasks fire internal events, during their execution, allowing you to execute actions at various points in their lifetime. To listen to these events, there are two methods you can use. Say you want to execute something before the **Deploy** task symlinks the `current` folder to the latest release :

@@ -50,7 +50,10 @@ You can hook into any task via the `tasks` array in Rocketeer's config file. The
 
 ### Defining Tasks using the facade
 
-Rocketeer also provides you with a facade to use, if you don't want to put stuff in the config file, as it can get dirty with closures. I recommend you put those hooks in your `app/start/artisan.php` file if you're in Laravel, otherwise you can create a `tasks.php` file where your `rocketeer.php` file is.
+Rocketeer also provides you with a facade to use, if you don't want to put stuff in the config file, as it can get dirty with closures. I recommend you put those hooks in your `app/start/artisan.php` file if you're in Laravel.
+
+Otherwise Rocketeer allows two things : creating a `.rocketeer/tasks.php` file where all your hooks are contained, or if you have more files like
+classes and want one file per task, you can simply create a `.rocketeer/tasks/` folder and every task you put in it will automatically be loaded by Rocketeer.
 
 ```php
 <?php
