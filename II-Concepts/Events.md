@@ -106,3 +106,29 @@ Rocketeer::after($task, $listeners, $priority = 0)
 Rocketeer::listenTo($event, $listeners, $priority = 0)
 Rocketeer::addTaskListeners($tasks, $event, $listeners, $priority = 0)
 ```
+
+### Halting the queue in an event
+
+Whenever an event returns a strict `false`, Rocketeer will recognize it and halt the whole queue. This is useful to do checks before certain major events and cancel per example deployment if some conditions are not met.
+
+To halt the queue you can either simply return false :
+
+```php
+Rocketeer::before('deploy', function ($task) {
+	if (!$something) {
+		return false;
+	}
+});
+```
+
+Or if you want to pass additional details, you can use the `Task::halt` method which will display as error whatever you pass to it, and _then_ return false :
+
+```php
+Rocketeer::before('deploy', function ($task) {
+	if (!$something) {
+		return $this->halt('Something was wrong here, cancelling');
+	}
+});
+```
+
+Whatever you use, Rocketeer will display an additional error message stating the queue was canceled and by what Task.
