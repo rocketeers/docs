@@ -1,6 +1,6 @@
 # Troubleshooting
 
-### When I deploy my old scripts are running instead of the new, but the deployment was successful
+#### When I deploy my old scripts are running instead of the new, but the deployment was successful
 
 PHP 5.5 has Opcache built-in. Opcache is supposed to invalidate when the script has changed, but it has issue when the script is in a symlinked folder and called from the webserver.
 
