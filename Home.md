@@ -13,3 +13,4 @@
 ### Going further
 
 - **[Architecture](https://github.com/Anahkiasen/rocketeer/wiki/Architecture)**
+- **[Troubleshooting](https://github.com/Anahkiasen/rocketeer/wiki/Troubleshooting)**
