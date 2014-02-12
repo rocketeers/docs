@@ -17,7 +17,6 @@ Then you just need to type `rocketeer ignite`. You'll get asked a series of ques
 You can also install Rocketeer with Composer as any package :
 
 ```
-composer require illuminate/remote:4.1.*@dev
 composer require anahkiasen/rocketeer:dev-master
 
 php vendor/bin/rocketeer ignite
@@ -32,7 +31,6 @@ Use `php vendor/bin/rocketeer` to access Rocketeer's commands or simply alias it
 As with all Composer packages, Rocketeer can also be installed as a global dependency by preprending `global` :
 
 ```
-composer global require illuminate/remote:4.1.*@dev
 composer global require anahkiasen/rocketeer:dev-master
 
 rocketeer ignite
@@ -45,7 +43,7 @@ Rocketeer integrates nicely with Laravel, although you'll need to do some more s
 #### Preliminary steps for Laravel 4.0
 
 If you're on 4.0 I highly recommand to use the PHAR archive instead. If you really do want to do this, you'll have a few extra steps as you need to setup the remote component first.
-If you're on 4.1 you can skip to the next step.
+**If you're on 4.1 you can skip to the next step.**
 
 First, add this to you `composer.json` file in the `require` section :
 
@@ -69,8 +67,6 @@ Run update, then add this to your `app/config/app.php` file in the `providers` a
 ```php
 'Illuminate\Remote\RemoteServiceProvider',
 ```
-
-You will also want to pull in the `remote.php` config file since it did not exist in 4.0. To do so, copy and paste the contents of [develop/app/config/remote.php](https://github.com/laravel/laravel/blob/develop/app/config/remote.php) to your `app/config/remote.php` file.
 
 #### Installing Rocketeer
 
@@ -109,7 +105,7 @@ If you're using the archive, you'll need to hit `php rocketeer.phar` to access t
 
 Once you're done with the configuration, it is recommended to run the `php rocketeer.phar check` command, it will run various commands on the server to check whether the latter is ready to receive your application.
 
-Once you're done, you can just hit `php rocketeer.phar deploy`. It will create an initial release on your remote server.
+Then you can just hit `php rocketeer.phar deploy`. It will create an initial release on your remote server.
 Afterwards, to update it you can either run the same command again which will create an entirely new release, or simply do an `php rocketeer.phar update` which will update the repository and dependencies of your application.
 
 ### Folder organization
