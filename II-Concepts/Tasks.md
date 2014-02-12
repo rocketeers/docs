@@ -1,12 +1,11 @@
 # Tasks
 
 An important concept in Rocketeer is Tasks : most of the commands you see right above are using predefined Tasks underneath : **Rocketeer\Tasks\Setup**, **Rocketeer\Tasks\Deploy**, etc.
-Now, the core of Rocketeer is you can hook into any of those Tasks to perform additional actions, for this you'll use the `before` and `after` arrays of Rocketeer's config file.
-You can also add Tasks to Rocketeer to use directly via Rocketeer itself by doing `php rocketeer mytask` per example.
+A lot of those are already defined by Rocketeer, but you can add your own tasks to Rocketeer to execute custom actions on your server too.
 
 A task can be three things :
 
-- A simple one-line command which will be executed in the latest release's folder, like `composer install`
+- A simple one-line command which will be executed in the latest release's folder, like `composer install`, or an array of one-line commands
 - A closure, giving you access to Rocketeer's core helpers to perform more advanced actions
 - And finally a class, extending the `Rocketeer\Traits\Task` class, giving you full at-home control. All custom-made Tasks must have at least an `execute` method. And that's all.
 
@@ -16,7 +15,7 @@ Each level gives you a little more control and comfort – _this is intentional_
 
 ## Hooking into Rocketeer's Tasks
 
-What most user will do is hook into the existing Rocketeer's Tasks to do things before, or after. There is two ways to do that :
+What most user will do is hook into the existing Rocketeer's Tasks. Rocketeer provides a built-in events system that allows you – at minimum – to execute actions before or after a Task's execution.
 
 ### Defining Tasks in the config file
 
@@ -44,15 +43,16 @@ You can hook into any task via the `tasks` array in Rocketeer's config file. The
         $task->command->error('Aw man, tests failed and stuff')
       }
     },
+
   ),
 ?>
 ```
 
 ### Defining Tasks using the facade
 
-Rocketeer also provides you with a facade to use, if you don't want to put stuff in the config file, as it can get dirty with closures. I recommend you put those hooks in your `app/start/artisan.php` file if you're in Laravel.
+Rocketeer also provides you with a facade to use, if you don't want to put stuff in the config file, as it can get dirty with closures.
 
-Otherwise Rocketeer allows two things : creating a `.rocketeer/tasks.php` file where all your hooks are contained, or if you have more files like
+Rocketeer allows two things : creating a `.rocketeer/tasks.php` file where all your hooks are contained, or if you have more files like
 classes and want one file per task, you can simply create a `.rocketeer/tasks/` folder and every task you put in it will automatically be loaded by Rocketeer.
 
 ```php
@@ -74,12 +74,41 @@ Rocketeer::after('deploy', 'MyClass');
 
 You give as first argument the name of the name of the Task you'd like to act on (or an array of names), and then your task. Again, you can use the three types of tasks : strings, closures or classes.
 
-## Defining Tasks classes
+## Defining your own Tasks
 
-Sometimes you have things to do that don't fit in with the existing Tasks Rocketeer provides. That's why you can create your own tasks, here is an example one. As you can see it's pretty easy.
+Rocketeer also provides you with a task-running system to create, manage and run your own tasks.
+
+### Via the facade
 
 ```php
 <?php
+Rocketeer::task('composer', 'composer install');
+
+Rocketeer::task('composer', array(
+  'composer self-update',
+  'composer install',
+));
+
+Rocketeer::task('phpunit', function ($task) {
+  return $task->runForCurrentRelease('phpunit');
+});
+?>
+```
+
+These tasks will be automatically registered with Rocketeer, you'll then be able to execute them either via the CLI by doing per example `php rocketeer composer` or via the facade :
+
+```php
+Rocketeer::execute('composer');
+
+Rocketeer::execute(['composer', 'phpunit']);
+```
+
+### Via classes
+
+```php
+<?php
+namespace MyTasks;
+
 class Migrate extends Rocketeer\Traits\Task
 {
   /**
@@ -103,25 +132,61 @@ class Migrate extends Rocketeer\Traits\Task
 ?>
 ```
 
-### Registering your custom Task
-
-Now that the class is created, you need to register it with Rocketeer. As with the hooks, you can either do that via the config file, in the `tasks.custom` array :
+Classes aren't automatically registered with Rocketeer so you'll need to do that manually. You can either do so via the config file, in the `tasks.custom` array :
 
 ```php
 'custom' => array(
-  'Migrate',
+  'MyTasks\Migrate',
 ),
 ```
 
-Or via the facade in a custom file as seen above :
+Or via the facade :
 
 ```php
-Rocketeer::add('Migrate');
+Rocketeer::add('MyTasks\Migrate');
 ```
 
 And there you go, tadah !
 
 ![artisan](http://i.imgur.com/jwdQ2Ly.png)
+
+## Executing tasks
+
+Once a task is defined, it will be available in two places : the command line interface, and the facade.
+
+If you registered a task named `composer` per example you'll be able to do this :
+
+```php
+$ php rocketeer composer
+```
+
+Or in your PHP code (in `tasks.php` per example) :
+
+```php
+Rocketeer::execute('composer');
+```
+
+You can execute multiple tasks by passing an array of tasks. One thing that is crucial to remember : Rocketeer will always process the queue you pass to it, that means you can pass anything that is considered a task :
+- A string command
+- A closure
+- The name of a task
+- The class of a task
+
+```php
+<?php
+Rocketeer::execute(array(
+  'my-task',
+
+  'composer install',
+
+  'Rocketeer\Tasks\Deploy',
+
+  function ($task) {
+    return $task->run('ls');
+  },
+));
+?>
+```
 
 -----
 

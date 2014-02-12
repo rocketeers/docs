@@ -8,9 +8,11 @@ The easiest way is to just get the archive by doing downloading it [at the follo
 
 You can also install it globally by doing `mv rocketeer.phar /usr/local/bin/rocketeer` which will then give you a global `rocketeer` command to use in any folder.
 
-Then you just need to type `rocketeer ignite`. You'll get asked a series of question to setup your project and you show be good to go.
+Then you just need to type `rocketeer ignite`. You'll get asked a series of question to setup your project and you should be good to go.
 
 ## With Composer
+
+### Locally
 
 You can also install Rocketeer with Composer as any package :
 
@@ -21,17 +23,29 @@ composer require anahkiasen/rocketeer:dev-master
 php vendor/bin/rocketeer ignite
 ```
 
-And you're good to go, the configuration file referenced below will be created at `yourapp/.rocketeer/`.
+And that's all, the configuration file referenced below will be created at `yourapp/.rocketeer/`.
 
 Use `php vendor/bin/rocketeer` to access Rocketeer's commands or simply alias it : `alias rocketeer=php vendor/bin/rocketeer`. You can also add `vendor/bin` to your _PATH_ to always have local binaries accessible.
 
+### Globally
+
+As with all Composer packages, Rocketeer can also be installed as a global dependency by preprending `global` :
+
+```
+composer global require illuminate/remote:4.1.*@dev
+composer global require anahkiasen/rocketeer:dev-master
+
+rocketeer ignite
+```
+
 ## Integration with Laravel
 
-Rocketeer integrates nicely with Laravel, although you'll need to do some more steps, depending on whether you're using Laravel 4.0 or 4.1. To check what version you're using, just type `php artisan --version` in your terminal.
+Rocketeer integrates nicely with Laravel, although you'll need to do some more steps, depending on whether you're using Laravel 4.0 or later. To check what version you're using, just type `php artisan --version` in your terminal.
 
-#### If you're using Laravel 4.0
+#### Preliminary steps for Laravel 4.0
 
-If you're on 4.0 you have a few extra steps as you need to setup the remote component first. If you're on 4.1 you can skip to the next step.
+If you're on 4.0 I highly recommand to use the PHAR archive instead. If you really do want to do this, you'll have a few extra steps as you need to setup the remote component first.
+If you're on 4.1 you can skip to the next step.
 
 First, add this to you `composer.json` file in the `require` section :
 
@@ -58,7 +72,7 @@ Run update, then add this to your `app/config/app.php` file in the `providers` a
 
 You will also want to pull in the `remote.php` config file since it did not exist in 4.0. To do so, copy and paste the contents of [develop/app/config/remote.php](https://github.com/laravel/laravel/blob/develop/app/config/remote.php) to your `app/config/remote.php` file.
 
-#### On Laravel 4.0 and 4.1
+#### Installing Rocketeer
 
 Now type the following `composer require anahkiasen/rocketeer:dev-master`.
 
@@ -100,7 +114,7 @@ Afterwards, to update it you can either run the same command again which will cr
 
 ### Folder organization
 
-Rocketeer recognizes its custom configuration in the folder you currently are in. Same thing for the custom `tasks.php` file, so you could have that organization :
+Rocketeer recognizes its custom configuration in the folder you currently are in. Same thing for the custom `tasks.php` and `events.php` files, so you could have that organization :
 
 ```
 | .rocketeer
@@ -110,6 +124,7 @@ Rocketeer recognizes its custom configuration in the folder you currently are in
 | -- remote.php
 | -- scm.php
 | -- stages.php
+| -- events.php
 | -- tasks.php
 | rocketeer.phar
 | index.php
