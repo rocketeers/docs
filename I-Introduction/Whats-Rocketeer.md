@@ -5,7 +5,13 @@ Rocketeer is a fast and easy deploying tool for the PHP world. If you've already
 Whether you've always deployed manually via FTP, plugins like SFTP for Sublime or via custom-made deploy scripts, Rocketeer is here to help you and automate your burden.
 Please note that Rocketeer **requires an SSH connection** – meaning if you're on a shared hosting, I probably can't do anything for you.
 
-## What it does
+## Task runner
+
+In its spirit, Rocketeer is a basic SSH task runner, it defines servers, commands to execute on said server, and run them according to various contexts. You can use Rocketeer as such, for this see the **Tasks** documentation.
+
+## Deployments
+
+Rocketeer provides a handful of tasks built-in to deploy and manage your remote projects.
 
 ### Core folders
 
