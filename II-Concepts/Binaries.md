@@ -144,7 +144,7 @@ class Grunt extends AbstractBinary
 			$this->releasesManager->getCurrentReleasePath('node_modules/.bin/grunt'),
 		);
 	}
-	
+
 	public function forceAssets()
 	{
 		return $this->assets(null, '--force');

@@ -10,6 +10,11 @@
 - **[Connections and stages](II-Concepts/Connections-Stages.md)**
 - **[Plugins](II-Concepts/Plugins.md)**
 
-### Going further
+### Usage
 
-- **[Troubleshooting](III-Further/Troubleshooting.md)**
+- **[Deploying](III-Usage/Deploying.md)**
+
+### Help
+
+- **[Upgrade path](IV-Help/Upgrade-Path.md)**
+- **[Troubleshooting](IV-Help/Troubleshooting.md)**
