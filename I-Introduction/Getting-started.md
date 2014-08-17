@@ -40,37 +40,9 @@ rocketeer ignite
 
 Rocketeer integrates nicely with Laravel, although you'll need to do some more steps, depending on whether you're using Laravel 4.0 or later. To check what version you're using, just type `php artisan --version` in your terminal.
 
-#### Preliminary steps for Laravel 4.0
-
-If you're on 4.0 I highly recommand to use the PHAR archive instead. If you really do want to do this, you'll have a few extra steps as you need to setup the remote component first.
-**If you're on 4.1 you can skip to the next step.**
-
-First, add this to you `composer.json` file in the `require` section :
-
-```json
-"illuminate/remote": "dev-master",
-```
-
-Then add this at the end of your `composer.json` :
-
-```json
-"repositories": [
-  {
-    "type": "vcs",
-    "url": "https://github.com/changwuf31/remote"
-  }
-],
-```
-
-Run update, then add this to your `app/config/app.php` file in the `providers` array :
-
-```php
-'Illuminate\Remote\RemoteServiceProvider',
-```
-
 #### Installing Rocketeer
 
-Now type the following `composer require anahkiasen/rocketeer:dev-master`.
+Type the following `composer require anahkiasen/rocketeer:dev-master`.
 
 You'll need to add these lines to the `providers` array in your `app/config/app.php` file :
 
