@@ -139,24 +139,29 @@ Everything you'll put in either `staging` or `production` here will be a miniatu
 
 ### File-based alternative
 
-Now as this can get quite lengthy and you don't want to work in an array nested in an array nested in an array nested in an array, here's how you can proceed if you have a lot of things to override.
+Now as this can get quite lengthy and you don't want to work in an array nested in an array nested in an array nested in an array, here's how you can proceed if you have a lot of things to override. Rocketeer will by default read any `connections` and `stages` folder created withing the configuration folder. Say you want to deploy the `master` branch on your `production` connection, and deploy the `develop` branch on your `staging` connection, you'd create the following files:
 
-Create a folder for each connection and/or stage you have, and copy the base configuration in those. Then in your main `config.php` simply do this :
-
-```php
-'on' => array(
-  'connections' => array(
-
-    'staging' => array(
-      'paths' => include 'staging/paths.php',
-      'scm'   => include 'staging/scm.php',
-    ),
-    'production' => array(
-      'paths' => include 'production/paths.php',
-    ),
-
-  ),
-),
+```
+| .rocketeer
+| -- connections
+| ---- production
+| ------ scm.php
+| ---- staging
+| ------ scm.php
 ```
 
-And so on.
+**connections/production/scm.php**
+```php
+<?php return array(
+  'branch' => 'master',
+);
+```
+
+**connections/staging/scm.php**
+```php
+<?php return array(
+  'branch' => 'develop',
+);
+```
+
+Same goes for branches, just create per example `.rocketeer/stages/staging/somefile.php` to override some options from the default configuration.

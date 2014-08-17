@@ -132,3 +132,24 @@ Rocketeer::before('deploy', function ($task) {
 ```
 
 Whatever you use, Rocketeer will display an additional error message stating the queue was canceled and by what Task.
+
+## Available events
+
+All tasks have, by default, a `before` and `after` events, so do all strategies. Per example the `Deploy` task will respectively call the following strategies: `CreateRelease`, `Dependencies`, `Test` and `Migrate`.
+That means you can, in the case of a deployment, hook yourself on the following events:
+
+```
+deploy.before
+create-release.before
+create-release.after
+dependencies.before
+dependencies.after
+test.before
+test.after
+migrate.before
+migrate.after
+deploy.before-symlink
+deploy.after
+```
+
+Notice the `deploy.before-symlink` event which is a special event fired before the release gets symlinked as current. This is the recommended place to do any work on the release before it goes live.
