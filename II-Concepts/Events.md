@@ -100,7 +100,7 @@ Rocketeer::after('deploy', function ($task) {
 
 Here are some methods that accept a priority argument :
 
-```
+```php
 Rocketeer::before($task, $listeners, $priority = 0)
 Rocketeer::after($task, $listeners, $priority = 0)
 Rocketeer::listenTo($event, $listeners, $priority = 0)

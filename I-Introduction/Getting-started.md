@@ -16,10 +16,9 @@ Then you just need to type `rocketeer ignite`. You'll get asked a series of ques
 
 You can also install Rocketeer with Composer as any package :
 
-```
-composer require anahkiasen/rocketeer:dev-master
-
-php vendor/bin/rocketeer ignite
+```bash
+$ composer require anahkiasen/rocketeer:dev-master
+$ php vendor/bin/rocketeer ignite
 ```
 
 And that's all, the configuration file referenced below will be created at `yourapp/.rocketeer/`.
