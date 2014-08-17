@@ -62,6 +62,33 @@ $ rocketeer deploy --on="staging"
 $ rocketeer deploy --on="staging,production"
 ```
 
+### Multiserver connections
+
+Sometimes you might have a connection that is actually represented by multiple servers, and want each of those affected when dealing with that connection. Rocketeer allows that using a simple `servers` array when defining your connection:
+
+```php
+'connections' => array(
+  'production' => array(
+    'servers' => array(
+      array(
+        'host'      => 'first-server.com',
+        'username'  => 'johndoe',
+        'password'  => '',
+        'key'       => '/Users/johndoe/.ssh/id_rsa',
+        'keyphrase' => '',
+      ),
+      array(
+        'host'      => 'second-server.com',
+        'username'  => 'johndoe',
+        'password'  => '',
+        'key'       => '/Users/johndoe/.ssh/id_rsa',
+        'keyphrase' => '',
+      ),
+    ),
+  ),
+),
+```
+
 ## Stages
 
 In the realm of Rocketeer, stages are separated environments on **a given connection**. Here is a classic folder organization scaffolded by Rocketeer :
