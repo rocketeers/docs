@@ -6,7 +6,11 @@ Installing Rocketeer on a project is quite easy, there are several ways to do so
 
 The easiest way is to just get the archive by doing downloading it [at the following addresss](http://rocketeer.autopergamene.eu/versions/rocketeer.phar) and putting it in your application's directory.
 
-You can also install it globally by doing `mv rocketeer.phar /usr/local/bin/rocketeer` which will then give you a global `rocketeer` command to use in any folder.
+You can also install it globally by executing the following command which will then give you a global `rocketeer` command to use in any folder.
+
+```bash
+curl http://rocketeer.autopergamene.eu/versions/rocketeer.phar > /usr/local/bin/rocketeer && chmod 755 /usr/local/bin/rocketeer
+```
 
 Then you just need to type `rocketeer ignite`. You'll get asked a series of question to setup your project and you should be good to go.
 
