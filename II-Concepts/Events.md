@@ -47,7 +47,7 @@ Rocketeer::addTaskListeners(['deploy', new Rocketeer\Tasks\Setup], 'some-event',
 You can fire events in your own tasks too by using the `fireEvent` method :
 
 ```php
-class MyTask extends Rocketeer\Traits\Task
+class MyTask extends Rocketeer\Abstracts\AbstractTask
 {
 	public function execute()
 	{

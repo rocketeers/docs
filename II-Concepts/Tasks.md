@@ -7,7 +7,7 @@ A task can be three things :
 
 - A simple one-line command which will be executed in the latest release's folder, like `composer install`, or an array of one-line commands
 - A closure, giving you access to Rocketeer's core helpers to perform more advanced actions
-- And finally a class, extending the `Rocketeer\Traits\Task` class, giving you full at-home control. All custom-made Tasks must have at least an `execute` method. And that's all.
+- And finally a class, extending the `Rocketeer\Abstracts\AbstractTask` class, giving you full at-home control. All custom-made Tasks must have at least an `execute` method. And that's all.
 
 Each level gives you a little more control and comfort – _this is intentional_, if you need more control than what Closures give you, then you probably need a class.
 
@@ -109,7 +109,7 @@ Rocketeer::execute(['composer', 'phpunit']);
 <?php
 namespace MyTasks;
 
-class Migrate extends Rocketeer\Traits\Task
+class Migrate extends \Rocketeer\Abstracts\AbstractTask
 {
   /**
    * Description of the Task

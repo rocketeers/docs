@@ -1,6 +1,6 @@
 # Plugins
 
-You can add functionalities to Rocketeer or simply bundle common tasks into reusable modules by using the plugins system. A plugin at its core is a class implementing the `Rocketeer\Traits\Plugin` abstract.
+You can add functionalities to Rocketeer or simply bundle common tasks into reusable modules by using the plugins system. A plugin at its core is a class implementing the `Rocketeer\Abstracts\AbstractPlugin` abstract.
 
 ## Adding a plugin
 
@@ -27,10 +27,10 @@ Here is an example dumbed-down version of the current Campfire plugin, using `rc
 
 ```php
 use rcrowe\Campfire;
-use Rocketeer\TasksQueue;
-use Rocketeer\Traits\Plugin;
+use Rocketeer\Services\Tasks\TasksQueue;
+use Rocketeer\Abstracts\AbstractPlugin;
 
-class RocketeerCampfire extends Plugin
+class RocketeerCampfire extends AbstractPlugin
 {
   /**
    * Bind additional classes to the Container
@@ -73,7 +73,7 @@ As you can see a plugin can be something _really_ simple you can save up somewhe
 Plugins can have their own configuration, by creating a `config` folder in your plugin's `src` folder. You'll need to set the path to it on your class, in the constructor per example :
 
 ```php
-function __construct()
+public function __construct()
 {
   $this->configurationFolder = __DIR__.'/../../config';
 }
