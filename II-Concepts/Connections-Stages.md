@@ -1,6 +1,6 @@
 # Connections and stages
 
-You'll meet to main concepts when it comes to communicating with your server : **Connections** and **Stages**.
+You'll meet two main concepts when it comes to communicating with your server : **Connections** and **Stages**.
 
 ## Connections
 
