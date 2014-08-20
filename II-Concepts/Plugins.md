@@ -14,8 +14,6 @@ Rocketeer::plugin('Rocketeer\Plugins\Campfire', array(
 ));
 ```
 
-If you're on Laravel, you simply need to add the plugin's `ServiceProvider` to your application which will do this for you. You can then publish the package's configuration in `app/config/packages` by doing `artisan config:publish rocketeer/my-plugin`.
-
 ## Creating a plugin
 
 There's two methods a plugin will most likely have on its class : `register(Container $app)` and `onQueue(TasksQueue $queue)`.
@@ -80,7 +78,3 @@ public function __construct()
 ```
 
 In that folder you can then create a `config.php` file to put your options as a PHP array. The configuration for your plugin will then be available via the Config class in your tasks, under the `my-plugin::` namespace, per example if your class is `RocketeerHipchat`, you'll get the configuration by doing `$task->config->get('rocketeer-hipchat::myoption')`.
-
-### On Laravel
-
-Note, if you're in a Laravel application, you can add a plugin's `ServiceProvider` to it and then do `artisan config:publish rocketeer/the-plugin` to get an overridable configuration file in `app/config/packages`.

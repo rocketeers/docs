@@ -38,44 +38,14 @@ $ composer global require anahkiasen/rocketeer:dev-master
 $ rocketeer ignite
 ```
 
-## Integration with Laravel
-
-Rocketeer integrates nicely with Laravel, although you'll need to do some more steps, depending on whether you're using Laravel 4.0 or later. To check what version you're using, just type `php artisan --version` in your terminal.
-
-#### Installing Rocketeer
-
-Type the following `composer require anahkiasen/rocketeer:dev-master`.
-
-You'll need to add these lines to the `providers` array in your `app/config/app.php` file :
-
-```php
-'Rocketeer\RocketeerServiceProvider',
-```
-
-Then, this line to the `aliases` array in your `app/config/app.php` file :
-
-```php
-'Rocketeer' => 'Rocketeer\Facades\Rocketeer',
-```
-
-Then publish the config :
-
-```bash
-$ artisan deploy:ignite
-```
-
 ## Configuration
 
 You'll do most of your configuration in Rocketeer's configuration files, in the `.rocketeer` folder.
-If you're on Laravel and added the package as a dependency, you'll instead need to configure files in `app/config/packages/anahkiasen/rocketeer/`.
-
-Rocketeer recognizes Laravel's `remote.php` file so you can configure your connections here if you want, Rocketeer will read it first before falling back to the configuration file.
-
 There are a lot of options in the configuration file, each is explained thoroughly so take your time to read the comments carefully.
 
 ## Using Rocketeer
 
-If you're using the archive, you'll need to hit `php rocketeer.phar` to access the commands, if you're on Laravel and installed it as a package, you'll want to hit the `php artisan deploy:` namespace. Per example the `update` command would be accessed as `php rocketeer.phar update` with the archive, and `php artisan deploy:update` with the package.
+If you're using the archive, you'll need to hit `php rocketeer.phar` to access the commands, per example `php rocketeer.phar deploy` or if you installed it globally, `rocketeer deploy`.
 
 Once you're done with the configuration, it is recommended to run the `php rocketeer.phar check` command, it will run various commands on the server to check whether the latter is ready to receive your application.
 
