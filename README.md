@@ -5,16 +5,24 @@
 
 ### Core concepts
 
+- **[Connections and stages](II-Concepts/Connections-Stages.md)**
+- **[Binaries](II-Concepts/Binaries.md)**
+- **[Strategies](II-Concepts/Strategies.md)**
 - **[Tasks](II-Concepts/Tasks.md)**
 - **[Events](II-Concepts/Events.md)**
-- **[Connections and stages](II-Concepts/Connections-Stages.md)**
 - **[Plugins](II-Concepts/Plugins.md)**
 
 ### Usage
 
+- **[Credentials](III-Usage/Credentials.md)**
 - **[Deploying](III-Usage/Deploying.md)**
+- **[Debugging](III-Usage/Debugging.md)**
+
+## Tutorials
+
+- **[Laravel integration](IV-Tutorials/Laravel.md)**
 
 ### Help
 
-- **[Upgrade path](IV-Help/Upgrade-Path.md)**
-- **[Troubleshooting](IV-Help/Troubleshooting.md)**
+- **[Upgrade path](V-Help/Upgrade-Path.md)**
+- **[Troubleshooting](V-Help/Troubleshooting.md)**
