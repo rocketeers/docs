@@ -5,7 +5,7 @@
 
 ### Core concepts
 
-- **[Connections and stages](II-Concepts/Connections-&-Stages.md)**
+- **[Connections and stages](II-Concepts/Connections-and-Stages.md)**
 - **[Binaries](II-Concepts/Binaries.md)**
 - **[Strategies](II-Concepts/Strategies.md)**
 - **[Tasks](II-Concepts/Tasks.md)**
