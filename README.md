@@ -12,15 +12,12 @@
 - **[Events](II-Concepts/Events.md)**
 - **[Plugins](II-Concepts/Plugins.md)**
 
-## Services
-
-- **[TasksQueue](III-Services/TasksQueue.md)**
-
 ### Usage
 
 - **[Credentials](IV-Usage/Credentials.md)**
 - **[Deploying](IV-Usage/Deploying.md)**
 - **[Debugging](IV-Usage/Debugging.md)**
+- **[Services](IV-Usage/Services.md)**
 
 ## Tutorials
 

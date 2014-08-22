@@ -192,6 +192,19 @@ Rocketeer::execute(array(
 ?>
 ```
 
+### Executing tasks in local
+
+In some cases you need to execute a series of commands in local, and have the same comfort as you'd have executing things on the local server. This is only possible with actual Tasks classes, all you need to do is set the `local` property to true:
+
+```php
+class MyTask extends Rocketeer\Abstracts\AbstractTask
+{
+  protected $local = true;
+}
+```
+
+From there, Rocketeer will delegate all calls to a `LocalConnection` class that acts the same as any Connection class but runs commands in the local system. This is useful for preparing the deploy and is how the `Primer` task works.
+
 -----
 
 ## Writing Tasks
