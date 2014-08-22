@@ -60,7 +60,11 @@ class MyTask extends Rocketeer\Abstracts\AbstractTask
 }
 ```
 
-You don't need to namespace your events, as Rocketeer will do it for you. It will first namespace all events in the `rocketeer.` space, then add a slug of the current task, so the two events above would be fired as `rocketeer.my-task.making-coffee` and `rocketeer.my-task.drinking-coffee`.
+You don't need to namespace your events, as Rocketeer will do it for you. It will first namespace all events in the `rocketeer.` space, then add a slug of the current task, so the two events above would be fired as `rocketeer.my-task.making-coffee` and `rocketeer.my-task.drinking-coffee`:
+
+```php
+Rocketeer::listenTo('my-task.drinking-coffee', 'ls');
+```
 
 Now, you can also fire events in Closure Tasks, by you will need to manually namespace those : as all Closure Tasks are at their core anonymous functions, they're anonymous tasks as well which means all events will get fired in `rocketeer.closure` :
 
@@ -81,9 +85,7 @@ Rocketeer::after('deploy', function ($task) {
 	$task->campfire->notify('New version deployed on the server');
 });
 
-Rocketeer::after('deploy', function ($task) {
-	$task->runForCurrentRelease(['npm install', 'grunt']);
-});
+Rocketeer::after('deploy', ['npm install', 'grunt']);
 ```
 
 Now ideally you'd want your chat room on Campfire to be notified about the deployment only when the NPM packages are installed and Grunt has run its course, because an error might happen there. For this you add a priority at the end of the call : priority is a basic integer, listeners with lowest priority will be fired at the end, and vice versa. So to make sure our Campfire notification would get sent at really the very end of all our listeners, we can just do this :

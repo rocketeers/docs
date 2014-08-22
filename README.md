@@ -12,17 +12,21 @@
 - **[Events](II-Concepts/Events.md)**
 - **[Plugins](II-Concepts/Plugins.md)**
 
+## Services
+
+- **[TasksQueue](III-Services/TasksQueue.md)**
+
 ### Usage
 
-- **[Credentials](III-Usage/Credentials.md)**
-- **[Deploying](III-Usage/Deploying.md)**
-- **[Debugging](III-Usage/Debugging.md)**
+- **[Credentials](IV-Usage/Credentials.md)**
+- **[Deploying](IV-Usage/Deploying.md)**
+- **[Debugging](IV-Usage/Debugging.md)**
 
 ## Tutorials
 
-- **[Laravel integration](IV-Tutorials/Laravel.md)**
+- **[Laravel integration](V-Tutorials/Laravel.md)**
 
 ### Help
 
-- **[Upgrade path](V-Help/Upgrade-Path.md)**
-- **[Troubleshooting](V-Help/Troubleshooting.md)**
+- **[Upgrade path](VI-Help/Upgrade-Path.md)**
+- **[Troubleshooting](VI-Help/Troubleshooting.md)**

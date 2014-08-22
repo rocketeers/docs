@@ -18,8 +18,8 @@ Rocketeer::plugin('Rocketeer\Plugins\Campfire', array(
 
 There's two methods a plugin will most likely have on its class : `register(Container $app)` and `onQueue(TasksQueue $queue)`.
 
-- The first one will be used to bind eventual instances into Rocketeer's container, that is a facultative method that if overrided needs to return the Container at the end.
-- The second one is used to add actions or tasks to Rocketeer : the **TasksQueue** class is the one behing the Rocketeer facade so most of the methods you're familiar with are available on it : `$queue->before('deploy', ...)`, `$queue->add('MyCustomTask')` etc.
+- The first one will be used to bind eventual instances into Rocketeer's container, that is a facultative method that if overridden needs to return the Container at the end.
+- The second one is used to add actions or tasks to Rocketeer : the **TasksQueue** class is the one behind the Rocketeer facade so most of the methods you're familiar with are available on it : `$queue->before('deploy', ...)`, `$queue->add('MyCustomTask')` etc.
 
 Here is an example dumbed-down version of the current Campfire plugin, using `rcrowe/Campfire` as a dependency :
 

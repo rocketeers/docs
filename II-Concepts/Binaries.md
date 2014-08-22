@@ -11,6 +11,12 @@ A binary class is any class extending `Rocketeer\Abstracts\AbstractBinary`. The 
 Per example for the Git binary class:
 
 ```php
+$git->getCommand('clone', ['from', 'to'], ['--branch' => 'master']); // Yields `git clone from to --branch="master"
+```
+
+You can also use the command as a method to have a more fluent interface. On that subject, options and arguments can be both passed as arrays and strings:
+
+```php
 $git->clone(['from', 'to'], ['--branch' => 'master']); // Yields `git clone from to --branch="master"`
 
 $git->clone('from to', '-b master') // Same result, you can pass array or strings interchangeably
@@ -87,7 +93,7 @@ $artisan->migrate(); // Returns `php artisan migrate`
 
 $artisan = $this->artisan();
 $artisan->setParent($this->php());
-$artisan->migrate(); // Returns `php artisan migrate`
+$artisan->migrate(); // Returns `/usr/bin/php artisan migrate` per example
 ```
 
 The advantage of using binary classes instead of running raw commands is that they have already built-in pathfinders. Meaning if you call `$this->artisan()->run('migrate')` instead of simply `$this->run('php artisan migrate')`, Rocketeer knows what those binaries are and where they are. You'll automatically get the correct path to PHP set as parent, the correct path to Artisan, etc.
@@ -96,7 +102,7 @@ The advantage of using binary classes instead of running raw commands is that th
 
 Creating your own binaries is fairly straight-forward. At their core they're simply classes extending `Rocketeer\Abstracts\AbstractBinary`. There is no required method at all, they're just canvas to add your own aliases and/or known paths.
 
-To set the predefined known paths of a binary, simply override the `getKnownPaths` method. Rocketeer will look in each of these paths until it finds one that is valid:
+To set the predefined known paths of a binary, simply override the `getKnownPaths` method. It returns an array with two entries: first entry is what to call `which` on, and if that doesn't work, it'll use the second path. In other words, the second entry of the array is a fallback path.
 
 ```php
 <?php
