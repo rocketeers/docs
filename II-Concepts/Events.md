@@ -155,3 +155,15 @@ deploy.after
 ```
 
 Notice the `deploy.before-symlink` event which is a special event fired before the release gets symlinked as current. This is the recommended place to do any work on the release before it goes live.
+
+### Failure events
+
+All tasks also fire an `halt` event when they fail, be it from themselves, a bound event or a subtask. You can hook into those events like any other event.
+
+Per example if you have a database backup system and when deploying your migrations fail, you'd want to restore that backup of the databse, so you'd do the following:
+
+```php
+Rocketeer::listenTo('migrate.halt', function() {
+  // Restore the database
+});
+```
