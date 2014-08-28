@@ -4,19 +4,24 @@ You can add functionalities to Rocketeer or simply bundle common tasks into reus
 
 ## Adding a plugin
 
-To add a plugin to an application, you simply need to add it via Composer and call `Rocketeer::plugin`. You can pass in configuration as the second parameter :
+To add a plugin, you need to call the `rocketeer plugin:install <package>` command, per example `rocketeer plugin:install anahkiasen/rocketeer-slack`, the package being the Packagist/Github handle of the package.
 
-**tasks.php**
+Once this is done, add the plugin's class to the `plugins` array in `.rocketeer/config.php`:
+
 ```php
-Rocketeer::plugin('Rocketeer\Plugins\Campfire', array(
-  'domain' => 'MyDomain',
-  'room'   => 1234,
-));
+'plugins' => array(
+	'Rocketeer\Plugins\Slack\RocketeerSlack',
+),
 ```
+
+Then, in most cases you'll need to configure said plugin. For this you'll want to publish its configuration in user land via the `rocketeer plugin:publish <package>` command. Here we'll call `rocketeer plugin:publish anahkiasen/rocketeer-slack` per example.
+
+This will create the `.rocketeer/plugins/anahkiasen/rocketeer-slack` folder, with all the plugin's configuration files inside.
+
 
 ## Creating a plugin
 
-There's two methods a plugin will most likely have on its class : `register(Container $app)` and `onQueue(TasksQueue $queue)`.
+There's two methods a plugin will most likely have on its class are `register(Container $app)` and `onQueue(TasksQueue $queue)`.
 
 - The first one will be used to bind eventual instances into Rocketeer's container, that is a facultative method that if overridden needs to return the Container at the end.
 - The second one is used to add actions or tasks to Rocketeer : the **TasksQueue** class is the one behind the Rocketeer facade so most of the methods you're familiar with are available on it : `$queue->before('deploy', ...)`, `$queue->add('MyCustomTask')` etc.
