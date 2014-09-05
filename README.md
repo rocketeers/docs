@@ -5,7 +5,7 @@
 
 ### Core concepts
 
-- **[Connections and stages](II-Concepts/Connections-and-Stages.md)**
+- **[Connections and stages](II-Concepts/Connections-Stages.md)**
 - **[Tasks](II-Concepts/Tasks.md)**
 - **[Events](II-Concepts/Events.md)**
 - **[Plugins](II-Concepts/Plugins.md)**
