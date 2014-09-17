@@ -1,6 +1,6 @@
 # Connections and stages
 
-You'll meet to main concepts when it comes to communicating with your server : **Connections** and **Stages**.
+You'll meet two main concepts when it comes to communicating with your server : **Connections** and **Stages**.
 
 ## Connections
 
@@ -60,6 +60,33 @@ Take a deploy command, you'd execute it like this normally : `rocketeer deploy`.
 ```bash
 $ rocketeer deploy --on="staging"
 $ rocketeer deploy --on="staging,production"
+```
+
+### Multiserver connections
+
+Sometimes you might have a connection that is actually represented by multiple servers, and want each of those affected when dealing with that connection. Rocketeer allows that using a simple `servers` array when defining your connection:
+
+```php
+'connections' => array(
+  'production' => array(
+    'servers' => array(
+      array(
+        'host'      => 'first-server.com',
+        'username'  => 'johndoe',
+        'password'  => '',
+        'key'       => '/Users/johndoe/.ssh/id_rsa',
+        'keyphrase' => '',
+      ),
+      array(
+        'host'      => 'second-server.com',
+        'username'  => 'johndoe',
+        'password'  => '',
+        'key'       => '/Users/johndoe/.ssh/id_rsa',
+        'keyphrase' => '',
+      ),
+    ),
+  ),
+),
 ```
 
 ## Stages
@@ -139,24 +166,29 @@ Everything you'll put in either `staging` or `production` here will be a miniatu
 
 ### File-based alternative
 
-Now as this can get quite lengthy and you don't want to work in an array nested in an array nested in an array nested in an array, here's how you can proceed if you have a lot of things to override.
+Now as this can get quite lengthy and you don't want to work in an array nested in an array nested in an array nested in an array, here's how you can proceed if you have a lot of things to override. Rocketeer will by default read any `connections` and `stages` folder created withing the configuration folder. Say you want to deploy the `master` branch on your `production` connection, and deploy the `develop` branch on your `staging` connection, you'd create the following files:
 
-Create a folder for each connection and/or stage you have, and copy the base configuration in those. Then in your main `config.php` simply do this :
-
-```php
-'on' => array(
-  'connections' => array(
-
-    'staging' => array(
-      'paths' => include 'staging/paths.php',
-      'scm'   => include 'staging/scm.php',
-    ),
-    'production' => array(
-      'paths' => include 'production/paths.php',
-    ),
-
-  ),
-),
+```
+| .rocketeer
+| -- connections
+| ---- production
+| ------ scm.php
+| ---- staging
+| ------ scm.php
 ```
 
-And so on.
+**connections/production/scm.php**
+```php
+<?php return array(
+  'branch' => 'master',
+);
+```
+
+**connections/staging/scm.php**
+```php
+<?php return array(
+  'branch' => 'develop',
+);
+```
+
+Same goes for branches, just create per example `.rocketeer/stages/staging/somefile.php` to override some options from the default configuration.

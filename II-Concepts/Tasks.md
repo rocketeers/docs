@@ -7,7 +7,7 @@ A task can be three things :
 
 - A simple one-line command which will be executed in the latest release's folder, like `composer install`, or an array of one-line commands
 - A closure, giving you access to Rocketeer's core helpers to perform more advanced actions
-- And finally a class, extending the `Rocketeer\Traits\Task` class, giving you full at-home control. All custom-made Tasks must have at least an `execute` method. And that's all.
+- And finally a class, extending the `Rocketeer\Abstracts\AbstractTask` class, giving you full at-home control. All custom-made Tasks must have at least an `execute` method. And that's all.
 
 Each level gives you a little more control and comfort – _this is intentional_, if you need more control than what Closures give you, then you probably need a class.
 
@@ -19,7 +19,7 @@ What most user will do is hook into the existing Rocketeer's Tasks. Rocketeer pr
 
 ### Defining Tasks in the config file
 
-You can hook into any task via the `tasks` array in Rocketeer's config file. The syntax is pretty basic, here you can see an example with the three types of Tasks mentionned above :
+You can hook into any task via the `hooks.php` file in Rocketeer's config file. The syntax is pretty basic, here you can see an example with the three types of Tasks mentionned above :
 
 ```php
 <?php
@@ -52,8 +52,8 @@ You can hook into any task via the `tasks` array in Rocketeer's config file. The
 
 Rocketeer also provides you with a facade to use, if you don't want to put stuff in the config file, as it can get dirty with closures.
 
-Rocketeer allows two things : creating a `.rocketeer/tasks.php` file where all your hooks are contained, or if you have more files like
-classes and want one file per task, you can simply create a `.rocketeer/tasks/` folder and every task you put in it will automatically be loaded by Rocketeer.
+Rocketeer allows two things : creating a `.rocketeer/events.php` file where all your hooks are contained, or if you have more files like
+classes and want one file per task, you can simply create a `.rocketeer/events/` folder and every task you put in it will automatically be loaded by Rocketeer.
 
 ```php
 <?php
@@ -76,7 +76,8 @@ You give as first argument the name of the name of the Task you'd like to act on
 
 ## Defining your own Tasks
 
-Rocketeer also provides you with a task-running system to create, manage and run your own tasks.
+Rocketeer also provides you with a task-running system to create, manage and run your own tasks. You can put those either in a `.rocketeer/tasks.php` file, or if you have a lot, in
+a `./rocketeer/tasks/` folder which will load all the files in it.
 
 ### Via the facade
 
@@ -91,9 +92,11 @@ Rocketeer::task('composer', array(
 
 Rocketeer::task('phpunit', function ($task) {
   return $task->runForCurrentRelease('phpunit');
-});
+}, 'Runs the PHPUnit tests');
 ?>
 ```
+
+The `task` metod takes three arguments: the name of the task, it's execution (one-line command, closure, class), and a description of what it does.
 
 These tasks will be automatically registered with Rocketeer, you'll then be able to execute them either via the CLI by doing per example `php rocketeer composer` or via the facade :
 
@@ -109,7 +112,7 @@ Rocketeer::execute(['composer', 'phpunit']);
 <?php
 namespace MyTasks;
 
-class Migrate extends Rocketeer\Traits\Task
+class Migrate extends \Rocketeer\Abstracts\AbstractTask
 {
   /**
    * Description of the Task
@@ -125,8 +128,9 @@ class Migrate extends Rocketeer\Traits\Task
    */
   public function execute()
   {
-    $this->command->info('Running migrations');
-    $this->runForCurrentRelease('php artisan migrate --seed');
+    $this->explainer->line('Running migrations');
+
+    return $this->runForCurrentRelease('php artisan migrate --seed');
   }
 }
 ?>
@@ -187,6 +191,19 @@ Rocketeer::execute(array(
 ));
 ?>
 ```
+
+### Executing tasks in local
+
+In some cases you need to execute a series of commands in local, and have the same comfort as you'd have executing things on the local server. This is only possible with actual Tasks classes, all you need to do is set the `local` property to true:
+
+```php
+class MyTask extends Rocketeer\Abstracts\AbstractTask
+{
+  protected $local = true;
+}
+```
+
+From there, Rocketeer will delegate all calls to a `LocalConnection` class that acts the same as any Connection class but runs commands in the local system. This is useful for preparing the deploy and is how the `Primer` task works.
 
 -----
 
@@ -291,40 +308,24 @@ Tasks also have access to the other classes of Rocketeer. You can call other tas
 $this->executeTask('Rollback');
 ```
 
-And call other classes's methods. There are five main classes surrounding Tasks which you'll like want to use :
-- The **Command** is the command executing the Task. You'll use it to display messages and fetch options and arguments
-- The **Releases Manager** handles releases and their paths
-- The **Server** class keeps up to date the `deployments.json` file which tracks the remote server's state
-- The **Remote** is your entry point to the server, it's the class the `run` method uses
-- The **Rocketeer** classes handles informations provided by the User (config and stuff)
+And call other classes's methods. All tasks and strategies have access to the following core classes and their methods:
+
+- **command** is the instance of the command currently running, to fetch options and arguments
+- **scm** is the binary instance of the current SCM (Git, Svn, etc.)
+- **rocketeer** is responsible for getting informations on the current app and its configuration
+- **connections** handles getting the current connection/stage/server and their respective credentials
+- **remote** is your entry point to the server, it's the class the `run` method uses
+- **explainer** is responsible for displaying the output, you'll use it to display progress in your tasks per example
+- **paths** finds paths in local and the server
+- **releasesManager** handles releases and their paths
+- **localStorage** class keeps up to date the local storage file which tracks the remote server's state and credentials
+- **builder** allows you to build tasks and strategies on the fly
+- **queue** allows you to run tasks in a queue within your tasks
+- **tasks** handles the registration of tasks and their events, it's the class behind the Rocketeer facade
+
+You can find a list of the methods available for each of these services directly in the [API](http://rocketeer.autopergamene.eu/api/namespaces/Rocketeer.html).
+They are accessed as property, per example to get a folder in the current release you would do the following:
 
 ```php
-<?php
-$this->releasesManager->getCurrentRelease();
-$this->releasesManager->getPathToRelease('123456789');
-$this->releasesManager->getPreviousRelease();
-$this->releasesManager->getReleases();
-
-$this->server->setValue('key', 'value');
-$this->server->getValue('key');
-$this->server->getRepository();
-
-$this->rocketeer->getHomeFolder();
-$this->rocketeer->getApplicationName();
-$this->rocketeer->getRepository();
-$this->rocketeer->getOption('remote.shared');
-$this->rocketeer->getStage();
-
-$this->command->argument('argument');
-$this->command->option('verbose');
-$this->command->info('It works !');
-$this->command->error('It does not work !');
-$this->command->comment('Now running cleanup');
-
-$this->remote->run(array(
-  'cd folder', 'ls',
-));
-?>
+$folder $task->releasesManager->getCurrentReleasePath('some/folder');
 ```
-
-This is not all of it of course, you can check out these classes's sources for a full documented list of the methods available.

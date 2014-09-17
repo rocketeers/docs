@@ -6,7 +6,11 @@ Installing Rocketeer on a project is quite easy, there are several ways to do so
 
 The easiest way is to just get the archive by doing downloading it [at the following addresss](http://rocketeer.autopergamene.eu/versions/rocketeer.phar) and putting it in your application's directory.
 
-You can also install it globally by doing `mv rocketeer.phar /usr/local/bin/rocketeer` which will then give you a global `rocketeer` command to use in any folder.
+You can also install it globally by executing the following command which will then give you a global `rocketeer` command to use in any folder.
+
+```bash
+curl http://rocketeer.autopergamene.eu/versions/rocketeer.phar > /usr/local/bin/rocketeer && chmod 755 /usr/local/bin/rocketeer
+```
 
 Then you just need to type `rocketeer ignite`. You'll get asked a series of question to setup your project and you should be good to go.
 
@@ -16,10 +20,9 @@ Then you just need to type `rocketeer ignite`. You'll get asked a series of ques
 
 You can also install Rocketeer with Composer as any package :
 
-```
-composer require anahkiasen/rocketeer:dev-master
-
-php vendor/bin/rocketeer ignite
+```bash
+$ composer require anahkiasen/rocketeer:dev-master
+$ php vendor/bin/rocketeer ignite
 ```
 
 And that's all, the configuration file referenced below will be created at `yourapp/.rocketeer/`.
@@ -30,78 +33,19 @@ Use `php vendor/bin/rocketeer` to access Rocketeer's commands or simply alias it
 
 As with all Composer packages, Rocketeer can also be installed as a global dependency by preprending `global` :
 
-```
-composer global require anahkiasen/rocketeer:dev-master
-
-rocketeer ignite
-```
-
-## Integration with Laravel
-
-Rocketeer integrates nicely with Laravel, although you'll need to do some more steps, depending on whether you're using Laravel 4.0 or later. To check what version you're using, just type `php artisan --version` in your terminal.
-
-#### Preliminary steps for Laravel 4.0
-
-If you're on 4.0 I highly recommand to use the PHAR archive instead. If you really do want to do this, you'll have a few extra steps as you need to setup the remote component first.
-**If you're on 4.1 you can skip to the next step.**
-
-First, add this to you `composer.json` file in the `require` section :
-
-```json
-"illuminate/remote": "dev-master",
-```
-
-Then add this at the end of your `composer.json` :
-
-```json
-"repositories": [
-  {
-    "type": "vcs",
-    "url": "https://github.com/changwuf31/remote"
-  }
-],
-```
-
-Run update, then add this to your `app/config/app.php` file in the `providers` array :
-
-```php
-'Illuminate\Remote\RemoteServiceProvider',
-```
-
-#### Installing Rocketeer
-
-Now type the following `composer require anahkiasen/rocketeer:dev-master`.
-
-You'll need to add these lines to the `providers` array in your `app/config/app.php` file :
-
-```php
-'Rocketeer\RocketeerServiceProvider',
-```
-
-Then, this line to the `aliases` array in your `app/config/app.php` file :
-
-```php
-'Rocketeer' => 'Rocketeer\Facades\Rocketeer',
-```
-
-Then publish the config :
-
-```
-artisan deploy:ignite
+```bash
+$ composer global require anahkiasen/rocketeer:dev-master
+$ rocketeer ignite
 ```
 
 ## Configuration
 
 You'll do most of your configuration in Rocketeer's configuration files, in the `.rocketeer` folder.
-If you're on Laravel and added the package as a dependency, you'll instead need to configure files in `app/config/packages/anahkiasen/rocketeer/`.
-
-Rocketeer recognizes Laravel's `remote.php` file so you can configure your connections here if you want, Rocketeer will read it first before falling back to the configuration file.
-
 There are a lot of options in the configuration file, each is explained thoroughly so take your time to read the comments carefully.
 
 ## Using Rocketeer
 
-If you're using the archive, you'll need to hit `php rocketeer.phar` to access the commands, if you're on Laravel and installed it as a package, you'll want to hit the `php artisan deploy:` namespace. Per example the `update` command would be accessed as `php rocketeer.phar update` with the archive, and `php artisan deploy:update` with the package.
+If you're using the archive, you'll need to hit `php rocketeer.phar` to access the commands, per example `php rocketeer.phar deploy` or if you installed it globally, `rocketeer deploy`.
 
 Once you're done with the configuration, it is recommended to run the `php rocketeer.phar check` command, it will run various commands on the server to check whether the latter is ready to receive your application.
 

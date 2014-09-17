@@ -47,7 +47,7 @@ Rocketeer::addTaskListeners(['deploy', new Rocketeer\Tasks\Setup], 'some-event',
 You can fire events in your own tasks too by using the `fireEvent` method :
 
 ```php
-class MyTask extends Rocketeer\Traits\Task
+class MyTask extends Rocketeer\Abstracts\AbstractTask
 {
 	public function execute()
 	{
@@ -60,7 +60,11 @@ class MyTask extends Rocketeer\Traits\Task
 }
 ```
 
-You don't need to namespace your events, as Rocketeer will do it for you. It will first namespace all events in the `rocketeer.` space, then add a slug of the current task, so the two events above would be fired as `rocketeer.my-task.making-coffee` and `rocketeer.my-task.drinking-coffee`.
+You don't need to namespace your events, as Rocketeer will do it for you. It will first namespace all events in the `rocketeer.` space, then add a slug of the current task, so the two events above would be fired as `rocketeer.my-task.making-coffee` and `rocketeer.my-task.drinking-coffee`:
+
+```php
+Rocketeer::listenTo('my-task.drinking-coffee', 'ls');
+```
 
 Now, you can also fire events in Closure Tasks, by you will need to manually namespace those : as all Closure Tasks are at their core anonymous functions, they're anonymous tasks as well which means all events will get fired in `rocketeer.closure` :
 
@@ -81,9 +85,7 @@ Rocketeer::after('deploy', function ($task) {
 	$task->campfire->notify('New version deployed on the server');
 });
 
-Rocketeer::after('deploy', function ($task) {
-	$task->runForCurrentRelease(['npm install', 'grunt']);
-});
+Rocketeer::after('deploy', ['npm install', 'grunt']);
 ```
 
 Now ideally you'd want your chat room on Campfire to be notified about the deployment only when the NPM packages are installed and Grunt has run its course, because an error might happen there. For this you add a priority at the end of the call : priority is a basic integer, listeners with lowest priority will be fired at the end, and vice versa. So to make sure our Campfire notification would get sent at really the very end of all our listeners, we can just do this :
@@ -100,7 +102,7 @@ Rocketeer::after('deploy', function ($task) {
 
 Here are some methods that accept a priority argument :
 
-```
+```php
 Rocketeer::before($task, $listeners, $priority = 0)
 Rocketeer::after($task, $listeners, $priority = 0)
 Rocketeer::listenTo($event, $listeners, $priority = 0)
@@ -132,3 +134,36 @@ Rocketeer::before('deploy', function ($task) {
 ```
 
 Whatever you use, Rocketeer will display an additional error message stating the queue was canceled and by what Task.
+
+## Available events
+
+All tasks have, by default, a `before` and `after` events, so do all strategies. Per example the `Deploy` task will respectively call the following strategies: `CreateRelease`, `Dependencies`, `Test` and `Migrate`.
+That means you can, in the case of a deployment, hook yourself on the following events:
+
+```
+deploy.before
+create-release.before
+create-release.after
+dependencies.before
+dependencies.after
+test.before
+test.after
+migrate.before
+migrate.after
+deploy.before-symlink
+deploy.after
+```
+
+Notice the `deploy.before-symlink` event which is a special event fired before the release gets symlinked as current. This is the recommended place to do any work on the release before it goes live.
+
+### Failure events
+
+All tasks also fire an `halt` event when they fail, be it from themselves, a bound event or a subtask. You can hook into those events like any other event.
+
+Per example if you have a database backup system and when deploying your migrations fail, you'd want to restore that backup of the databse, so you'd do the following:
+
+```php
+Rocketeer::listenTo('migrate.halt', function() {
+  // Restore the database
+});
+```
