@@ -5,12 +5,11 @@
 
 ### Core concepts
 
-- **[Connections and stages](II-Concepts/Connections-Stages.md)**
 - **[Tasks](II-Concepts/Tasks.md)**
 - **[Events](II-Concepts/Events.md)**
+- **[Connections and stages](II-Concepts/Connections-Stages.md)**
 - **[Plugins](II-Concepts/Plugins.md)**
 
-### Help
+### Going further
 
-- **[Upgrade path](VI-Help/Upgrade-Path.md)**
-- **[Troubleshooting](VI-Help/Troubleshooting.md)**
+- **[Troubleshooting](III-Further/Troubleshooting.md)**
