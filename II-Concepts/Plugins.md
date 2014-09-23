@@ -30,6 +30,7 @@ Here is an example dumbed-down version of the current Campfire plugin, using `rc
 
 ```php
 use rcrowe\Campfire;
+use Illuminate\Container\Container;
 use Rocketeer\Services\Tasks\TasksQueue;
 use Rocketeer\Abstracts\AbstractPlugin;
 
