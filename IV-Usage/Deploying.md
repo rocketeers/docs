@@ -2,7 +2,7 @@
 
 ## Basic deployment
 
-Once your credentials are properly setup after the [Getting Started](http://localhost/rocketeers/website/public/#/docs/I-Introduction/Getting-started) section, it's time to deploy your project.
+Once your credentials are properly setup after the [Getting Started](#/docs/docs/I-Introduction/Getting-started) section, it's time to deploy your project.
 
 If it's your first time deploying on the server, call the `rocketeer deploy` command, it'll setup your server and deploy for the first time. Depending on what strategy you picked, it will either clone or rsync your project on the server.
 You can choose to only deploy to specific servers or stages by using the relevant flags:
