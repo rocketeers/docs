@@ -10,21 +10,26 @@ Start by adding Rocketeer as one of your dev-dependencies with the following com
 $ composer require --dev "anahkiasen/rocketeer:~2.0.*"
 ```
 
-Once this is done, you'll need to add Rocketeer's provider to your application's in `app/config/app.php`:
+Once this is done, you'll need to add Rocketeer's provider to your application's in `app/config/local/app.php` file:
 
 ```php
-'providers' => array(
+'providers' => append_config(array(
 	// ...
 	'Rocketeer\RocketeerServiceProvider',
-),
+)),
 ```
 
-Then, this line to the `aliases` array in your `app/config/app.php` file :
+Then, this line to the `aliases` array in your `app/config/local/app.php` file:
 
 ```php
-'Rocketeer' => 'Rocketeer\Facades\Rocketeer',
+'aliases' => append_config(array(
+	// ...
+	'Rocketeer' => 'Rocketeer\Facades\Rocketeer',
+)),
 ```
 
+Ensuring that these changes are made in your 'local' environment configuration using the [`append_config()`][0] helper function since Rocketeer has been included as a dev-dependency.
+ 
 ## Setting up the project
 
 Now that you added Rocketeer to the application, if you hit `artisan list` you should see all of the deployments commands bound to the `deploy:` namespace. That means instead of doing `rocketeer update` per example you will do `artisan deploy:update`.
@@ -37,3 +42,5 @@ Now hit the `artisan deploy:ignite` command. This will publish Rocketeer's confi
 Now that this is done you can safely define tasks, strategies or binaries in your application's namespace and they will be recognised by Rocketeer. It will also recognise connections defined in `app/config/remote.php` and merge them with any connection defined in its own configuration.
 
 You can also register any additional plugin simply by adding its provider to the application's providers array. The plugin's configuration can also be publish by doing the usual `artisan config:publish vendor/package`
+
+[0]: http://laravel.com/docs/4.2/configuration#provider-configuration
