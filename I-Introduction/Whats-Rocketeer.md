@@ -3,7 +3,7 @@
 Rocketeer is a fast and easy deploying tool for modern developers. If you've already used *Capistrano* in the past you're already familiar with the gist of what it does, and can probably skip this section. The rest of you, bear with me.
 
 Whether you've always deployed manually via FTP, plugins like SFTP for Sublime or via custom-made deploy scripts, Rocketeer is here to help you and automate your burden.
-Please note that Rocketeer **requires an SSH connection** – meaning if you're on a shared hosting, I probably can't do anything for you.
+Please note that Rocketeer **requires an SSH connection** – meaning if you're on shared hosting (and use FTP to upload files), I probably can't do anything for you.
 
 ## Task runner
 
