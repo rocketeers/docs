@@ -21,7 +21,7 @@ Then you just need to type `rocketeer ignite`. You'll get asked a series of ques
 You can also install Rocketeer with Composer as any package :
 
 ```bash
-$ composer require anahkiasen/rocketeer:dev-master
+$ composer require anahkiasen/rocketeer
 $ php vendor/bin/rocketeer ignite
 ```
 
