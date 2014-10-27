@@ -16,7 +16,7 @@ Once this is done, add the plugin's class to the `plugins` array in `.rocketeer/
 
 Then, in most cases you'll need to configure said plugin. For this you'll want to publish its configuration in user land via the `rocketeer plugin:publish <package>` command. Here we'll call `rocketeer plugin:publish anahkiasen/rocketeer-slack` per example.
 
-This will create the `.rocketeer/plugins/anahkiasen/rocketeer-slack` folder, with all the plugin's configuration files inside.
+This will create the `.rocketeer/plugins/rocketeers/rocketeer-slack` folder, with all the plugin's configuration files inside.
 
 
 ## Creating a plugin
