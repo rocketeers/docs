@@ -7,7 +7,7 @@ Because it was originally a Laravel package and uses some of its components, Roc
 Start by adding Rocketeer as one of your dev-dependencies with the following command:
 
 ```bash
-$ composer require --dev "anahkiasen/rocketeer:~2.0.*"
+$ composer require --dev "anahkiasen/rocketeer:~2.0"
 ```
 
 Once this is done, you'll need to add Rocketeer's provider to your application's in `app/config/local/app.php` file:
