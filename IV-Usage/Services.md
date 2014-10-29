@@ -60,7 +60,7 @@ $files = $this->queue->on('production', ['cd /foo/bar', 'ls']);
 
 The `run` method will return an instance of `Rocketeer\Services\Tasks\Pipeline`. The Pipeline is a class extending `Illuminate\Support\Collection` that stores instances of `Rocketeer\Services\Tasks\Job`.
 
-Within Rocketeer, a Job is a bundled version of a queue, containing all the necessary informations required to run it: what connection the queue needs to be run on, what stage, what server, etc. Imagine you have two connections, `production` and `staging`, you'll get the following pipeline:
+Within Rocketeer, a Job is a bundled version of a queue, containing all the necessary information required to run it: what connection the queue needs to be run on, what stage, what server, etc. Imagine you have two connections, `production` and `staging`, you'll get the following pipeline:
 
 ```php
 $pipeline = $this->queue->run(['cd /foo/bar', 'ls']);
@@ -133,7 +133,7 @@ if (!$this->somethingThatMayFail()) {
 $this->explainer->success('All went well!');
 ```
 
-The explainer passes that to the Command instance's `line` method, meaning you can add foreground and background colors as described in [Symfony's documentation](http://symfony.com/doc/current/components/console/introduction.html#coloring-the-output)
+The explainer passes that to the Command instance's `line` method, meaning you can add foreground and background colors as described in [Symfony's documentation](http://symfony.com/doc/current/components/console/introduction.html#coloring-the-output):
 
 ```php
 $this->explainer->line('<info>Something</info> tried and <bg=red>failed</bg=red>');
