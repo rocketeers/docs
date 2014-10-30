@@ -122,7 +122,7 @@ if (!$this->runSteps()) {
 
 The queue explainer is what drives Rocketeer's CLI output, its job is to explain to the user what is happening, what tasks are fired by what task or event, what is their progress, their result, how long they took to execute, etc.
 
-By default when executing a task, the explainer will automatically display informations about it from the `name` and `description` property you set on it (or passed to `Rocketeer::task`). But you can provide additional details to the explainer during the flow of your task:
+By default when executing a task, the explainer will automatically display information about it from the `name` and `description` property you set on it (or passed to `Rocketeer::task`). But you can provide additional details to the explainer during the flow of your task:
 
 ```php
 $this->explainer->line('Doing some stuff');
