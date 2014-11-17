@@ -33,7 +33,7 @@ First you'll create a class for your strategy extending `Rocketeer\Abstracts\Abs
 <?php
 namespace Acme;
 
-use Rocketeer\Abstracts\AbstractStrategy;
+use Rocketeer\Abstracts\Strategies\AbstractStrategy;
 
 class GruntStrategy extends AbstractStrategy
 {
@@ -48,8 +48,8 @@ Next we need to define which strategy this corresponds to, for this you'll imple
 <?php
 namespace Acme;
 
-use Rocketeer\Abstracts\AbstractStrategy;
-use Rocketeer\Strategies\Interfaces\TestStrategyInterface;
+use Rocketeer\Abstracts\Strategies\AbstractStrategy;
+use Rocketeer\Interfaces\Strategies\TestStrategyInterface;
 
 class GruntStrategy extends AbstractStrategy implements TestStrategyInterface
 {
@@ -67,7 +67,7 @@ All that is left to do is write the business logic. Strategies implements the sa
 <?php
 namespace Acme;
 
-use Rocketeer\Abstracts\AbstractStrategy;
+use Rocketeer\Abstracts\Strategies\AbstractStrategy;
 use Rocketeer\Strategies\Interfaces\TestStrategyInterface;
 
 class GruntStrategy extends AbstractStrategy implements TestStrategyInterface
@@ -84,4 +84,13 @@ This will run `grunt test` on the configured connection. All that is left to do 
 ```php
 // Which strategy to use to test your application
 'test'         => 'Acme\Grunt',
+```
+
+Do not forget to add autoloading to your `composer.json`, supposing you created your `Grunt.php` underneath `.rocketeer/strategies`:
+```json
+"autoload": {
+	"psr-4": {
+		"Acme\\": ".rocketeer/strategies/"
+	}
+}
 ```
