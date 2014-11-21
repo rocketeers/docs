@@ -27,7 +27,7 @@ You can configure which task uses which strategy in the `strategies.php` file of
 
 Rocketeer comes with a handful of available implementations for each strategy but sometimes you use a particular tool or procedure that isn't built-in. It's really easy to add your own strategies, there's only two steps really. Say you want to test your application with Grunt instead of PHPunit, in the case of a Node application per example.
 
-First you'll create a class for your strategy extending `Rocketeer\Abstracts\AbstractStrategy`:
+First you'll create a class for your strategy extending `Rocketeer\Abstracts\AbstractStrategy`. If Rocketeer is loaded as a Composer dependency of your project, the class can be anywhere as long as it's autoloaded, otherwise you need to create it under `.rocketeer/strategies`:
 
 ```php
 <?php
@@ -86,11 +86,4 @@ This will run `grunt test` on the configured connection. All that is left to do 
 'test'         => 'Acme\Grunt',
 ```
 
-Do not forget to add autoloading to your `composer.json`, supposing you created your `Grunt.php` underneath `.rocketeer/strategies`:
-```json
-"autoload": {
-	"psr-4": {
-		"Acme\\": ".rocketeer/strategies/"
-	}
-}
-```
+Again, make sure your class is loaded somewhere, if it's in `.rocketeer/strategies`, Rocketeer will load it by itself. If Rocketeer is a dependency of your application, make sure the class is loaded by Composer.
