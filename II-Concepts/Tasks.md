@@ -39,7 +39,7 @@ You can hook into any task via the `hooks.php` file in Rocketeer's config file. 
       if ($tests) {
         $task->command->info('Tests ran perfectly dude !');
       } else {
-        $task->command->error('Aw man, tests failed and stuff')
+        $task->command->error('Aw man, tests failed and stuff');
       }
     },
 
