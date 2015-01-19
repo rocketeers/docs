@@ -9,7 +9,9 @@ The easiest way is to just get the archive by doing downloading it [at the follo
 You can also install it globally by executing the following command which will then give you a global `rocketeer` command to use in any folder.
 
 ```bash
-curl http://rocketeer.autopergamene.eu/versions/rocketeer.phar > /usr/local/bin/rocketeer && chmod 755 /usr/local/bin/rocketeer
+$ wget http://rocketeer.autopergamene.eu/versions/rocketeer.phar
+$ chmod +x rocketeer.phar
+$ mv rocketeer.phar /usr/local/bin/rocketeer
 ```
 
 Then you just need to type `rocketeer ignite`. You'll get asked a series of question to setup your project and you should be good to go.
