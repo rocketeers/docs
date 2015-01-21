@@ -1,9 +1,22 @@
-# What's Rocketeer ?
+# Rocketeerとは
 
-Rocketeer is a fast and easy deploying tool for modern developers. If you've already used *Capistrano* in the past you're already familiar with the gist of what it does, and can probably skip this section. The rest of you, bear with me.
+> What's Rocketeer ?
 
-Whether you've always deployed manually via FTP, plugins like SFTP for Sublime or via custom-made deploy scripts, Rocketeer is here to help you and automate your burden.
-Please note that Rocketeer **requires an SSH connection** – meaning if you're on shared hosting (and use FTP to upload files), I probably can't do anything for you.
+Rocketeerはモダンな開発者のための、速くて簡単なデプロイツールです。
+もし、*Capistrano*を過去に使っていて、それが何なのかという基本的な部分についてすでに詳しければ、
+このセクションはスキップしてもOKです。そうでなければ、しばらくお付き合いください。
+
+> Rocketeer is a fast and easy deploying tool for modern developers. If you've already used *Capistrano* in the past you're already familiar with the gist of what it does, and can probably skip this section. The rest of you, bear with me.
+
+FTPや、SublimeのSFTPプラグイン、あるいは自作のデプロイスクリプトでデプロイしているかにかかわらず、
+Rocketeerはその負担を自動化してあなたを助けるためにあります。
+
+> Whether you've always deployed manually via FTP, plugins like SFTP for Sublime or via custom-made deploy scripts, Rocketeer is here to help you and automate your burden.
+
+Rocketeerには**SSH接続が必要**です — つまり、もし共有ホスティングを利用している場合
+(かつFTPでファイルをアップロードしている)、できることはありません。
+
+> Please note that Rocketeer **requires an SSH connection** – meaning if you're on shared hosting (and use FTP to upload files), I probably can't do anything for you.
 
 ## Task runner
 
