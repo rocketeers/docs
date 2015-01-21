@@ -1,12 +1,17 @@
-# Setup
+# セットアップ
+> # Setup
 
-Installing Rocketeer on a project is quite easy, there are several ways to do so.
+プロジェクトにRocketeerをインストールするのはとても簡単です。インストール方法はいくつかあります。
+> Installing Rocketeer on a project is quite easy, there are several ways to do so.
 
-## Via the compiled archive
+## アーカイブからインストールする
+> ## Via the compiled archive
 
-The easiest way is to just get the archive by doing downloading it [at the following addresss](http://rocketeer.autopergamene.eu/versions/rocketeer.phar) and putting it in your application's directory.
+最も簡単な方法は、アーカイブをダウンロード[ダウンロードアドレス](http://rocketeer.autopergamene.eu/versions/rocketeer.phar)して、アプリケーションのディレクトリに入れる方法です。
+> The easiest way is to just get the archive by doing downloading it [at the following addresss](http://rocketeer.autopergamene.eu/versions/rocketeer.phar) and putting it in your application's directory.
 
-You can also install it globally by executing the following command which will then give you a global `rocketeer` command to use in any folder.
+どこのフォルダからも rocketeer コマンドが使えるようにするには、以下のコマンドでグローバル環境にインストールします。
+> You can also install it globally by executing the following command which will then give you a global `rocketeer` command to use in any folder.
 
 ```bash
 $ wget http://rocketeer.autopergamene.eu/versions/rocketeer.phar
@@ -14,22 +19,28 @@ $ chmod +x rocketeer.phar
 $ mv rocketeer.phar /usr/local/bin/rocketeer
 ```
 
-Then you just need to type `rocketeer ignite`. You'll get asked a series of question to setup your project and you should be good to go.
+これで`rocketeer ignite`と打ち込むだけで、プロジェクトをセットアップするための質問が開始されます。あとはうまくいくはずです。
+> Then you just need to type `rocketeer ignite`. You'll get asked a series of question to setup your project and you should be good to go.
 
-## With Composer
+## Composerでインストールする
+> ## With Composer
 
-### Locally
+### ローカル環境で
+> ### Locally
 
-You can also install Rocketeer with Composer as any package :
+他のパッケージと同じように、Composerを使ってインストールできます。
+> You can also install Rocketeer with Composer as any package :
 
 ```bash
 $ composer require anahkiasen/rocketeer
 $ php vendor/bin/rocketeer ignite
 ```
 
-And that's all, the configuration file referenced below will be created at `yourapp/.rocketeer/`.
+たったこれだけです。`yourapp/.rocketeer/`に、下記で参照する設定ファイルが作成されます。
+> And that's all, the configuration file referenced below will be created at `yourapp/.rocketeer/`.
 
-Use `php vendor/bin/rocketeer` to access Rocketeer's commands or simply alias it : `alias rocketeer=php vendor/bin/rocketeer`. You can also add `vendor/bin` to your _PATH_ to always have local binaries accessible.
+Rocketeerのコマンドにアクセスするには、`php vendor/bin/rocketeer`としてください。`alias rocketeer=php vendor/bin/rocketeer`とシンプルにエイリアスすることもできます。もしくは、`vendro/bin/`を_PATH_に加えることで、ローカルのバイナリに常時アクセスできるようにできます。
+> Use `php vendor/bin/rocketeer` to access Rocketeer's commands or simply alias it : `alias rocketeer=php vendor/bin/rocketeer`. You can also add `vendor/bin` to your _PATH_ to always have local binaries accessible.
 
 ### Globally
 
