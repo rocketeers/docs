@@ -1,29 +1,29 @@
-### Getting started
+### はじめに
 
-- **[What's Rocketeer](I-Introduction/Whats-Rocketeer.md)**
-- **[Getting Started](I-Introduction/Getting-started.md)**
+- **[Rocketeerとは](I-Introduction/Whats-Rocketeer.md)**
+- **[はじめに](I-Introduction/Getting-started.md)**
 
-### Core concepts
+### 基本コンセプト
 
-- **[Connections and stages](II-Concepts/Connections-and-Stages.md)**
-- **[Binaries](II-Concepts/Binaries.md)**
-- **[Strategies](II-Concepts/Strategies.md)**
-- **[Tasks](II-Concepts/Tasks.md)**
-- **[Events](II-Concepts/Events.md)**
-- **[Plugins](II-Concepts/Plugins.md)**
+- **[接続とステージ](II-Concepts/Connections-and-Stages.md)**
+- **[バイナリー](II-Concepts/Binaries.md)**
+- **[ストラタジー](II-Concepts/Strategies.md)**
+- **[タスク](II-Concepts/Tasks.md)**
+- **[イベント](II-Concepts/Events.md)**
+- **[プラグイン](II-Concepts/Plugins.md)**
 
-### Usage
+### 使い方
 
-- **[Credentials](IV-Usage/Credentials.md)**
-- **[Deploying](IV-Usage/Deploying.md)**
-- **[Debugging](IV-Usage/Debugging.md)**
-- **[Services](IV-Usage/Services.md)**
+- **[ログイン情報(credentials)](IV-Usage/Credentials.md)**
+- **[デプロイ](IV-Usage/Deploying.md)**
+- **[デバッグ](IV-Usage/Debugging.md)**
+- **[サービス](IV-Usage/Services.md)**
 
-## Tutorials
+## チュートリアル
 
-- **[Laravel integration](V-Tutorials/Laravel.md)**
+- **[Laravelとのインテグレーション](V-Tutorials/Laravel.md)**
 
-### Help
+### ヘルプ
 
-- **[Upgrade path](VI-Help/Upgrade-Path.md)**
-- **[Troubleshooting](VI-Help/Troubleshooting.md)**
+- **[アップグレードパス](VI-Help/Upgrade-Path.md)**
+- **[トラブルシューティング](VI-Help/Troubleshooting.md)**
