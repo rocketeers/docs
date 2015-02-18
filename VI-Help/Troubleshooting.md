@@ -11,3 +11,12 @@ To solve the issue, add the following command to be run at the end of your deplo
 ```
 php -r "opcache_reset();"
 ```
+
+**Note: if you are using PHP-FPM with nginx, the above will only flush the CLI cache, not FPM's**
+
+To fix the problem in this case, add the lines below to your nginx server configuration. 
+```
+fastcgi_param SCRIPT_FILENAME $realpath_root$fastcgi_script_name;
+fastcgi_param DOCUMENT_ROOT $realpath_root;
+```
+Usually the file is located at `/etc/nginx/fastcgi.conf`.
