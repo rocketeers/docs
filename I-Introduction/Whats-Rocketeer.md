@@ -24,7 +24,7 @@ Please note that Rocketeer **requires an SSH connection** - meaning if you're on
 ## Task runner
 -->
 
-[translation here]
+本質的には、RocketeerはベーシックなSSHタスクランナーです。サーバとサーバで実行するコマンドを定義して、それらを様々な状況に合わせて走らせます。Rocketeerを**タスク**の(定義された)ドキュメントのように使うこともできます。
 
 <!--original
 In its spirit, Rocketeer is a basic SSH task runner, it defines servers, commands to execute on said server, and run them according to various contexts. You can use Rocketeer as such, for this see the **Tasks** documentation.
@@ -36,7 +36,7 @@ In its spirit, Rocketeer is a basic SSH task runner, it defines servers, command
 ## Deployments
 -->
 
-[translation here]
+Rocketeerは、リモートプロジェクトをデプロイし管理するための、ビルトインのタスクを少数提供しています。
 
 <!--original
 Rocketeer provides a handful of tasks built-in to deploy and manage your remote projects.
@@ -48,14 +48,17 @@ Rocketeer provides a handful of tasks built-in to deploy and manage your remote 
 ### Core folders
 -->
 
-[translation here]
+基本的な部分で、このパッケージの戦略はCapistranoにインパイアされていますが、よりシンプルなものになっています。
+あなたのサーバ上の`root_folder`でRocketeerに何か与えるまで、このフォルダはRocketeerだけの自己完結した小さな世界になっています — どんなものが入ってきたとしても。
 
 <!--original
 At its core, this package's strategy is inspired by Capistrano's and is relatively simple.
 Before anything you'll provide Rocketeer with a `root_folder` on your server - this folder is Rocketeer's little self-contained world : whatever it does will be in that folder.
 -->
 
-[translation here]
+それでは、あなたの`application_name`を与えます。これはRocketeerに複数のアプリケーションを同じサーバで実行できるようにするためです。アプリケーション名は、`root_folder`のサブフォルダーを作るのに使われます。*この*アプリケーションに関するすべては、このフォルダの中で起きます。
+もし、あなたの`root_folder`が `/var/www/`で、`application_name`が`facebook`だとしたら、Rocketeerは`/var/www/facebook/`を作成して、このプロジェクトに関することはすべてそのフォルダの中で起きることになります。
+すべてはパッケージされ、その中に含まれます。沢山のアプリケーションをサーバ上で動かすことができ、しかも(その運用は)すべてスムーズです。
 
 <!--original
 Then you give it your `application_name`. This is to let Rocketeer handle having multiple applications on the same server. The application name will be used to create a subfolder in the `root_folder` where everything related to _this_ application will happen.
