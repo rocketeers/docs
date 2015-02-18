@@ -33,7 +33,7 @@ Use `php vendor/bin/rocketeer` to access Rocketeer's commands or simply alias it
 
 ### Globally
 
-As with all Composer packages, Rocketeer can also be installed as a global dependency by preprending `global` :
+As with all Composer packages Rocketeer can be installed as a global dependency by prefixing `global`:
 
 ```bash
 $ composer global require anahkiasen/rocketeer
