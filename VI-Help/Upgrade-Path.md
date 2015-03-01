@@ -16,7 +16,7 @@ If you're upgrading from a previous version of Rocketeer, here are the major cha
 ## From 1.2 to 2.0.0
 -->
 
-- Projectは、5.4+ベースです。まだ5.3を使っている場合、5.3は[終息しています。](http://php.net/archive/2014.php#id2014-08-14-1)アップグレードしましょう。
+- プロジェクトは、PHP5.4+ベースです。まだ5.3を使っている場合、5.3は[終息しています。](http://php.net/archive/2014.php#id2014-08-14-1)アップグレードしましょう。
 - `Rocketeer\Traits\Task` は `Rocketeer\Abstracts\AbstractTask` に移動しました。
 - `Rocketeer\Traits\Plugin` は `Rocketeer\Abstracts\AbstractPlugin` に移動しました。
 - `Rocketeer\Plugins\Notifier` は `Rocketeer\Plugins\AbstractNotifier` にフォルダ名が変更になりました。
