@@ -4,7 +4,7 @@
 # Troubleshooting
 -->
 
-#### デプロイを実行したときデプロイは成功しているのに、新しいスクリプトではなく、古いスクリプトが稼働しています。
+#### デプロイを実行したとき、デプロイは成功しているのに新しいスクリプトではなく古いスクリプトが稼働してしまいます。
 
 <!--original
 #### When I deploy my old scripts are running instead of the new, but the deployment was successful
@@ -32,13 +32,13 @@ To solve the issue, add the following command to be run at the end of your deplo
 php -r "opcache_reset();"
 ```
 
-**注意: もし、PHP-FPMとnginxを使っている場合には、上記コマンドは、CLIのキャッシュを削除するのみに、FPMのものは削除しません。**
+**注意: もし、PHP-FPMとnginxを使っている場合には、上記コマンドは、CLIのキャッシュのみ削除し、FPMのものは削除しません。**
 
 <!--original
 **Note: if you are using PHP-FPM with nginx, the above will only flush the CLI cache, not FPM's**
 -->
 
-この場合に問題を修正するには、以下の行をnginxサーバーの設定ファイルに加えます。
+この場合、問題を修正するには以下の行をnginxサーバーの設定ファイルに加えます。
 
 <!--original
 To fix the problem in this case, add the lines below to your nginx server configuration. 
