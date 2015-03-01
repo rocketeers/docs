@@ -1,8 +1,20 @@
+[translation here]
+
+<!--original
 # Upgrade path
+-->
 
+[translation here]
+
+<!--original
 If you're upgrading from a previous version of Rocketeer, here are the major changes you'll need to look for:
+-->
 
+[translation here]
+
+<!--original
 ## From 1.2 to 2.0.0
+-->
 
 - Project is now 5.4+, if you still use 5.3, which is [now EOL](http://php.net/archive/2014.php#id2014-08-14-1), it's time to upgrade
 - `Rocketeer\Traits\Task` was moved to `Rocketeer\Abstracts\AbstractTask`
