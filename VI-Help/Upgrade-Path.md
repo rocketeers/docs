@@ -1,21 +1,36 @@
-[translation here]
+# アップグレードパス
 
 <!--original
 # Upgrade path
 -->
 
-[translation here]
+以前のバージョンのRocketeerのアップグレードする場合に、確認しておくべき主要な変更事項は以下の通りです。
 
 <!--original
 If you're upgrading from a previous version of Rocketeer, here are the major changes you'll need to look for:
 -->
 
-[translation here]
+## 1.2から2.0.0への変更
 
 <!--original
 ## From 1.2 to 2.0.0
 -->
 
+- Projectは、5.4+ベースです。まだ5.3を使っている場合、5.3は[終息しています。](http://php.net/archive/2014.php#id2014-08-14-1)アップグレードしましょう。
+- `Rocketeer\Traits\Task` は `Rocketeer\Abstracts\AbstractTask` に移動しました。
+- `Rocketeer\Traits\Plugin` は `Rocketeer\Abstracts\AbstractPlugin` に移動しました。
+- `Rocketeer\Plugins\Notifier` は `Rocketeer\Plugins\AbstractNotifier` にフォルダ名が変更になりました。
+- `$task->server` プロパティは `$task->localStorage` に名称が変更になりました。
+- すべての接続/リポジトリ関連のメソッドは 以前の`$task->rocketeer` から `$task->connections` へと変更になりました。(`getConnection`, `getStage`, `getConnectionCredentials`, など)
+- `getConnectionCredentials` は、1つのサーバーであっても、常に資格情報を配列で返すようになりました。単体のサーバーまたは、特定の1台のサーバーの資格情報を取得するには、`$task->connections->getServerCredentials(connection = current, server = 0)` を呼び出してください。
+- 次のメソッド `php`, `artisan`, `runArtisan`, `runMigrations`, `runSeed`, `runTests`, `composer` , `runComposer` は、削除されて、バイナリーシステムへ置き換えられました(関連ドキュメントを参照してください)。たとえば、以前の`$task->runMigrations(seed = false)`は、`$task->artisan()->migrate(seed = false)`となります。
+- 次のメソッド `cloneRepository`, `copyRepository`, `updateRepository` は削除され、ストラテジーシステムへ置き換えられました(関連ドキュメントを参照してください)。以前の`$task->updateRepository()`は、`$task->getStrategy('Deploy')->update()`となります。
+- 以下のイベントは、非推奨となりサブタスクやそれぞれに適したbefore/afterのフックに置き換えられました。
+	- `cloneRepository` および `copyRepository` => `create-release.before` へ
+	- `runComposer` => `dependencies.before` へ
+	- `checkTestsResults` => `test.before` へ
+
+<!--original
 - Project is now 5.4+, if you still use 5.3, which is [now EOL](http://php.net/archive/2014.php#id2014-08-14-1), it's time to upgrade
 - `Rocketeer\Traits\Task` was moved to `Rocketeer\Abstracts\AbstractTask`
 - `Rocketeer\Traits\Plugin` was moved to `Rocketeer\Abstracts\AbstractPlugin`
@@ -28,4 +43,4 @@ If you're upgrading from a previous version of Rocketeer, here are the major cha
 - The following events are deprecated and have been replaced by subtasks and their matching before/after hooks:
 	- `cloneRepository` and `copyRepository` => `create-release.before`
 	- `runComposer` => `dependencies.before`
-	- `checkTestsResults` => `test.before`
+	- `checkTestsResults` => `test.before`-->
