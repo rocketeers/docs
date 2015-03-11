@@ -1,12 +1,32 @@
+[translation here]
+
+<!--original
 # Connections and stages
+-->
 
+[translation here]
+
+<!--original
 You'll meet two main concepts when it comes to communicating with your server : **Connections** and **Stages**.
+-->
 
+[translation here]
+
+<!--original
 ## Connections
+-->
 
+[translation here]
+
+<!--original
 ### Configuration
+-->
 
+[translation here]
+
+<!--original
 Connections represent the various servers you may want to connect to. You'll configure those in `config.php`. Here's what a connection may look like :
+-->
 
 ```php
 'connections' => array(
@@ -20,9 +40,17 @@ Connections represent the various servers you may want to connect to. You'll con
 ),
 ```
 
-You can connect by two ways to a server : via a password, or via an SSH key. So if you're connection with a password you can leave `key` and `keyphrase` empty, etc.
+[translation here]
 
+<!--original
+You can connect by two ways to a server : via a password, or via an SSH key. So if you're connection with a password you can leave `key` and `keyphrase` empty, etc.
+-->
+
+[translation here]
+
+<!--original
 Important note : you do **not** _have_ to put your credentials here. Rocketeer uses a fallback system that allows you to not have to put your credentials in files that may be tracked. So if you leave all of those fields empty, Rocketeer will prompt you for them and store them in an hidden file. All that matters is that your connection is _defined_. Meaning this :
+-->
 
 ```php
 'connections' => array(
@@ -30,11 +58,23 @@ Important note : you do **not** _have_ to put your credentials here. Rocketeer u
 ),
 ```
 
+[translation here]
+
+<!--original
 Is a perfectly valid connection.
+-->
 
+[translation here]
+
+<!--original
 ### Multiple connections
+-->
 
+[translation here]
+
+<!--original
 Now this was a fairly basic connection. Now imagine a more complicated setup, you might have multiple connections :
+-->
 
 ```php
 'connections' => array(
@@ -47,24 +87,44 @@ Now this was a fairly basic connection. Now imagine a more complicated setup, yo
 ),
 ```
 
+[translation here]
+
+<!--original
 From there to interact with those two connections, there are multiple ways. First you can change the value of the `default` array in the `config.php` file we've been editing :
+-->
 
 ```php
 'default' => array('production', 'staging'),
 ```
 
-What this array means is : whenever you'll execute a Task, Rocketeer will execute it on all of those connections. But now, that may not be what you want, you may want to cherry-pick what you do on what. For this you'll use the `--on` flag.
+[translation here]
 
+<!--original
+What this array means is : whenever you'll execute a Task, Rocketeer will execute it on all of those connections. But now, that may not be what you want, you may want to cherry-pick what you do on what. For this you'll use the `--on` flag.
+-->
+
+[translation here]
+
+<!--original
 Take a deploy command, you'd execute it like this normally : `rocketeer deploy`. To select which connections to deploy to, you'll pass one or more connections to it as a flag :
+-->
 
 ```bash
 $ rocketeer deploy --on="staging"
 $ rocketeer deploy --on="staging,production"
 ```
 
-### Multiserver connections
+[translation here]
 
+<!--original
+### Multiserver connections
+-->
+
+[translation here]
+
+<!--original
 Sometimes you might have a connection that is actually represented by multiple servers, and want each of those affected when dealing with that connection. Rocketeer allows that using a simple `servers` array when defining your connection:
+-->
 
 ```php
 'connections' => array(
@@ -89,9 +149,17 @@ Sometimes you might have a connection that is actually represented by multiple s
 ),
 ```
 
-## Stages
+[translation here]
 
+<!--original
+## Stages
+-->
+
+[translation here]
+
+<!--original
 In the realm of Rocketeer, stages are separated environments on **a given connection**. Here is a classic folder organization scaffolded by Rocketeer :
+-->
 
 ```
 | my-app
@@ -101,7 +169,11 @@ In the realm of Rocketeer, stages are separated environments on **a given connec
 | -- shared
 ```
 
+[translation here]
+
+<!--original
 A server with multiple stages, say `testing` and `production` will on the other hand look like this :
+-->
 
 ```
 | my-app
@@ -117,35 +189,71 @@ A server with multiple stages, say `testing` and `production` will on the other 
 | ----- shared
 ```
 
+[translation here]
+
+<!--original
 Everything you do on a stage is self-contained.
+-->
 
+[translation here]
+
+<!--original
 ### Configuration
+-->
 
+[translation here]
+
+<!--original
 Configuring stages is fairly easy, you'll want to open the `stages` file. To define how many stages you have and their names, simply fill the array (per example for our setup above) :
+-->
 
 ```php
 'stages' => array('testing', 'production'),
 ```
 
+[translation here]
+
+<!--original
 Just like for connections, you can chose which stages to execute tasks on by default via the `default` array. It works exactly the same way :
+-->
 
 ```php
 'default' => array('testing'),
 ```
 
-### Multiple stages
+[translation here]
 
+<!--original
+### Multiple stages
+-->
+
+[translation here]
+
+<!--original
 Just like for connections, you can pass a flag to execute tasks on a particular stage :
+-->
 
 ```bash
 $ rocketeer test --stage="testing"
 ```
 
+[translation here]
+
+<!--original
 ## Contextual configuration
+-->
 
+[translation here]
+
+<!--original
 Now that's all good and stuff but, you only have one set of configuration files, if you have three servers each with three stages, surely the configuration will vary from one to the other.
+-->
 
+[translation here]
+
+<!--original
 Rocketeer handles contextual configuration via nested arrays, which you can find in the main `config.php` file (where you define your connections). Let's take a fairly classic example, you have two servers, and the path to PHP is different in both. Now usually the path to PHP can be found in the `paths.php` file, under `php`. So here's how we'd define it for our two connections :
+-->
 
 ```php
 'on' => array(
@@ -162,11 +270,23 @@ Rocketeer handles contextual configuration via nested arrays, which you can find
 ),
 ```
 
+[translation here]
+
+<!--original
 Everything you'll put in either `staging` or `production` here will be a miniature version of the configuration files Rocketeer created. To override any key, simply create an array named like the file (here `paths`) and put the config in there.
+-->
 
+[translation here]
+
+<!--original
 ### File-based alternative
+-->
 
+[translation here]
+
+<!--original
 Now as this can get quite lengthy and you don't want to work in an array nested in an array nested in an array nested in an array, here's how you can proceed if you have a lot of things to override. Rocketeer will by default read any `connections` and `stages` folder created within the configuration folder. Say you want to deploy the `master` branch on your `production` connection, and deploy the `develop` branch on your `staging` connection, you'd create the following files:
+-->
 
 ```
 | .rocketeer
@@ -177,18 +297,30 @@ Now as this can get quite lengthy and you don't want to work in an array nested 
 | ------ scm.php
 ```
 
+[translation here]
+
+<!--original
 **connections/production/scm.php**
 ```php
 <?php return array(
   'branch' => 'master',
 );
 ```
+-->
 
+[translation here]
+
+<!--original
 **connections/staging/scm.php**
 ```php
 <?php return array(
   'branch' => 'develop',
 );
 ```
+-->
 
+[translation here]
+
+<!--original
 Same goes for branches, just create per example `.rocketeer/stages/staging/somefile.php` to override some options from the default configuration.
+-->
