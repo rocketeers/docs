@@ -1,22 +1,23 @@
-[translation here]
+# デプロイ
 
 <!--original
 # Deploying
 -->
 
-[translation here]
+## 基本的なデプロイ
 
 <!--original
 ## Basic deployment
 -->
 
-[translation here]
+一度、資格情報が正しく[セットアップ](../I-Introduction/Getting-started.md)されたら、いよいよあなたのプロジェクトをデプロイするときです。
 
 <!--original
 Once your credentials are properly setup after the [Getting Started](#/docs/docs/I-Introduction/Getting-started) section, it's time to deploy your project.
 -->
 
-[translation here]
+もし、これがサーバへの最初のデプロイであれば、`rocketeer deploy`コマンドを呼びましょう。初回時のためのサーバセットアップとデプロイを実行してくれます。あなたのサーバ上のプロジェクトは、どのストラテジーを取っているかによって、クローンまたはrsyncされます。
+次のようなフラグを使うことで、特定のサーバやステージに限定してデプロイすることが可能です。
 
 <!--original
 If it's your first time deploying on the server, call the `rocketeer deploy` command, it'll setup your server and deploy for the first time. Depending on what strategy you picked, it will either clone or rsync your project on the server.
@@ -29,7 +30,7 @@ $ rocketeer deploy --on="staging,production"
 $ rocketeer deploy --on="production" --stage="staging"
 ```
 
-[translation here]
+一度、最初のリリースが正常にセットアップされれば、スピードアップのためにタスクの **更新(update)** を選択できるようになります。これは、新しいリリースを作らず単純に今のものを更新します。
 
 <!--original
 Once a first release is properly setup, to speed things up you can decide to use the **Update** task, which will not create a new release, but simply update the current one:
@@ -39,13 +40,13 @@ Once a first release is properly setup, to speed things up you can decide to use
 $ rocketeer update
 ```
 
-[translation here]
+上記(のdeploy)と同じオプションを使うことができます。例として、もし **クローン** ストラテジーをとっていれば、現在のリリースに対して`git pull`を実行し、あなたが作成した関連のイベントリスナを再実行します。
 
 <!--original
 The same options can be used as above. Per example if you use the **Clone** strategy, it will do a `git pull` on the current release, and re-run any relevant event listeners you created.
 -->
 
-[translation here]
+## 試験実行(ドライラン)
 
 <!--original
 ## Dry runs
@@ -84,7 +85,7 @@ Removing 1 release from the server
 Execution time: 3.5601s
 ```
 
-[translation here]
+## 並行デプロイ
 
 <!--original
 ## Parallel deployments
