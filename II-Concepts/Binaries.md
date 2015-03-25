@@ -1,4 +1,4 @@
-[translation here]
+# バイナリー
 
 <!--original
 # Binaries
