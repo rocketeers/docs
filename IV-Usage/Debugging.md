@@ -1,10 +1,26 @@
+# デバッグ
+
+<!--original
 # Debugging
+-->
 
+[translation here]
+
+<!--original
 ## Investigating a failing deployment
+-->
 
+[translation here]
+
+<!--original
 If you encounter problems with your deployment and the default output isn't helping you, there is a handful of things you can do. First of all, try running whatever command you are running with the `--verbose` flag. This will display a lot more informations on what is happening.
+-->
 
+[translation here]
+
+<!--original
 The two main informations that are added, are what commands are run on the server, and what exactly is happening on the server, in real time:
+-->
 
 ```bash
 $ rocketeer deploy --verbose
@@ -45,23 +61,51 @@ Removing 1 release from the server
 Execution time: 27.4618s
 ```
 
-## Investigating a slow deployment
+[translation here]
 
+<!--original
+## Investigating a slow deployment
+-->
+
+[translation here]
+
+<!--original
 If your deployment seems to be unusually slow, I recommend you check the times displayed in brackets displayed next to each task name:
+-->
 
 ```
 |---- Running: CreateRelease (Creates a new release on the server) [~5.98s]
 ```
 
+[translation here]
+
+<!--original
 This time is an average of the recorded execution times of this task. If you deployed twice and it took 10s and 8s, it'll display `[~8s]`. This time is an _estimation_ and does not represent the actual time the task will time, it's just a prediction based on previous observations.
+-->
 
+[translation here]
+
+<!--original
 ### Investigating missing binaries, permission problems, etc.
+-->
 
+[translation here]
+
+<!--original
 If you find yourself in a situation where Rocketeer fails to execute a certain command, first of all, **check that with the same credentials you are able to run that command yourself**. Rocketeer only does what you tell him to, if there is a problem on your server that is preventing a command from working, it will encounter the same problem.
+-->
 
+[translation here]
+
+<!--original
 There is however one main difference between Rocketeer and you: Rocketeer will by default run into a shell-less session. That means it doesn't login with Bash or Zsh, which is problematic for certain tools (like RVM, NVM, etc.) that are loaded via your `.bashrc` or `.zshrc` file.
+-->
 
+[translation here]
+
+<!--original
 To work around the problem, Rocketeer has an option to run certain commands in a shell, you can configure it in the `remote.php` file:
+-->
 
 ```php
 // Execution
@@ -75,4 +119,7 @@ To work around the problem, Rocketeer has an option to run certain commands in a
 'shelled'        => ['npm ', 'bundle ', 'grunt'],
 ```
 
-Simply enable the `shell` option and add whatever command you need to be logged in for in the array. Those are matched against the command, meaning it can match only part of the executed command.
+[translation here]
+
+<!--original
+Simply enable the `shell` option and add whatever command you need to be logged in for in the array. Those are matched against the command, meaning it can match only part of the executed command.-->
