@@ -1,11 +1,30 @@
+[translation here]
+
+<!--original
 # Strategies
+-->
 
+[translation here]
+
+<!--original
 ## Introduction
+-->
 
+[translation here]
+
+<!--original
 Rocketeer has all the core tasks you'd expect from a deployer: creating a new release, testing it, migrating the database, etc. Most tasks have only one way to do things, but certain core ones have multiple paths they can use to accomplish their goals: those are the strategies.
+-->
 
+[translation here]
+
+<!--original
 The most important tasks using strategies are the Deploy and Update ones, by default they use your configured SCM (Git, Svn, etc.) to clone a clean new release on the server, but that's not the only strategy available. You can see what tasks use strategies and what options are available by calling the `rocketeer strategies` command. It'll yield a table similar to the following:
+-->
 
+[translation here]
+
+<!--original
 | Strategy       | Implementation   | Description                                                             |
 | -------------- | ---------------- | ----------------------------------------------------------------------- |
 | check          | Php              | Checks if the server is ready to receive a PHP application              |
@@ -20,14 +39,31 @@ The most important tasks using strategies are the Deploy and Update ones, by def
 | dependencies   | Npm              | Installs dependencies with NPM                                          |
 | dependencies   | Bower            | Installs dependencies with Bower                                        |
 | dependencies   | Polyglot         | Runs all of the above package managers if necessary                     |
+-->
 
+[translation here]
+
+<!--original
 You can configure which task uses which strategy in the `strategies.php` file of your configuration folder.
+-->
 
+[translation here]
+
+<!--original
 ## Adding your own strategies
+-->
 
+[translation here]
+
+<!--original
 Rocketeer comes with a handful of available implementations for each strategy but sometimes you use a particular tool or procedure that isn't built-in. It's really easy to add your own strategies, there's only two steps really. Say you want to test your application with Grunt instead of PHPunit, in the case of a Node application per example.
+-->
 
+[translation here]
+
+<!--original
 First you'll create a class for your strategy extending `Rocketeer\Abstracts\AbstractStrategy`. If Rocketeer is loaded as a Composer dependency of your project, the class can be anywhere as long as it's autoloaded, otherwise you need to create it under `.rocketeer/strategies`:
+-->
 
 ```php
 <?php
@@ -41,7 +77,11 @@ class GruntStrategy extends AbstractStrategy
 }
 ```
 
+[translation here]
+
+<!--original
 Next we need to define which strategy this corresponds to, for this you'll implement the relevant interface from the `Rocketeer\Interfaces\Strategies` namespace, in our case, `TestStrategyInterface`:
+-->
 
 
 ```php
@@ -60,7 +100,11 @@ class GruntStrategy extends AbstractStrategy implements TestStrategyInterface
 }
 ```
 
+[translation here]
+
+<!--original
 All that is left to do is write the business logic. Strategies implements the same traits than Tasks so you have all the usual tools available, in particular binaries (see the relevant documentation section for more informations).
+-->
 
 
 ```php
@@ -79,11 +123,18 @@ class GruntStrategy extends AbstractStrategy implements TestStrategyInterface
 }
 ```
 
+[translation here]
+
+<!--original
 This will run `grunt test` on the configured connection. All that is left to do is to configure Rocketeer to use that strategy, in the `strategies.php` file:
+-->
 
 ```php
 // Which strategy to use to test your application
 'test'         => 'Acme\Grunt',
 ```
 
-Again, make sure your class is loaded somewhere, if it's in `.rocketeer/strategies`, Rocketeer will load it by itself. If Rocketeer is a dependency of your application, make sure the class is loaded by Composer.
+[translation here]
+
+<!--original
+Again, make sure your class is loaded somewhere, if it's in `.rocketeer/strategies`, Rocketeer will load it by itself. If Rocketeer is a dependency of your application, make sure the class is loaded by Composer.-->

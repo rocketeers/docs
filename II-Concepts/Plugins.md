@@ -1,12 +1,32 @@
+[translation here]
+
+<!--original
 # Plugins
+-->
 
+[translation here]
+
+<!--original
 You can add functionalities to Rocketeer or simply bundle common tasks into reusable modules by using the plugins system. A plugin at its core is a class implementing the `Rocketeer\Abstracts\AbstractPlugin` abstract.
+-->
 
+[translation here]
+
+<!--original
 ## Adding a plugin
+-->
 
+[translation here]
+
+<!--original
 To add a plugin, you need to call the `rocketeer plugin:install <package>` command, per example `rocketeer plugin:install anahkiasen/rocketeer-slack`, the package being the Packagist/Github handle of the package.
+-->
 
+[translation here]
+
+<!--original
 Once this is done, add the plugin's class to the `plugins` array in `.rocketeer/config.php`:
+-->
 
 ```php
 'plugins' => array(
@@ -14,19 +34,43 @@ Once this is done, add the plugin's class to the `plugins` array in `.rocketeer/
 ),
 ```
 
+[translation here]
+
+<!--original
 Then, in most cases you'll need to configure said plugin. For this you'll want to publish its configuration in user land via the `rocketeer plugin:publish <package>` command. Here we'll call `rocketeer plugin:publish anahkiasen/rocketeer-slack` per example.
+-->
 
+[translation here]
+
+<!--original
 This will create the `.rocketeer/plugins/rocketeers/rocketeer-slack` folder, with all the plugin's configuration files inside.
+-->
 
 
+[translation here]
+
+<!--original
 ## Creating a plugin
+-->
 
+[translation here]
+
+<!--original
 There's two methods a plugin will most likely have on its class are `register(Container $app)` and `onQueue(TasksQueue $queue)`.
+-->
 
+[translation here]
+
+<!--original
 - The first one will be used to bind eventual instances into Rocketeer's container, that is a facultative method that if overridden needs to return the Container at the end.
 - The second one is used to add actions or tasks to Rocketeer : the **TasksQueue** class is the one behind the Rocketeer facade so most of the methods you're familiar with are available on it : `$queue->before('deploy', ...)`, `$queue->add('MyCustomTask')` etc.
+-->
 
+[translation here]
+
+<!--original
 Here is an example dumbed-down version of the current Campfire plugin, using `rcrowe/Campfire` as a dependency :
+-->
 
 ```php
 use rcrowe\Campfire;
@@ -70,11 +114,23 @@ class RocketeerCampfire extends AbstractPlugin
 }
 ```
 
+[translation here]
+
+<!--original
 As you can see a plugin can be something _really_ simple you can save up somewhere and reuse from project to project.
+-->
 
+[translation here]
+
+<!--original
 ## Plugin configurations
+-->
 
+[translation here]
+
+<!--original
 Plugins can have their own configuration, by creating a `config` folder in your plugin's `src` folder. You'll need to set the path to it on your class, in the constructor per example :
+-->
 
 ```php
 public function __construct()
@@ -83,4 +139,8 @@ public function __construct()
 }
 ```
 
+[translation here]
+
+<!--original
 In that folder you can then create a `config.php` file to put your options as a PHP array. The configuration for your plugin will then be available via the Config class in your tasks, under the `my-plugin::` namespace, per example if your class is `RocketeerHipchat`, you'll get the configuration by doing `$task->config->get('rocketeer-hipchat::myoption')`.
+-->
