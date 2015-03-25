@@ -4,31 +4,31 @@
 # Binaries
 -->
 
-[translation here]
+## イントロダクション
 
 <!--original
 ## Introduction
 -->
 
-[translation here]
+Rocketeerは様々なコマンドを使えます。最も低レベルなもの（ディレクトリー変更やsymlinkなど）だが開発に必要な様々なツールをあなたのアプリケーションを生かし、テストしたりするために使っています。そのために使うラッパークラスをバイナリーと呼びます。
 
 <!--original
 Rocketeer uses a variety of commands to execute your commands, most are low-level (change directory, symlink, etc) but it also needs to exploit the various tools your application uses to live, test, etc. For this it uses wrapper classes called Binaries.
 -->
 
-[translation here]
+### バイナリーの使用
 
 <!--original
 ### Using binaries
 -->
 
-[translation here]
+バイナリークラスは`Rocketeer\Abstracts\AbstractBinary`、内のクラスをextendしています。前述のクラスのコアの`getCommand`メソッドはビルドコマンドをすらすらと実行することを可能にし、3つの属性を持ちます：コマンドの呼び出し、属性、オプションです。
 
 <!--original
 A binary class is any class extending `Rocketeer\Abstracts\AbstractBinary`. The core of said class is the `getCommand` method which allows you to build commands fluently, it takes three arguments: the command to call, its arguments, and its options.
 -->
 
-[translation here]
+例：Gitバイナリークラス
 
 <!--original
 Per example for the Git binary class:
@@ -38,7 +38,7 @@ Per example for the Git binary class:
 $git->getCommand('clone', ['from', 'to'], ['--branch' => 'master']); // Yields `git clone from to --branch="master"
 ```
 
-[translation here]
+あなたはもっとスムーズなインターフェイスを持つための方法としてコマンドを使うことができます。
 
 <!--original
 You can also use the command as a method to have a more fluent interface. On that subject, options and arguments can be both passed as arrays and strings:
@@ -50,7 +50,7 @@ $git->clone(['from', 'to'], ['--branch' => 'master']); // Yields `git clone from
 $git->clone('from to', '-b master') // Same result, you can pass array or strings interchangeably
 ```
 
-[translation here]
+デフォルトのバイナリークラスは定義済みでコマンドを返すものだけということはサードパーティーによって実行されたことを意味します。彼らはどこでも何も実行できず、彼らが何かbuildすると実行したということをあなたに返します。クラスのコンテキストの例として、これはどのようにgitコマンドを作成するとともに実行するかを示します：
 
 <!--original
 By default binary classes are only preoccupied with returning commands that are meant to be executed by a third party. They don't run anything anywhere, they just *build* what is meant to be executed and return it to you. Per example in the context of a class, this is how you'd create a git command and execute it:
@@ -62,7 +62,8 @@ $this->run(array(
 ));
 ```
 
-[translation here]
+バイナリークラスは魔法のメソッドとともに来ることがありビルドコマンドを直接実行することが許されます。シンプルに`run*`メソッドのどれかをコールするとタスクを見つけます、バイナリーインスタンス内で直接。この2つの例は
+結果が同じになります：
 
 <!--original
 However binary classes also come with magic methods that allow you to directly execute the built command. For this, simply call any of the `run*` methods usually found on tasks, directly on the binary instance. This means these two examples do the same thing:
@@ -78,7 +79,7 @@ $this->runForCurrentRelease(array(
 $git->runForCurrentRelease('clone', ['from', 'to'], ['--branch' => 'master']);
 ```
 
-[translation here]
+### バイナリーインスタンス
 
 <!--original
 ### Getting a binary instance
