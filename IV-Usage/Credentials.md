@@ -1,4 +1,4 @@
-[translation here]
+# 証明書
 
 <!--original
 # Credentials
