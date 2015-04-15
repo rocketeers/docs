@@ -1,28 +1,28 @@
-[translation here]
+# 接続とステージ
 
 <!--original
 # Connections and stages
 -->
 
-[translation here]
+サーバーとの通信に関して、二つの主要なコンセプトに出会うでしょう。: **接続** と、**ステージ** です。
 
 <!--original
 You'll meet two main concepts when it comes to communicating with your server : **Connections** and **Stages**.
 -->
 
-[translation here]
+## 接続
 
 <!--original
 ## Connections
 -->
 
-[translation here]
+### 設定
 
 <!--original
 ### Configuration
 -->
 
-[translation here]
+接続は、接続したいいろいろなのサーバーを示します。これらは、`config.php`の中に設定しましょう。接続の設定は以下のような感じになります。:
 
 <!--original
 Connections represent the various servers you may want to connect to. You'll configure those in `config.php`. Here's what a connection may look like :
@@ -40,7 +40,7 @@ Connections represent the various servers you may want to connect to. You'll con
 ),
 ```
 
-[translation here]
+二つの方法でサーバーに接続できます。: パスワードを使うか、SSHキーを使うかです。
 
 <!--original
 You can connect by two ways to a server : via a password, or via an SSH key. So if you're connection with a password you can leave `key` and `keyphrase` empty, etc.
@@ -64,7 +64,7 @@ Important note : you do **not** _have_ to put your credentials here. Rocketeer u
 Is a perfectly valid connection.
 -->
 
-[translation here]
+### 複数接続
 
 <!--original
 ### Multiple connections
@@ -114,7 +114,7 @@ $ rocketeer deploy --on="staging"
 $ rocketeer deploy --on="staging,production"
 ```
 
-[translation here]
+複数サーバー接続
 
 <!--original
 ### Multiserver connections
@@ -149,7 +149,7 @@ Sometimes you might have a connection that is actually represented by multiple s
 ),
 ```
 
-[translation here]
+## ステージ
 
 <!--original
 ## Stages
@@ -195,7 +195,7 @@ A server with multiple stages, say `testing` and `production` will on the other 
 Everything you do on a stage is self-contained.
 -->
 
-[translation here]
+### 設定
 
 <!--original
 ### Configuration
@@ -221,7 +221,7 @@ Just like for connections, you can chose which stages to execute tasks on by def
 'default' => array('testing'),
 ```
 
-[translation here]
+### 複数ステージ
 
 <!--original
 ### Multiple stages
@@ -237,7 +237,7 @@ Just like for connections, you can pass a flag to execute tasks on a particular 
 $ rocketeer test --stage="testing"
 ```
 
-[translation here]
+## コンテキストの設定
 
 <!--original
 ## Contextual configuration
@@ -276,7 +276,7 @@ Rocketeer handles contextual configuration via nested arrays, which you can find
 Everything you'll put in either `staging` or `production` here will be a miniature version of the configuration files Rocketeer created. To override any key, simply create an array named like the file (here `paths`) and put the config in there.
 -->
 
-[translation here]
+### ファイルベースの
 
 <!--original
 ### File-based alternative
