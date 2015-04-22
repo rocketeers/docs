@@ -1,10 +1,10 @@
-[translation here]
+# ストラタジー
 
 <!--original
 # Strategies
 -->
 
-[translation here]
+## イントロダクション
 
 <!--original
 ## Introduction
