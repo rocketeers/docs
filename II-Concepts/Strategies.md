@@ -22,7 +22,20 @@ Rocketeer has all the core tasks you'd expect from a deployer: creating a new re
 The most important tasks using strategies are the Deploy and Update ones, by default they use your configured SCM (Git, Svn, etc.) to clone a clean new release on the server, but that's not the only strategy available. You can see what tasks use strategies and what options are available by calling the `rocketeer strategies` command. It'll yield a table similar to the following:
 -->
 
-[translation here]
+| ストラタジー | 実装 | 説明 |
+| -------------- | ---------------- | ----------------------------------------------------------------------- |
+| check          | Php              | サーバがPHPアプリケーションを受け取り可能か確認 |
+| check          | Ruby             | サーバがRubyアプリケーションを受け取り可能か確認Checks |
+| deploy         | Clone            | SCMでリポジトリの新しいインスタンスをクローン |
+| deploy         | Copy             | リポジトリのクローン済みインスタンスを複製して、アップデート |
+| deploy         | Sync             | ローカルファイルからrsyncを使って作成または更新 |
+| test           | Phpunit          | PHPUnitでテストを実行 |
+| migrate        | Artisan          | データベースをLaravelのArtisan CLIでマイグレート |
+| dependencies   | Composer         | Composerで依存パッケージをインストール |
+| dependencies   | Bundler          | Bundlerで依存パッケージをインストール |
+| dependencies   | Npm              | NPMで依存パッケージをインストール |
+| dependencies   | Bower            | Bowerで依存パッケージをインストール |
+| dependencies   | Polyglot         | 上記のパッケージマネージャを必要に応じて実行 |
 
 <!--original
 | Strategy       | Implementation   | Description                                                             |
@@ -47,7 +60,7 @@ The most important tasks using strategies are the Deploy and Update ones, by def
 You can configure which task uses which strategy in the `strategies.php` file of your configuration folder.
 -->
 
-[translation here]
+## 独自のストラタジーを追加する
 
 <!--original
 ## Adding your own strategies
