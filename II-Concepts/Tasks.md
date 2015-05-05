@@ -31,6 +31,9 @@ You can hook into any task via the `hooks.php` file in Rocketeer's config file. 
     // Actual Tasks classes
     'Rocketeer\Tasks\Cleanup',
     'MyNamespace\MyTaskClass',
+    
+    // Tasks defined via facade'
+    'phpunit'
 
     // Closures
     function($task) {
