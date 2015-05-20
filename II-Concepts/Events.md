@@ -1,10 +1,11 @@
-[translation here]
+# イベント
 
 <!--original
 # Events
 -->
 
-[translation here]
+Rocketeerは、タスクによって操作されるその中心にいます。これら各々のタスクはその生成から終了までの間に、起動されるすべてのイベントの体系もっています。（イベントは[illuminate/events](https://github.com/illuminate/events)コンポーネントによって動作しています。）
+したがって、以下のようにした場合：
 
 <!--original
 Rocketeer is at its core driven by Tasks. Each of these tasks has a whole ecosystem of events fired in their lifetime, powered by the [illuminate/events](https://github.com/illuminate/events) components. Therefor, when you're doing this :
@@ -14,7 +15,7 @@ Rocketeer is at its core driven by Tasks. Each of these tasks has a whole ecosys
 Rocketeer::before('deploy', 'MyApp\MyCustomTask');
 ```
 
-[translation here]
+簡単に言うと、実際に行われるのは以下になります：
 
 <!--original
 What you're actually doing is, more simply put :
@@ -24,19 +25,20 @@ What you're actually doing is, more simply put :
 $app['events']->listen('rocketeer.deploy.before', 'MyApp\MyCustomTask@execute');
 ```
 
-[translation here]
+もちろんこれだけではありません、Rocketeerは、2つ目のパラメータで若干の魔法をしています。`Rocketeer::before('deploy', 'composer install')`とすれば`composer install`を、イベントディスパッチャが呼び出せる、実際のタスククラスへと変化させます。しかし、そのコンセプトにより、それは単なる基本的な _Dispacher_（もしくは、_Observer_）システムなのです。
+-- ↑あまりよくない --
 
 <!--original
 This is not "just this" of course, as Rocketeer does some magic on the second argument so that `Rocketeer::before('deploy', 'composer install')` transforms `composer install` into an actual Task class the Events Dispatcher can call. But in its concept, it's just your basic _Dispatcher_ (or _Observer_ if you like) system.
 -->
 
-[translation here]
+## イベントの登録
 
 <!--original
 ## Registering events
 -->
 
-[translation here]
+第一に、イベントは、Composerによって自動的に読み込まれるすべてのファイルに登録できます。もしRocketeerのアーカイブを特別な自動読み込みなしに使っているなら、Rocketeerは、デフォルトで`.rocketeer/events.php`を読み込もうとします。もし、多くのイベントがあって、複数のファイルに分けたい場合には、`.rocketeer/events/*`にファイルを設置するれば自動的に読み込まれます。
 
 <!--original
 First of all, you can register events in any file that is autoloaded by Composer. If you're using the Rocketeer archive and have no particular autoloading, Rocketeer will by default try to load `.rocketeer/events.php` or if you have more events and want to split them in multiple files, it'll autoload every file in a `.rocketeer/events/*` folder.
