@@ -4,8 +4,8 @@
 # Events
 -->
 
-Rocketeerは、タスクによって操作されるその中心にいます。これら各々のタスクはその生成から終了までの間に、起動されるすべてのイベントの体系もっています。（イベントは[illuminate/events](https://github.com/illuminate/events)コンポーネントによって動作しています。）
-したがって、以下のようにした場合：
+Rocketeerは、タスクによってドライブされるその中心にいます。各々のタスクは、それらの起動中に発生するインベントのそのすべての体系をもっています。（イベントは[illuminate/events](https://github.com/illuminate/events)コンポーネントによって動作しています。）
+したがって、以下のようにした場合に、
 
 <!--original
 Rocketeer is at its core driven by Tasks. Each of these tasks has a whole ecosystem of events fired in their lifetime, powered by the [illuminate/events](https://github.com/illuminate/events) components. Therefor, when you're doing this :
@@ -15,7 +15,7 @@ Rocketeer is at its core driven by Tasks. Each of these tasks has a whole ecosys
 Rocketeer::before('deploy', 'MyApp\MyCustomTask');
 ```
 
-簡単に言うと、実際に行われるのは以下になります：
+実際に行われることは、シンプルには以下になります。
 
 <!--original
 What you're actually doing is, more simply put :
@@ -25,8 +25,7 @@ What you're actually doing is, more simply put :
 $app['events']->listen('rocketeer.deploy.before', 'MyApp\MyCustomTask@execute');
 ```
 
-もちろんこれだけではありません、Rocketeerは、2つ目のパラメータで若干の魔法をしています。`Rocketeer::before('deploy', 'composer install')`とすれば`composer install`を、イベントディスパッチャが呼び出せる、実際のタスククラスへと変化させます。しかし、そのコンセプトにより、それは単なる基本的な _Dispacher_（もしくは、_Observer_）システムなのです。
--- ↑あまりよくない --
+もちろんこれだけではなく、Rocketeerは、2つ目のパラメータにちょっとした魔法があります。`Rocketeer::before('deploy', 'composer install')`とすれば`composer install`を、イベントディスパッチャが呼び出せる、実際のタスククラスに変えます。しかし、概念的には、それは単にあなたの基本的な _Dispacher_（もしくは_Observer_でもよい）システムなのです。
 
 <!--original
 This is not "just this" of course, as Rocketeer does some magic on the second argument so that `Rocketeer::before('deploy', 'composer install')` transforms `composer install` into an actual Task class the Events Dispatcher can call. But in its concept, it's just your basic _Dispatcher_ (or _Observer_ if you like) system.
@@ -38,19 +37,19 @@ This is not "just this" of course, as Rocketeer does some magic on the second ar
 ## Registering events
 -->
 
-第一に、イベントは、Composerによって自動的に読み込まれるすべてのファイルに登録できます。もしRocketeerのアーカイブを特別な自動読み込みなしに使っているなら、Rocketeerは、デフォルトで`.rocketeer/events.php`を読み込もうとします。もし、多くのイベントがあって、複数のファイルに分けたい場合には、`.rocketeer/events/*`にファイルを設置するれば自動的に読み込まれます。
+まず最初に、イベントは、Composerによって自動的に読み込まれるすべてのファイルに登録できます。もしRocketeerのアーカイブを使っていて、更に特別な自動読み込みをしていないなら、Rocketeerは、デフォルトで`.rocketeer/events.php`を読み込もうとします。もし、多くのイベントがあって、複数のファイルに分けたい場合には、`.rocketeer/events/*`にファイルを設置すれば自動的に読み込まれます。
 
 <!--original
 First of all, you can register events in any file that is autoloaded by Composer. If you're using the Rocketeer archive and have no particular autoloading, Rocketeer will by default try to load `.rocketeer/events.php` or if you have more events and want to split them in multiple files, it'll autoload every file in a `.rocketeer/events/*` folder.
 -->
 
-[translation here]
+## イベントへリストする
 
 <!--original
 ## Listening to events
 -->
 
-[translation here]
+Rocketeerのすべてのタスクは2つの基本的なイベント―――フックできる`before`と`after`―――を発生します。しかし、いくつかのタスクはその実行中に、様々なポイントでアクションの実行ができる内部イベントを発生します。それらのイベントをリッスンするには、2つのメソッドが使えます。今**デプロイ**タスクが`carrent`フォルダを最新リリースにシンボリックリンクする前に、何かを実行したいとします。
 
 <!--original
 All tasks in Rocketeer fire two basic events : `before` and `after` on which you can hook. But some tasks fire internal events, during their execution, allowing you to execute actions at various points in their lifetime. To listen to these events, there are two methods you can use. Say you want to execute something before the **Deploy** task symlinks the `current` folder to the latest release :
@@ -68,7 +67,7 @@ Rocketeer::listenTo('deploy.before-symlink', function ($task) {
 });
 ```
 
-[translation here]
+これら2つのメソッドは非常に似通っているようですが、見た目だけです。一つ目は実際に2つ目を呼びますが、タスク名またはインスタンスの配列を通過することを許容します。
 
 <!--original
 These two methods look very similar but in appearance only, the first one actually calls the second but allows you to pass an array of tasks names or instances :
@@ -80,13 +79,13 @@ Rocketeer::addTaskListeners(['deploy', new Rocketeer\Tasks\Setup], 'some-event',
 });
 ```
 
-[translation here]
+## 作成したタスク内のイベント発生
 
 <!--original
 ## Firing events in your own tasks
 -->
 
-[translation here]
+あなたが作成したタスクでも`fireEvent`メソッドを使って、同じようにイベントを発生することができます。
 
 <!--original
 You can fire events in your own tasks too by using the `fireEvent` method :
@@ -106,7 +105,7 @@ class MyTask extends Rocketeer\Abstracts\AbstractTask
 }
 ```
 
-[translation here]
+あなたのイベントに名前空間を必要としません。Rocketeerがそれをしてくれます。すべてのイベントは最初に`rocketeer.`名前空間されます。そしてカレントタスクを加え、上の2つのイベントは、`rocketeer.my-task.making-coffee`と`rocketeer.my-task.drinking-coffee`として発生します。
 
 <!--original
 You don't need to namespace your events, as Rocketeer will do it for you. It will first namespace all events in the `rocketeer.` space, then add a slug of the current task, so the two events above would be fired as `rocketeer.my-task.making-coffee` and `rocketeer.my-task.drinking-coffee`:
