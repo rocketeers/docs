@@ -85,7 +85,7 @@ $git->runForCurrentRelease('clone', ['from', 'to'], ['--branch' => 'master']);
 ### Getting a binary instance
 -->
 
-[translation here]
+タスクかストラテジーのバイナリーのインスタンスを取得するには、シンプルにバイナリーメソッドを使います。そのバイナリにビルトインクラスが存在しない場合はAnonymousBinaryのインスタンスのどれかを返しますが、既にロケッティアに AbstractBinaryを拡張したクラスが存在する場合はそれを返します。
 
 <!--original
 To get an instance of a binary in a task, or a strategy, simply use the `binary` method. It will return either an instance of `AnonymousBinary` if no built-in class for that binary exists, or if there already exists a class extending `AbstractBinary` in Rocketeer, it will return that:
@@ -99,7 +99,7 @@ $artisan = $this->binary('artisan'); // Instance of Rocketeer\Binaries\Artisan
 $artisan->run('seed');
 ```
 
-[translation here]
+ビルトインバイナリーは特別なヘルパーメソッドを使用しており、たいてい長いコマンドのエイリアスです。例として、'PHP::extensions'バイナリーメソッドが返すPHPインスタンスで使用可能な全ての拡張を見てみましょう。
 
 <!--original
 The difference is built-in binaries come with extra helper methods that are most of the time aliases to longer commands. Per example let's take a look at the `PHP::extensions` binary method which returns all available extensions of a PHP instance:
@@ -112,7 +112,7 @@ public function extensions()
 }
 ```
 
-[translation here]
+次のような操作が可能です。
 
 <!--original
 This allows you to do the following:
@@ -123,13 +123,13 @@ $extensions = $this->binary('php')->run('extensions');
 $extensions = explode(PHP_EOL, $extensions);
 ```
 
-[translation here]
+そして、利用可能な拡張機能の配列を取得します。
 
 <!--original
 And get an array of available extensions.
 -->
 
-[translation here]
+ロケッティアには、ビルトインバイナリを取得するためのいくつかのショートカットメソッドが付属しています。
 
 <!--original
 Rocketeers comes with a small number of shortcut methods to get the built-in binaries:
@@ -141,13 +141,13 @@ $this->artisan() == $this->binary('artisan');
 // etc
 ```
 
-[translation here]
+### 親となる呼び出し元
 
 <!--original
 ### Parent callers
 -->
 
-[translation here]
+時にはバイナリーは、他のバイナリーから実行されます。例えばArtisan CLIツールは、PHPにより実行される必要があります。そのためには、バイナリークラスにsetParentメソッドを使用します。それはAbstractBinaryまたは単純な文字列の両方のインスタンスを受け入れます。
 
 <!--original
 Sometimes binaries have to be run by other binaries, per example the Artisan CLI tool needs to be run by PHP. For this you'll use the `setParent` method on the binary class. It accepts both instances of `AbstractBinary` or simple strings:
@@ -165,25 +165,25 @@ $artisan->setParent($this->php());
 $artisan->migrate(); // Returns `/usr/bin/php artisan migrate` per example
 ```
 
-[translation here]
+素のコマンドの代わりにバイナリークラスを使う利点は、すでにビルトインパスファインダーを内蔵していることです。もし単純に`$this->run('php artisan migrate')`とする代わりに`$this->artisan()->run('migrate')`とコールしても、ロケッティアはそのバイナリーとバイナリーがどこにあるかを分かっています。自動的にPHPセットの親への正しいパスやArtisanへの正しいパスなどを取得できます。
 
 <!--original
 The advantage of using binary classes instead of running raw commands is that they have already built-in pathfinders. Meaning if you call `$this->artisan()->run('migrate')` instead of simply `$this->run('php artisan migrate')`, Rocketeer knows what those binaries are and where they are. You'll automatically get the correct path to PHP set as parent, the correct path to Artisan, etc.
 -->
 
-[translation here]
+## 独自バイナリーの作成
 
 <!--original
 ## Creating your own binaries
 -->
 
-[translation here]
+独自のバイナリを作成するのはかなり簡単です。そのコアには`Rocketeer\Abstracts\AbstractBinary`を拡張する単純なクラスがあります。それらはメソッドを全く読み込みません、それはただキャンバスにそのエイリスおよび／または既知のパスを追加します。
 
 <!--original
 Creating your own binaries is fairly straight-forward. At their core they're simply classes extending `Rocketeer\Abstracts\AbstractBinary`. There is no required method at all, they're just canvas to add your own aliases and/or known paths.
 -->
 
-[translation here]
+バイナリの事前定義された既知のパスを設定するには、単に`getKnownPaths`メソッドを上書きします。それは2つの値を含む配列を返します。1つ目の値は`which`をコールするもので、それが動作しない場合に第二のパスを使用します。2つ目の値はフォールバックパスです。
 
 <!--original
 To set the predefined known paths of a binary, simply override the `getKnownPaths` method. It returns an array with two entries: first entry is what to call `which` on, and if that doesn't work, it'll use the second path. In other words, the second entry of the array is a fallback path.
@@ -212,7 +212,7 @@ class Grunt extends AbstractBinary
 }
 ```
 
-[translation here]
+それから、自由に何かメソッドを追加できるのは良いと思うでしょう。そしてそれを他のコマンドとしてを呼び出せます。
 
 <!--original
 From there you're free to add whatever methods you feel are good to have around, and call them as any other commands:
