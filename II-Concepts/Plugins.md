@@ -1,4 +1,4 @@
-[translation here]
+# プラグイン
 
 <!--original
 # Plugins
@@ -10,7 +10,7 @@
 You can add functionalities to Rocketeer or simply bundle common tasks into reusable modules by using the plugins system. A plugin at its core is a class implementing the `Rocketeer\Abstracts\AbstractPlugin` abstract.
 -->
 
-[translation here]
+## プラグインの追加
 
 <!--original
 ## Adding a plugin
@@ -47,7 +47,7 @@ This will create the `.rocketeer/plugins/rocketeers/rocketeer-slack` folder, wit
 -->
 
 
-[translation here]
+## プラグインの作成
 
 <!--original
 ## Creating a plugin
@@ -120,7 +120,7 @@ class RocketeerCampfire extends AbstractPlugin
 As you can see a plugin can be something _really_ simple you can save up somewhere and reuse from project to project.
 -->
 
-[translation here]
+## プラグインの設定
 
 <!--original
 ## Plugin configurations
