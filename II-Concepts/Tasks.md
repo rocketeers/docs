@@ -324,5 +324,5 @@ You can find a list of the methods available for each of these services directly
 They are accessed as a property, e.g. to get a folder in the current release you would do the following:
 
 ```php
-$folder $task->releasesManager->getCurrentReleasePath('some/folder');
+$folder = $task->releasesManager->getCurrentReleasePath('some/folder');
 ```
