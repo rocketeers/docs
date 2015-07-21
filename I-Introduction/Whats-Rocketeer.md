@@ -24,7 +24,7 @@ Everything is packaged and contained, that way you can have as many applications
 
 ### The strategy
 
-As I said, Rocketeer's folder architecture is inspired by Capistrano's. Because as much as there are aspects of the latter I dislike, you cannot go against something that's been though out and refined for years either.
+As I said, Rocketeer's folder architecture is inspired by Capistrano's. Because as much as there are aspects of the latter I dislike, you cannot go against something that's been thought out and refined for years either.
 
 In the folder mentioned above (`/var/www/facebook/`), Rocketeer will create three folders.
 
