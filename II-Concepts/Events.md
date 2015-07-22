@@ -43,7 +43,7 @@ This is not "just this" of course, as Rocketeer does some magic on the second ar
 First of all, you can register events in any file that is autoloaded by Composer. If you're using the Rocketeer archive and have no particular autoloading, Rocketeer will by default try to load `.rocketeer/events.php` or if you have more events and want to split them in multiple files, it'll autoload every file in a `.rocketeer/events/*` folder.
 -->
 
-## イベントへリストする
+## イベントの監視
 
 <!--original
 ## Listening to events
