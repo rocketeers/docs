@@ -16,14 +16,14 @@ You can add functionalities to Rocketeer or simply bundle common tasks into reus
 ## Adding a plugin
 -->
 
-プラグインを追加するためには、`rocketeer plugin:install <package>`コマンドを呼び出す必要があります。例として`rocketeer plugin:install anahkiasen/rocketeer-slack`のように、パッケージはパッケージのPackagistかGithubハンドルで始まります。
+プラグインを追加するためには、`rocketeer plugin:install <package>`コマンドを呼び出す必要があります。例えば `rocketeer plugin:install anahkiasen/rocketeer-slack` のように、パッケージはパッケージのPackagistかGithubハンドルで始まります。
 
 
 <!--original
 To add a plugin, you need to call the `rocketeer plugin:install <package>` command, per example `rocketeer plugin:install anahkiasen/rocketeer-slack`, the package being the Packagist/Github handle of the package.
 -->
 
-一旦これを終えたら、プラグインのクラスを、`.rocketeer/config.php`の`plugins`配列に加えます。
+追加を終えたら、プラグインのクラスを、`.rocketeer/config.php`の`plugins`配列に加えます。
 
 <!--original
 Once this is done, add the plugin's class to the `plugins` array in `.rocketeer/config.php`:
@@ -35,7 +35,7 @@ Once this is done, add the plugin's class to the `plugins` array in `.rocketeer/
 ),
 ```
 
-続いて、多くの場合ではプラグインの設定をする必要があります。そのために、その設定を`rocketeer plugin:publish <package>`命令を使ってユーザーランドに書き出したいとします。ここでは、例として `rocketeer plugin:publish anahkiasen/rocketeer-slack` を呼びます。
+続いて、多くの場合ではプラグインの設定をする必要があります。そのために、その設定を`rocketeer plugin:publish <package>`命令を使ってユーザーランドに書き出したいと思います。ここでは、例として `rocketeer plugin:publish anahkiasen/rocketeer-slack` を呼びます。
 
 <!--original
 Then, in most cases you'll need to configure said plugin. For this you'll want to publish its configuration in user land via the `rocketeer plugin:publish <package>` command. Here we'll call `rocketeer plugin:publish anahkiasen/rocketeer-slack` per example.
@@ -54,7 +54,7 @@ This will create the `.rocketeer/plugins/rocketeers/rocketeer-slack` folder, wit
 ## Creating a plugin
 -->
 
-ほとんどのプラグインがそのクラスにもつ`register(Container $app)`と`onQueue(TasksQueue $queue)`という二つのメソッドがあります。
+およそほとんどのプラグインは、そのクラスに`register(Container $app)`と`onQueue(TasksQueue $queue)`という二つのメソッドをもちます。
 
 <!--original
 There's two methods a plugin will most likely have on its class are `register(Container $app)` and `onQueue(TasksQueue $queue)`.
@@ -116,7 +116,7 @@ class RocketeerCampfire extends AbstractPlugin
 }
 ```
 
-見ての通り、プラグインはどこかにとっておいて、プロジェクトをまたいで使うものとして _非常に_ シンプルなものです。
+見ての通り、どこかにとっておきプロジェクトをまたいで使うものとして、プラグインは _非常に_ シンプルなものです。
 
 <!--original
 As you can see a plugin can be something _really_ simple you can save up somewhere and reuse from project to project.
@@ -141,7 +141,7 @@ public function __construct()
 }
 ```
 
-その作成したフォルダの中に、オプションをPHP配列として入れるための、`config.php`ファイルを作成します。
+その作成したフォルダの中に、オプションをPHP配列として入れるための、`config.php`ファイルを作成します。あなたのプラグインのための設定は`my-plugin::` 名前空間下のあなたのタスクの中のConfigクラスにあります。例えば  `$task->config->get('rocketeer-hipchat::myoption')` と実行することで、設定を取得できます。
 
 <!--original
 In that folder you can then create a `config.php` file to put your options as a PHP array. The configuration for your plugin will then be available via the Config class in your tasks, under the `my-plugin::` namespace, per example if your class is `RocketeerHipchat`, you'll get the configuration by doing `$task->config->get('rocketeer-hipchat::myoption')`.
