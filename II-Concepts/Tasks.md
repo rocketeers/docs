@@ -233,6 +233,8 @@ $folder = $this->run(array(
 ?>
 ```
 
+Note also, that as soon as one of the commands fails (the exit status != 0), the rest of the commands passed to the same `run` call gets aborted. E.g., `chown` will try chowning everything that was requested, and even if all but just one of the many files does not get chowned because of permissions, the exit status will be 1 (regardless of `--silent` option), and any following commands will not actually get executed, even if they appear in the Rocketeer output as sent/run.
+
 To automate running of tasks in folders two helpers exist: `runInFolder` and `runForCurrentRelease`. The first one will run one or more tasks in a folder, while the other will run one or more tasks in the current release's folder.
 
 ```php
