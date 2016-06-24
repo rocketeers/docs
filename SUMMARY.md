@@ -18,7 +18,7 @@
     * Tutorials
         * [Laravel integration](V-Tutorials/Laravel.md)
 * Help
-    * [API](/api)
+    * [API](http://rocketeer.autopergamene.eu/api/namespaces/Rocketeer.html)
     * [Issues](https://github.com/rocketeers/rocketeer/issues)
     * [Changelog](CHANGELOG.md)
     * [Contributing](CONTRIBUTING.md)
