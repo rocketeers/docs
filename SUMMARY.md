@@ -17,7 +17,6 @@
     * [Services](IV-Usage/Services.md)
     * Tutorials
         * [Laravel integration](V-Tutorials/Laravel.md)
-        * [Deploying PHP Applications with Rocketeer and Docker](https://semaphore.com/community/tutorials/deploying-php-applications-with-rocketeer-and-docker)**
 * Help
     * [API](/api)
     * [Issues](https://github.com/rocketeers/rocketeer/issues)
