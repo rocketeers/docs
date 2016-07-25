@@ -14,7 +14,7 @@ Ok, let's generate the files needed for Rocketeer to work, type `rocketeer ignit
 
 Rocketeer will do its best to guess the answer of each question, and display what it thinks is the correct answer in yellow between brackets, if you're ok with that, just type `Enter` to use that default answer.
 
-![](http://i.imgur.com/nIS24jT.gif)
+![](http://i.imgur.com/6mollAs.gif)
 
 If this is your first time (or if you're following this tutorial), when Rocketeer asks you if you prefer classes or functions, answer `functions`. We'll go over the OOP setup later on but for a newcomer to Rocketeer, let's start with a minimal setup.
 
@@ -92,14 +92,14 @@ Now, `roles` is an array of roles you can assign to this connection. There is on
 'roles' => ['db', 'api'],
 ```
 
-Then, `config` is an array of overrides. It's a replica of Rocketeer's configuration but scoped to this connection. If per example on our `production` server, we want the `application_name` to be `foobar` we would do this:
+Then, `config` is an array of overrides. It's a replica of Rocketeer's configuration but scoped to this connection. If per example we had a `staging` server on which we wanted to use the `develop` branch of our repository we would do it like this:
 
 ```php
 'config' => [
-  'config' => [
-    'application_name' => 'foobar',
+  'scm' => [
+    'branch' => 'develop',
   ],
 ]
 ```
 
-The key here (`config`) is the name of the file it's in, so since `application_name` is in `config.php` we create a `'config' => []` array within.
+The key here (`scm`) is the name of the file it's in, so since `branch` is in `scm.php` we create a `'scm' => []` array within `config`.

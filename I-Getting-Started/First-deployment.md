@@ -35,23 +35,23 @@ $ rocketeer deploy
 As you can see Rocketeer uses a `tree`-like display to show you what is going on.
 
 1. First it calls the Deploy task; the Deploy task, like the Check task that we saw earlier, has multiple possible strategies, the default one being the Rolling strategy since it uses symlinks to _roll over_ the releases without deleting them from the server.
-2. The Rolling strategy then calls the `Primer` task: this is a task that is run before any deployment and if it does not succeed, deployment is halted. By default it does nothing but we can easily override it with our own logic. We'll see how to customize that right after
+2. The Deploy task then calls the `Primer` task: this is a task that is run before any deployment and if it does not succeed, deployment is halted. By default it does nothing but we can easily override it with our own logic. We'll see how to customize that right after
 3. Then since this will be the first time you deploy to this server, `Setup` is called, which creates all the folders we'll deploy to
 4. Next comes `CreateRelease` which basically just sets up a release for deployment – ie grab the code from wherever and put it in the right folder. By default the `Clone` strategy is used which gets the code from your repository of choice
 5. This released is then prepared by `PrepareRelease` which install all the dependencies, shares folders, sets the right permissions on the files, and so on and so on
-6. And finally `Cleanup` deletes any stale release from the server – by default only the 4 last are kept
+6. And finally `Cleanup` deletes any stale release from the server – by default only the last four releases are kept
 
 ## The Primer task
 
-Let's first look at Primer. In order to do execute checks before deployment, head over to the `hooks.php`, you should see a `'tasks' => []` array – it allows you to register custom tasks with Rocketeer, so let's do so.
+Let's first look at Primer. In order to execute checks before deployment, head over to the `hooks.php` file, you should see a `'tasks' => []` array – it allows you to register custom tasks with Rocketeer, so let's do so.
 
 In this array you use the key to specify your task's name, in this case `Primer` (to override the core Primer task Rocketeer provides). Now, a task can be three thing:
 
 - A string (`ls`) or array of strings (`['cd foo', 'ls']`)
-- A closure
+- A closure (anonymous function)
 - The name of a class
 
-In this case let's use a Closure:
+In this case let's use a closure:
 
 **.rocketeer/config/hooks.php**
 
@@ -60,7 +60,7 @@ In this case let's use a Closure:
 return [
   'hooks' => [
     'tasks' => [
-      'Primer' => function ($task) {
+      'Primer' => function () {
         // Write our task here
       },
     ],
@@ -68,20 +68,20 @@ return [
 
 Now, imagine per example that we want it to check if we have any unstaged changes in Git before trying to deploy. We'd call `git status --porcelain` which would return changed files if present, or nothing if everything is committed.
 
-So basically we want to do `!git status --porcelain`, let's write that. In Rocketeer, you run commands through the `run()` method. By default `run` runs command in the folder of your application, so you don't need to `cd` anywhere, you can just write:
+So basically we want to do `!git status --porcelain`, let's write that. In Rocketeer, you run commands through the `run()` method. By default `run` runs command at the configured `root_directory` of the current connection (`cwd` in local) so you don't need to `cd` anywhere, you can just write:
 
 **.rocketeer/config/hooks.php**
 
 ```php
 <?php
 'tasks' => [
-    'Primer' => function ($task) {
-        return !$task->run('git status --porcelain');
+    'Primer' => function () {
+        return !$this->run('git status --porcelain');
     },
 ],
 ```
 
-Here, `runs` returns the output of the command, and since we want it to pass when there is no output and fail where there is, we just return `!$task->run(...)`. If we run deploy again we indeed get a failure and deployment is halted:
+Here, `run` returns the output of the command, and since we want it to pass when there is _no output_ and fail where there is, we just return `!$this->run(...)`. If we run deploy again we indeed get a failure and deployment is halted:
 
 ```shell
 $ rocketeer deploy
@@ -93,7 +93,7 @@ $ rocketeer deploy
 
 ## Configuring the server
 
-Now that we're sure we can deploy, let's configure everything needed for the `Setup` task. Head over to the `remote.php` file. You should see a lot of options there but all of there are thoroughly explained so take your time to read through them.
+Now that we're sure we can deploy, let's configure everything needed for the `Setup` task. Head over to the `remote.php` file. You should see a lot of options there but all of them are thoroughly explained so take your time to read through them.
 
 ### Shared files
 
@@ -108,15 +108,15 @@ One of the most important options is `shared`, it is a list of folders and files
 ],
 ```
 
-What this will do basically is that, imagine you've deployed twice already, here is what the folders would look like:
+Imagine you've deployed twice already, here is what the folders would look like:
 
 ```
-├── current -> /home/forge/website/releases/20160723145241
+├── current -> /home/www/website/releases/20160723145241
 ├── releases
 │   ├── 20160723145241
-│   │   └── public/avatars -> /home/forge/website/shared/public/avatars
+│   │   └── public/avatars -> /home/www/website/shared/public/avatars
 │   └── 20160723150812
-│       └── public/avatars -> /home/forge/website/shared/public/avatars
+│       └── public/avatars -> /home/www/website/shared/public/avatars
 └── shared
     └── public
         └── avatars ==> contains the actual avatars
@@ -139,7 +139,7 @@ You can configure which folders and files to set as web-writable in the `permiss
 
 // Per example imagine I just need to chmod the files
 // on my server, I can do this:
-'callback' => function ($task, $file) {
+'callback' => function ($file) {
   return 'chmod -R 755 '.$file;
 },
 ```

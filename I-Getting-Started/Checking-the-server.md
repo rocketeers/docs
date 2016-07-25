@@ -6,15 +6,15 @@ Run `rocketeer check`, if everything went well, it should have recognized the ty
 
 ```shell
 $ rocketeer check
-| Check (Check if the server is ready to receive the application) [~1.35s]
-|=> Checking presence of git
-|=> Checking presence of language
-|=> Checking presence of package manager
-|=> Checking presence of required extensions
-|=> Your server is ready to deploy
+├─ Check (Check if the server is ready to receive the application)
+|  ├─ Checking presence of git
+|  ├─ Checking presence of language
+|  ├─ Checking presence of package manager
+|  ├─ Checking presence of required extensions
+|  ├─ Your server is ready to deploy
 ```
 
-What this means per example is if you have a `composer.json` saying you need PHP 7 and the `pthreads` extension, Rocketeer will have assured both are on the server. If you have a `package.json` saying you need Node 6, Rocketeer will check that, etc.
+What this means per example is if you have a `composer.json` saying you need PHP 7 and the `pthreads` extension, Rocketeer will check that both are on the server. If you have a `package.json` saying you need Node 6, Rocketeer will check that, etc.
 
 ## Customizing paths
 
@@ -39,7 +39,7 @@ Now every time Rocketeer needs to use PHP in a command, it'll try to use this pa
 
 Now, if Rocketeer has improperly guessed the type of your application or some checks fail but you know everything works, you can switch how Rocketeer does its check.
 
-Internally, Rocketeer has what we call _strategies_: different ways to go about a certain tasks. Let's see what strategies are available for the Check task:
+Internally, Rocketeer has what we call _strategies_: different ways to go about a certain task. Let's see what strategies are available for the Check task:
 
 ```
 $ rocketeer strategies check
@@ -55,6 +55,8 @@ $ rocketeer strategies check
 By default Rocketeer uses the `Polyglot` strategy, which is a way to say "All of the above if necessary". It'll check if you use Node, and check that if needed, check if you use PHP, etc.
 
 In order to switch strategy, open the `strategies.php` configuration file and simply put the implementation you wish to use next to the strategy type:
+
+**.rocketeer/config/strategies.php**
 
 ```
 <?php
@@ -80,9 +82,9 @@ And there you go, Rocketeer will now simply check your SCM is present (if needed
 
 ```php
 $ rocketeer check
-| Check (Check if the server is ready to receive the application) [~1.35s]
-|=> Checking presence of git
-|=> Your server is ready to deploy
+├─ Check (Check if the server is ready to receive the application) [~1.35s]
+|  ├─ Checking presence of git
+|  ├─ Your server is ready to deploy
 ```
 
 Now that everything works let's try to deploy a first time

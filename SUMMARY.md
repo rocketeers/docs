@@ -2,12 +2,12 @@
 
 - Getting started
 
-  - [What's Rocketeer](I-Introduction/Whats-Rocketeer.md)
-  - [Installation](I-Introduction/Installation.md)
-  - [First contact](I-Introduction/First-contact.md)
-  - [Checking the server](I-Introduction/Checking-the-server.md)
-  - [First deployment](I-Introduction/First-deployment.md)
-  - [Creating tasks](I-Introduction/Creating-tasks.md)
+  - [What's Rocketeer](I-Getting-Started/Whats-Rocketeer.md)
+  - [Installation](I-Getting-Started/Installation.md)
+  - [First contact](I-Getting-Started/First-contact.md)
+  - [Checking the server](I-Getting-Started/Checking-the-server.md)
+  - [First deployment](I-Getting-Started/First-deployment.md)
+  - [Creating tasks](I-Getting-Started/Creating-tasks.md)
 
 - Core concepts
 
