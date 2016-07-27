@@ -58,7 +58,7 @@ In order to switch strategy, open the `strategies.php` configuration file and si
 
 **.rocketeer/config/strategies.php**
 
-```
+```php
 <?php
 return [
     'strategies' => [

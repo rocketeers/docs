@@ -2,8 +2,6 @@
 
 Now that we've informed Rocketeer on how our application and server are structured, it's time to tell it what to do to deploy it. Now, by default it's pretty smart and will know how to install your dependencies and stuff, but that's not all is it?
 
-Let's review how to do various common things to prepare a release for use in production.
-
 ## Overriding subtasks: database operations
 
 Most common task you can create: database stuff. When Deploy fires, within it it fires _another task_ (tasks can be nested at will like that). That task is called `Migrate`... but by default it does nothing (since migrations are usually framework-specific), so just like we did for `Primer`, we can override it in `hooks.php`.
@@ -28,7 +26,7 @@ As I mentioned before, by default `run` runs command in the configured `root_dir
 
 As you can see here we are not returning the results of `run...`, because then Rocketeer would use whatever those commands output to judge whether the task succeeded, but our migration command could have output and still have failed, which would be dangerous.
 
-This is a **very important** concept in Rocketeer: if you return something, whatever it is (array, string, boolean), if it evaluates to truethy the task will be considered a success. So in this case we don't return anything, and in that case Rocketeer will use the exit status of the last command (`artisan migrate && artisan db:backup`) instead.
+This is a **very important** concept in Rocketeer: if you return something, whatever it is (array, string, boolean), if it evaluates to truethy the task will be considered a success. So in this case we don't return anything, and in that case Rocketeer will use the exit status of the last command (`artisan db:backup && artisan migrate`) instead.
 
 This means if any of those two task failed and returned an erroneous exit status, our Migrate task would be considered a failure, which is perfect (I mean kinda)!
 
@@ -97,7 +95,7 @@ Same as before with Primer and Migrate, we write a Closure and use one of the `r
 ],
 ```
 
-Notice how we don't return the output of the command here either, we want to trust the exist status instead. Note that you can do this manually too:
+Notice how we don't return the output of the command here either, we want to trust the exit status instead. Note that you can do this manually too:
 
 ```php
 'after' => [
@@ -146,20 +144,14 @@ class ClearCache extends Rocketeer\Tasks\AbstractTask
 }
 ```
 
-Now, to register that task, we could very well use its qualified name in our `hooks.php` file like this:
+Now, to register that task, we can just use its qualified name in our `hooks.php` file like this:
 
 ```php
 'after' => [
-  'deploy' => [ClearCache::class],
+  'deploy' => [
+    ClearCache::class
+  ],
 ],
 ```
 
-But we can also use the `Rocketeer` class to do this. Head over to `events.php`, and let's rewrite our event there:
-
-**.rocketeer/events.php**
-
-```php
-Rocketeer::after('deploy', ClearCache::class);
-```
-
-Underneath, the Rocketeer proxies the `TasksHandler` class, there are a bunch of those methods available (like `before`), you can check out the API section of the documentation for more information.
+And there we go, as soon as our deploy is finished, our cache will be cleared.
