@@ -83,7 +83,7 @@ Done, that was easy; an array of tasks works exactly the same way:
 
 ### Writing a closure task
 
-Same as before with Primer and Migrate, we write a Closure and use one of the `run` methods (in this case `runForApplication`):
+Same as before with Primer and Migrate, we write a closure and use one of the `run` methods (in this case `runForApplication`):
 
 ```php
 'after' => [

@@ -10,6 +10,10 @@ function() {
 }
 ```
 
+## Exit status
+
+An exit status is an arbitrary number returned from a command to indicate if it worked or not. Common behavior is to return 0 for success and other numbers for specific errors/warnings.
+
 ## Task
 
 A task is something to be executed locally or on a server. It can be as basic as a simple `ls` to a complex flow with prompts and filesystem manipulations and such. A task can be written either as a string/array of strings, a closure or a class.
