@@ -18,6 +18,10 @@ A task is something to be executed locally or on a server. It can be as basic as
 
 A strategy is a fictional task interface which can have multiple concrete implementations.
 
+## Symlink
+
+A symlink (or [symbolic link](http://en.wikipedia.org/wiki/Symbolic_link)) is a virtual file/folder that points to another actual file/folder, like a shortcut.
+
 ## VCS
 
 A VCS (or Version Control System) is a software used to track and organize changes in your codebase, such as **Git**, **Mercurial**, **SVN**, etc.
