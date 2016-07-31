@@ -12,9 +12,9 @@ If everything was installed correctly, you should get the latest version shown (
 
 Ok, let's generate the files needed for Rocketeer to work, type `rocketeer ignite`. Rocketeer will ask you a series of questions. Take your time to read them carefully, and don't worry you can always change what you answered later on.
 
-Rocketeer will do its best to guess the answer of each question, and display what it thinks is the correct answer in yellow between brackets, if you're ok with that, just type `Enter` to use that default answer.
+Rocketeer will do its best to guess the answer of each question, and display what it thinks is the correct answer in yellow between brackets, if you're ok with that, just type **⏎** to use that default answer.
 
-![](http://i.imgur.com/6mollAs.gif)
+![](http://i.imgur.com/2VwkeWy.gif)
 
 > If this is your first time (or if you're following this tutorial), when Rocketeer asks you if you prefer classes or functions, answer `functions`. We'll go over the OOP setup later on but for a newcomer to Rocketeer, let's start with a minimal setup.
 

@@ -27,7 +27,7 @@ Plugins are – underneath – just service providers to Rocketeer's internal co
 return [
     'plugins' => [
         'loaded' => [
-            Rocketeer\Plugins\Slack\Slack::class,
+            'Rocketeer\Plugins\Slack\Slack',
         ],
         'config' => [],
     ],
@@ -54,4 +54,4 @@ $ rocketeer plugins:config anahkiasen/rocketeer-slack
 Published configuration from .rocketeer/vendor/anahkiasen/rocketeer-slack/src/config to .rocketeer/config/plugins/rocketeer-slack
 ```
 
-Now let's take a look at it,
+You can now access `.rocketeer/config/plugins/rocketeer-slack/config.php` to configure the integration, and whenever you deploy, a notification will be sent before and after (and in case of failure).

@@ -11,15 +11,17 @@ $ wget http://rocketeer.autopergamene.eu/versions/rocketeer.phar
 $ chmod +x rocketeer.phar
 ```
 
-You can also install it globally by executing the following command which will then give you a global `rocketeer` command to use in any folder.
+You would then use it by calling `rocketeer.phar some-command` while in the folder where the archive is. You can also install it globally by executing the following command which will then give you a global `rocketeer` command to use in any folder.
 
 ```bash
 $ mv rocketeer.phar /usr/local/bin/rocketeer
 ```
 
+Which would allow you to just call `rocketeer` anywhere.
+
 ## With Composer
 
-You can also install Rocketeer as a global Composer package like any other package. Don't forget to add `~/.composer/vendor/bin` to your `$PATH`!
+You can also install Rocketeer as a global Composer package like any other package. Don't forget to add `~/.composer/vendor/bin` to your `$PATH`.
 
 ```bash
 $ composer global require anahkiasen/rocketeer
