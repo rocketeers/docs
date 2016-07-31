@@ -86,5 +86,3 @@ $ rocketeer check
 |  ├─ Checking presence of git
 |  ├─ Your server is ready to deploy
 ```
-
-Now that everything works let's try to deploy a first time

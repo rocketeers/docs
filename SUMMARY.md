@@ -2,31 +2,32 @@
 
 - Getting started
 
-  - [What's Rocketeer](I-Getting-Started/I-Whats-Rocketeer.md)
-  - [Installation](I-Getting-Started/II-Installation.md)
-  - [First contact](I-Getting-Started/III-First-contact.md)
-  - [Checking the server](I-Getting-Started/IV-Checking-the-server.md)
-  - [First deployment](I-Getting-Started/V-First-deployment.md)
-  - [Creating tasks](I-Getting-Started/VI-Creating-tasks.md)
+  - Setting up
 
-- Core concepts
+    - [What's Rocketeer](Getting-Started/I-Whats-Rocketeer.md)
+    - [Installation](Getting-Started/II-Installation.md)
+    - [First contact](Getting-Started/III-First-contact.md)
 
-  - [Connections and stages](II-Concepts/Connections-and-Stages.md)
-  - [Binaries](II-Concepts/Binaries.md)
-  - [Strategies](II-Concepts/Strategies.md)
-  - [Tasks](II-Concepts/Tasks.md)
-  - [Events](II-Concepts/Events.md)
-  - [Plugins](II-Concepts/Plugins.md)
+  - Preparing your first deployment
 
-- Usage
+    - [Checking the server](Getting-Started/IV-Checking-the-server.md)
+    - [First deployment](Getting-Started/V-First-deployment.md)
+    - [Creating tasks](Getting-Started/VI-Creating-tasks.md)
+    - [Creating commands](Getting-Started/VII-Creating-commands.md)
+    - [Adding plugins](Getting-Started/VIII-Adding-plugins.md)
 
-  - [Credentials](IV-Usage/Credentials.md)
-  - [Deploying](IV-Usage/Deploying.md)
-  - [Debugging](IV-Usage/Debugging.md)
-  - [Services](IV-Usage/Services.md)
-  - Tutorials
+- Guides
 
-    - [Laravel integration](V-Tutorials/Laravel.md)
+  - [Connections and stages](Guides/Connections-and-Stages.md)
+  - [Binaries](Guides/Binaries.md)
+  - [Strategies](Guides/Strategies.md)
+  - [Tasks](Guides/Tasks.md)
+  - [Events](Guides/Events.md)
+  - [Plugins](Guides/Plugins.md)
+  - [Credentials](Guides/Credentials.md)
+  - [Deploying](Guides/Deploying.md)
+  - [Debugging](Guides/Debugging.md)
+  - [Services](Guides/Services.md)
 
 - Help
 
@@ -34,6 +35,5 @@
   - [Issues](https://github.com/rocketeers/rocketeer/issues)
   - [Changelog](CHANGELOG.md)
   - [Contributing](CONTRIBUTING.md)
-  - [Upgrade path](VI-Help/Upgrade-Path.md)
-  - [Troubleshooting](VI-Help/Troubleshooting.md)
-  - [Troubleshooting](VI-Help/Troubleshooting.md)
+  - [Upgrade path](Help/Upgrade-Path.md)
+  - [Troubleshooting](Help/Troubleshooting.md)

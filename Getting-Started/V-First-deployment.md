@@ -1,9 +1,9 @@
 # Preparing your first deployment
 
-Ok, our server is ready and everything, we've configured our connections and paths. Before you start deploying, let's look at what a deployment _looks like_, without running anything, here is basically what will happen when you will call `rocketeer deploy`:
+Ok, our server is ready and everything, we've configured our connections and paths. Before you start deploying, let's look at what a deployment _looks like_, without running anything. Let's run `rocketeer deploy --pretend` which will pretend to deploy and give you an idea of what would happen:
 
 ```shell
-$ rocketeer deploy
+$ rocketeer deploy --pretend
 ├─ Deploy (Deploys the website)
 │  ├─ Deploy/Rolling (Uses a system of folders current/releases/shared to roll releases)
 │  │  ├─ Primer (Run local checks to ensure deploy can proceed)

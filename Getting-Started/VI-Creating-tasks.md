@@ -125,9 +125,9 @@ The `status` method returns a boolean, `true` if the exit status was 0, `false` 
 
 ### Writing a class task
 
-Now let's dive into the belly of the beast, let's write a task class. If you look into your `.rocketeer` folder, you should see a `tasks.php` file created at the root, this is just a standard file loaded by Rocketeer on boot, you can put anything you want in there. Same goes for `events.php`.
+Now let's dive into the belly of the beast, let's write a task class. If you look into your `.rocketeer` folder, you should see a `tasks.php` file created in the `app` folder. This is a folder whose contents are automatically loaded on boot, no matter which files, no matter what's in them. Rocketeer creates two files during ignition (tasks and events) but you can name them however you want, create subfolders, etc.
 
-In order to write a task class, you need to write a class that extends `Rocketeer\Tasks\AbstractTask`. The core logic of the task will go into the `execute` method – if you've provided your IDE with autocompletions it should already suggest you to implement it. So let's do so:
+In order to write a task class, you need to write a class that extends `Rocketeer\Tasks\AbstractTask`. The core logic of the task will go into the `execute` method – your IDE should already suggest for you to implement it. So let's do so:
 
 **.rocketeer/tasks.php**
 
@@ -154,4 +154,20 @@ Now, to register that task, we can just use its qualified name in our `hooks.php
 ],
 ```
 
-And there we go, as soon as our deploy is finished, our cache will be cleared.
+And there we go, if we try to deploy now, as soon as our deploy is finished, our cache will be cleared.
+
+## A note about deploy events
+
+So far I've been saying to hook your tasks into `after.deploy` to ease you into the idea of events but that's not actually entirely correct.
+
+When you deploy, as we've seen, the **Deploy** tasks will fire a bunch of other tasks, the last one being **SwapSymlink** which makes the `current/` folder symlink to the new release we just created. This means if you hook after the deploy, the symlink will already be changed and your website will already be online by the time you execute your commands on it.
+
+What you actually want to do, is execute your commands _before_ the symlink is swapped. So since our task is **SwapSymlink**, the event would be `before.swap-symlink`:
+
+```php
+'before' => [
+  'swap-symlink' => [
+    ClearCache::class
+  ],
+],
+```

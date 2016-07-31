@@ -16,7 +16,7 @@ Rocketeer will do its best to guess the answer of each question, and display wha
 
 ![](http://i.imgur.com/6mollAs.gif)
 
-If this is your first time (or if you're following this tutorial), when Rocketeer asks you if you prefer classes or functions, answer `functions`. We'll go over the OOP setup later on but for a newcomer to Rocketeer, let's start with a minimal setup.
+> If this is your first time (or if you're following this tutorial), when Rocketeer asks you if you prefer classes or functions, answer `functions`. We'll go over the OOP setup later on but for a newcomer to Rocketeer, let's start with a minimal setup.
 
 ### The .env file
 
@@ -28,29 +28,31 @@ This file should remain private, you do not track it into your repository of cho
 
 ### The Rocketeer folder
 
+#### Initial state
+
 The second thing Rocketeer will have created is a `.rocketeer` folder, this is where the magic happens so let's take a look at it now:
 
 ```
 $ tree .rocketeer
 .rocketeer
-├── config
-│   ├── config.php
-│   ├── hooks.php
-│   ├── paths.php
-│   ├── plugins.php
-│   ├── remote.php
-│   ├── scm.php
-│   ├── stages.php
-│   └── strategies.php
-├── events.php
-└── tasks.php
+├── app
+│   ├── events.php
+│   └── tasks.php
+└── config
+    ├── config.php
+    ├── hooks.php
+    ├── paths.php
+    ├── plugins.php
+    ├── remote.php
+    ├── scm.php
+    ├── stages.php
+    └── strategies.php
 ```
 
-It contains two things, the first is a `config` folder where you can fine-tune Rocketeer however you need. Each option is explained thoroughly so take your time to go through all of them and update whatever needs updating.
+It contains two things:
 
-Don't worry too much about things you don't understand yet, we'll see each of them in review during this tutorial.
-
-The second thing is two files named `events` and `tasks` which will allow you to extend Rocketeer.
+1. The first is a `config` folder where you can fine-tune Rocketeer however you need. Each option is explained thoroughly so take your time to go through all of them and update whatever needs updating. Don't worry too much about things you don't understand yet, we'll see each of them in review during this tutorial.
+2. The second thing is a folder named `app` containing two files named `events` and `tasks` which will allow you to extend Rocketeer. In `functional` mode, any file in the `app` folder no matter their names or contents are loaded on boot, so while Rocketeer pre-creates these two files, you can create more than that, create subfolders, etc.
 
 ## Checking the configuration
 

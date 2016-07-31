@@ -24,7 +24,3 @@ You can also install Rocketeer as a global Composer package like any other packa
 ```bash
 $ composer global require anahkiasen/rocketeer
 ```
-
-If you use the global installation, it is recommended to add the global folder to your include path in your IDE of choice to benefit from autocompletion. Here is per example how to do that in PHPStorm:
-
-![](http://i.imgur.com/uzobrq2.gif)
