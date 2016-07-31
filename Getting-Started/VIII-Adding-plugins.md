@@ -55,3 +55,5 @@ Published configuration from .rocketeer/vendor/anahkiasen/rocketeer-slack/src/co
 ```
 
 You can now access `.rocketeer/config/plugins/rocketeer-slack/config.php` to configure the integration, and whenever you deploy, a notification will be sent before and after (and in case of failure).
+
+Alright, we're ready for our first deployment, hit `rocketeer deploy` and head to the next section.

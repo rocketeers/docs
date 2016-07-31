@@ -16,6 +16,10 @@
     - [Creating commands](Getting-Started/VII-Creating-commands.md)
     - [Adding plugins](Getting-Started/VIII-Adding-plugins.md)
 
+  - After the first deployment
+
+    - [After the first deployment](Getting-Started/IX-After-the-first-deployment.md)
+
 - Guides
 
   - [Binaries](Guides/Binaries.md)

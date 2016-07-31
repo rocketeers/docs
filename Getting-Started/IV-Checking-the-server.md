@@ -33,7 +33,7 @@ return [
 ];
 ```
 
-Now every time Rocketeer needs to use PHP in a command, it'll try to use this path first. If not it will try to find it himself and cache the result for later use. Do note that Rocketeer will **blindly trust** whatever path you configure so make sure it is correct.
+Now every time Rocketeer needs to use PHP in a command, it'll try to use this path first. If no path is configured it will try to find it himself and cache the result for later use. Do note that Rocketeer will **blindly trust** whatever path you configure so make sure it is correct.
 
 ## Switching strategies
 

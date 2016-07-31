@@ -48,7 +48,7 @@ Let's first look at Primer. In order to execute checks before deployment, head o
 In this array you use the key to specify your task's name, in this case `Primer` (to override the core Primer task Rocketeer provides). Now, a task can be three thing:
 
 - A string (`ls`) or array of strings (`['cd foo', 'ls']`)
-- A closure (anonymous function)
+- A closure
 - The name of a class
 
 In this case let's use a closure:
@@ -68,7 +68,7 @@ return [
 
 Now, imagine per example that we want it to check if we have any unstaged changes in Git before trying to deploy. We'd call `git status --porcelain` which would return changed files if present, or nothing if everything is committed.
 
-So basically we want to do `!git status --porcelain`, let's write that. In Rocketeer, you run commands through the `run()` method. By default `run` runs command at the configured `root_directory` of the current connection (`cwd` in local) so you don't need to `cd` anywhere, you can just write:
+In Rocketeer, you run commands through the `run()` method. By default `run` runs command at the configured `root_directory` of the current connection (`pwd` in local) so you don't need to `cd` anywhere, you can just write:
 
 **.rocketeer/config/hooks.php**
 
@@ -124,7 +124,7 @@ Imagine you've deployed twice already, here is what the folders would look like:
 
 ### Permissions
 
-Another important aspect of most applications is setting permissions on the files. Imagine your application has a `logs` folder, or anything like that, it needs to be _web-writable_ (ie. accessible for writing by the application itself).
+Another important aspect of most applications is setting permissions on the files. Imagine your application has a `logs` folder, or anything like that, it needs to be _web-writable_.
 
 You can configure which folders and files to set as web-writable in the `permissions.files` option. Underneath it is a callback containing which commands will be run of each of those files/folder to make them web-writable. Since each server differs depending on what you use (apache, nginx, etc.) and what users you have, etc. this is fully configurable.
 

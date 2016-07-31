@@ -22,7 +22,7 @@ An [container](http://container.thephpleague.com/) is in spirit a big array of s
 
 An exit status is an arbitrary number returned from a command to indicate if it worked or not. Common behavior is to return 0 for success and other numbers for specific errors/warnings.
 
-## Task
+## Tasks
 
 A task is something to be executed locally or on a server. It can be as basic as a simple `ls` to a complex flow with prompts and filesystem manipulations and such. A task can be written either as a string/array of strings, a closure or a class.
 
@@ -30,7 +30,7 @@ A task is something to be executed locally or on a server. It can be as basic as
 
 A class that registers other classes into a container.
 
-## Strategy
+## Strategies
 
 A strategy is a fictional task interface which can have multiple concrete implementations.
 
@@ -41,3 +41,7 @@ A symlink (or [symbolic link](http://en.wikipedia.org/wiki/Symbolic_link)) is a 
 ## VCS
 
 A VCS (or Version Control System) is a software used to track and organize changes in your codebase, such as **Git**, **Mercurial**, **SVN**, etc.
+
+## Web-writable
+
+Accessible for writing by the application itself.
