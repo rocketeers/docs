@@ -18,22 +18,26 @@
 
 - Guides
 
-  - [Connections and stages](Guides/Connections-and-Stages.md)
   - [Binaries](Guides/Binaries.md)
-  - [Strategies](Guides/Strategies.md)
-  - [Tasks](Guides/Tasks.md)
+  - [Connections and stages](Guides/Connections-and-Stages.md)
+  - [Credentials](Guides/Credentials.md)
+  - [Debugging](Guides/Debugging.md)
+  - [Deploying](Guides/Deploying.md)
   - [Events](Guides/Events.md)
   - [Plugins](Guides/Plugins.md)
-  - [Credentials](Guides/Credentials.md)
-  - [Deploying](Guides/Deploying.md)
-  - [Debugging](Guides/Debugging.md)
   - [Services](Guides/Services.md)
+  - [Strategies](Guides/Strategies.md)
+  - [Tasks](Guides/Tasks.md)
 
 - Help
 
-  - [API](http://rocketeer.autopergamene.eu/api)
+  - [API Reference](http://rocketeer.autopergamene.eu/api)
   - [Issues](https://github.com/rocketeers/rocketeer/issues)
-  - [Changelog](CHANGELOG.md)
   - [Contributing](CONTRIBUTING.md)
-  - [Upgrade path](Help/Upgrade-Path.md)
   - [Troubleshooting](Help/Troubleshooting.md)
+
+- [Glossary](GLOSSARY.md)
+
+- [Changelog](CHANGELOG.md)
+
+- [Upgrade path](Help/Upgrade-Path.md)

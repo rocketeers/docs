@@ -19,7 +19,7 @@ $ rocketeer deploy --pretend
 │  │  |  ├─ Getting some informations about the server
 │  │  |  ├─ Successfully setup "website" at "/home/forge/website"
 │  │  ├─ CreateRelease (Creates a new release on the server)
-│  │  │  ├─ CreateRelease/Clone (Clones a fresh instance of the repository by SCM)
+│  │  │  ├─ CreateRelease/Clone (Clones a fresh instance of the repository by VCS)
 │  │  │  |  ├─ Cloning repository in "/home/forge/website/releases/20160723125847"
 │  │  │  |  ├─ Initializing submodules if any
 │  │  ├─ PrepareRelease (Prepares the release for use)

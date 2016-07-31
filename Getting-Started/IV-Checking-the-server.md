@@ -78,7 +78,7 @@ You can also completely disable the strategy by simply putting in a falsey value
 'check' => null,
 ```
 
-And there you go, Rocketeer will now simply check your SCM is present (if needed):
+And there you go, Rocketeer will now simply check your VCS is present (if needed):
 
 ```php
 $ rocketeer check

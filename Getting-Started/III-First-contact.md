@@ -44,9 +44,9 @@ $ tree .rocketeer
     ├── paths.php
     ├── plugins.php
     ├── remote.php
-    ├── scm.php
     ├── stages.php
-    └── strategies.php
+    ├── strategies.php
+    └── vcs.php
 ```
 
 It contains two things:
@@ -94,14 +94,14 @@ Now, `roles` is an array of roles you can assign to this connection. There is on
 'roles' => ['db', 'api'],
 ```
 
-Then, `config` is an array of overrides. It's a replica of Rocketeer's configuration but scoped to this connection. If per example we had a `staging` server on which we wanted to use the `develop` branch of our repository we would do it like this:
+Then, `config` is an array of overrides. It's a replica of Rocketeer's configuration but scoped to this connection. If per example we had a `staging` server on which we wanted to use the `develop` branch of our VCS we would do it like this:
 
 ```php
 'config' => [
-  'scm' => [
+  'vcs' => [
     'branch' => 'develop',
   ],
 ]
 ```
 
-The key here (`scm`) is the name of the file it's in, so since `branch` is in `scm.php` we create a `'scm' => []` array within `config`.
+The key here (`vcs`) is the name of the file it's in, so since `branch` is in `vcs.php` we create a `'vcs' => []` array within `config`.

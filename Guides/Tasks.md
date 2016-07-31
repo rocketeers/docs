@@ -10,7 +10,7 @@ A task can be one of a three things:
 
 Each level gives you a little more control and comfort – _this is intentional_. If you need more control than what Closures give you then you probably need a class.
 
------
+--------------------------------------------------------------------------------
 
 ## Hooking into Rocketeer's Tasks
 
@@ -168,6 +168,7 @@ Rocketeer::execute('composer');
 ```
 
 You can execute multiple tasks by passing an array of tasks. One thing that is crucial to remember is that Rocketeer will always process the queue you pass to it. That means you can pass anything that is considered as a task:
+
 - A string command.
 - A closure.
 - The name of a task.
@@ -191,7 +192,7 @@ Rocketeer::execute(array(
 
 ### Executing tasks in local
 
-In some cases you need to execute a series of commands in local and have the same comfort as you'd have executing things on the local server. This is only possible with actual Tasks classes. All you need to do is to set the `local` property to *true*:
+In some cases you need to execute a series of commands in local and have the same comfort as you'd have executing things on the local server. This is only possible with actual Tasks classes. All you need to do is to set the `local` property to _true_:
 
 ```php
 class MyTask extends Rocketeer\Abstracts\AbstractTask
@@ -202,14 +203,13 @@ class MyTask extends Rocketeer\Abstracts\AbstractTask
 
 From there, Rocketeer will delegate all calls to a `LocalConnection` class that acts the same as any Connection class but runs commands in the local system. This is useful for preparing the deploy and is how the `Primer` task works.
 
------
+--------------------------------------------------------------------------------
 
 ## Writing Tasks
 
 ### Core methods
 
-The core method of any Task is the `run` method. This is the one that lays at the bottom of nearly every other helper.
-It just runs commands on the remote server and returns the output.
+The core method of any Task is the `run` method. This is the one that lays at the bottom of nearly every other helper. It just runs commands on the remote server and returns the output.
 
 ```php
 <?php
@@ -310,7 +310,6 @@ $this->executeTask('Rollback');
 And call other classes's methods. All tasks and strategies have access to the following core classes and their methods:
 
 - **command** is the instance of the command currently running, to fetch options and arguments;
-- **scm** is the binary instance of the current SCM (git, SVN, etc.);
 - **rocketeer** is responsible for getting information on the current app and its configuration;
 - **connections** handles getting the current connection/stage/server and its respective credentials;
 - **remote** is your entry point to the server, it's the class the `run` method uses;
@@ -321,9 +320,9 @@ And call other classes's methods. All tasks and strategies have access to the fo
 - **builder** allows you to build tasks and strategies on the fly;
 - **queue** allows you to run tasks in a queue within your tasks;
 - **tasks** handles registration of tasks and their events, it's the class behind the Rocketeer facade.
+- **vcs** is the binary instance of the current VCS (git, SVN, etc.);
 
-You can find a list of the methods available for each of these services directly in the [API documentation](http://rocketeer.autopergamene.eu/api/namespaces/Rocketeer.html).
-They are accessed as a property, e.g. to get a folder in the current release you would do the following:
+You can find a list of the methods available for each of these services directly in the [API documentation](http://rocketeer.autopergamene.eu/api/namespaces/Rocketeer.html). They are accessed as a property, e.g. to get a folder in the current release you would do the following:
 
 ```php
 $folder = $task->releasesManager->getCurrentReleasePath('some/folder');

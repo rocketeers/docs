@@ -172,19 +172,21 @@ Now as this can get quite lengthy and you don't want to work in an array nested 
 | .rocketeer
 | -- connections
 | ---- production
-| ------ scm.php
+| ------ vcs.php
 | ---- staging
-| ------ scm.php
+| ------ vcs.php
 ```
 
-**connections/production/scm.php**
+**connections/production/vcs.php**
+
 ```php
 <?php return array(
   'branch' => 'master',
 );
 ```
 
-**connections/staging/scm.php**
+**connections/staging/vcs.php**
+
 ```php
 <?php return array(
   'branch' => 'develop',
