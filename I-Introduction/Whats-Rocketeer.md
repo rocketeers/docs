@@ -16,10 +16,10 @@ Rocketeer provides a handful of tasks built-in to deploy and manage your remote 
 ### Core folders
 
 At its core, this package's strategy is inspired by Capistrano's and is relatively simple.
-Before anything you'll provide Rocketeer with a `root_folder` on your server – this folder is Rocketeer's little self-contained world : whatever it does will be in that folder.
+Before anything you'll provide Rocketeer with a `root_directory` on your server – this folder is Rocketeer's little self-contained world : whatever it does will be in that folder.
 
-Then you give it your `application_name`. This is to let Rocketeer handle having multiple applications on the same server. The application name will be used to create a subfolder in the `root_folder` where everything related to _this_ application will happen.
-If per example your `root_folder` is `/var/www/` and your `application_name` is `facebook`, then Rocketeer will create `/var/www/facebook/` and everything it does in the span of this project will happen in that folder.
+Then you give it your `application_name`. This is to let Rocketeer handle having multiple applications on the same server. The application name will be used to create a subfolder in the `root_directory` where everything related to _this_ application will happen.
+If per example your `root_directory` is `/var/www/` and your `application_name` is `facebook`, then Rocketeer will create `/var/www/facebook/` and everything it does in the span of this project will happen in that folder.
 Everything is packaged and contained, that way you can have as many applications on your server and it will still be all smooth.
 
 ### The strategy
