@@ -20,7 +20,7 @@ The most important tasks using strategies are the Deploy and Update ones, by def
 | dependencies   | Npm              | Installs dependencies with NPM                                          |
 | dependencies   | Bower            | Installs dependencies with Bower                                        |
 | dependencies   | Polyglot         | Runs all of the above package managers if necessary                     |
-| dependencies   | null             | Runs none (note null must be in quoation marks IE 'null')               |
+| dependencies   | null             | Runs none                                                               |
 
 You can configure which task uses which strategy in the `strategies.php` file of your configuration folder.
 
