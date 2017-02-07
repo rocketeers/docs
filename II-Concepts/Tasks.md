@@ -322,7 +322,7 @@ And call other classes's methods. All tasks and strategies have access to the fo
 - **queue** allows you to run tasks in a queue within your tasks;
 - **tasks** handles registration of tasks and their events, it's the class behind the Rocketeer facade.
 
-You can find a list of the methods available for each of these services directly in the [API documentation](http://rocketeer.autopergamene.eu/api/namespaces/Rocketeer.html).
+You can find a list of the methods available for each of these services directly in the [API documentation](http://rocketeer.autopergamene.eu/api/).
 They are accessed as a property, e.g. to get a folder in the current release you would do the following:
 
 ```php
