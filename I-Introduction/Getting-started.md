@@ -29,7 +29,7 @@ $ php vendor/bin/rocketeer ignite
 
 And that's all, the configuration file referenced below will be created at `yourapp/.rocketeer/`.
 
-Use `php vendor/bin/rocketeer` to access Rocketeer's commands or simply alias it : `alias rocketeer='php vendor/bin/rocketeer'`. You can also add `vendor/bin` to your _PATH_ to always have local binaries accessible.
+Use `php vendor/bin/rocketeer` to access Rocketeer's commands or simply alias it : `alias rocketeer='vendor/bin/rocketeer'`. You can also add `vendor/bin` to your _PATH_ to always have local binaries accessible.
 
 ### Globally
 
